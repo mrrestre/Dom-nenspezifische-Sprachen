@@ -1,0 +1,6 @@
+greeting := "Hallo Welt" ;
+write greeting ;
+x := [1,2,3,4];
+for i in x do
+	write i;
+enddo;
