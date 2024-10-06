@@ -5,26 +5,37 @@ class Tokenizer:
         self.file_path = file_path
         self.tokens = []
 
-        self.reserved_words = ['FOR', 'IN', 'DO', 'WRITE', 'ENDDO']
+        self.reserved_words = [ 'READ', 'WRITE', 'IF', 'THEN', 'ELSEIF', 'ELSE', 'ENDIF', 'FOR',
+                                'IN', 'DO', 'ENDDO', 'NOW', 'CURRENTTIME', 'MINIMUM', 'MAXIMUM',
+                                'FIRST', 'LAST', 'SUM', 'AVERAGE', 'EARLIEST', 'LATEST']
         self.symbols = {
+            ':=':   'ASSIGN',
+            '**':   'POWER',
             ';':    'SEMICOLON', 
-            '=':    'EQUAL', 
+            '<=':   'LTEQ', 
+            '=>':   'GTEQ',
+            '<>':   'NEQ',
+
+            '=':    'EQ', 
+            ',':    'COMMA',
+            '+':    'PLUS',
+            '-':    'MINUS',
+            '*':    'TIMES',  
+            '/':    'DIVIDE',
             '(':    'LPAR', 
             ')':    'RPAR', 
-            '{':    'LSPAR', 
-            '}':    'LRPAR', 
-            '+':    'PLUS', 
-            '-':    'MINUS', 
-            '*':    'MULT',  
-            ':=':   'ASSIGN', 
             '[':    'LSPAR', 
             ']':    'RSPAR',
-            ',':    'COMMA'
+            '{':    'LKPAR', 
+            '}':    'RKPAR',
+            '&':    'AMPERSAND',
+            '<':    'LT',
+            '>':    'GT'
         }
 
         self.regex = {
             'IDENTIFIER' :  r'^[a-zA-Z][a-zA-Z0-9]*\b',
-            'NUMTOKEN':     r'\d',
+            'NUMTOKEN':     r'\b\d+(\.\d+)?\b',
             'STRLITERAL':   r'^["\'].*?["\']'
         }
 
@@ -35,7 +46,13 @@ class Tokenizer:
             for line_number, line in enumerate(file, start=1):
                 tokens = self.tokenize_line(line)
                 for token, category, column in tokens:
-                    self.tokens.append((line_number, column, category, token))
+                    temp_json = {
+                        'LINE_NUM': line_number, 
+                        'COLUMN': column,
+                        'TOKEN_TYPE': category,
+                        'TOKEN_VAL': token
+                    }
+                    self.tokens.append(temp_json)
 
     def tokenize_line(self, line):        
         categorized_tokens = []
@@ -49,7 +66,8 @@ class Tokenizer:
             column += white_spaces
             
             for reserved_word in self.reserved_words:
-                if line.startswith(reserved_word.lower()):
+                lower_line = line.lower()
+                if lower_line.startswith(reserved_word.lower()):
                     found = True
                     categorized_tokens.append((reserved_word, reserved_word, column))
                     column += len(reserved_word)
