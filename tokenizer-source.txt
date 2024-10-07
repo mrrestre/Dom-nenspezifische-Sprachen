@@ -1,5 +1,5 @@
 greeting := "Hallo Welt" ;
-write greeting ;
+write greeting;
 pi := 3.14;
 if (pi <> 1) {
 	write 'Pi is not one';
@@ -8,3 +8,5 @@ x := [1,2,3,4];
 for i in x do
 	write i;
 enddo;
+date_str := 2024-10-06T11:15:00;
+date_str = 2024-10-06;

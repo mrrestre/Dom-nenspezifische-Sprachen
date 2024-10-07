@@ -34,7 +34,8 @@ class Tokenizer:
         }
 
         self.regex = {
-            'IDENTIFIER' :  r'^[a-zA-Z][a-zA-Z0-9]*\b',
+            'IDENTIFIER' :  r'^[a-zA-Z][a-zA-Z0-9_]*\b',
+            'TIMETOKEN':    r'^\d{4}-\d{2}-\d{2}(?:T\d{2}:\d{2}:\d{2})?\b',
             'NUMTOKEN':     r'\b\d+(\.\d+)?\b',
             'STRLITERAL':   r'^["\'].*?["\']'
         }
