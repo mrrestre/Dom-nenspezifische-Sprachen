@@ -47,12 +47,8 @@ class Tokenizer:
             for line_number, line in enumerate(file, start=1):
                 tokens = self.tokenize_line(line)
                 for token, category, column in tokens:
-                    temp_json = {
-                        'LINE_NUM': line_number, 
-                        'COLUMN': column,
-                        'TOKEN_TYPE': category,
-                        'TOKEN_VAL': token
-                    }
+                    temp_json = [str(line_number), str(column), category, token]
+
                     self.tokens.append(temp_json)
 
     def tokenize_line(self, line):        

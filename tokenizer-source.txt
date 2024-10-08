@@ -1,3 +1,4 @@
+****
 greeting := "Hallo Welt" ;
 write greeting;
 pi := 3.14;
