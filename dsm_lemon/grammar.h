@@ -1,0 +1,13 @@
+#define PLUS                             1
+#define MINUS                            2
+#define TIMES                            3
+#define DIVIDE                           4
+#define POWER                            5
+#define SIN                              6
+#define WRITE                            7
+#define SEMICOLON                        8
+#define LPAR                             9
+#define RPAR                            10
+#define NUMTOKEN                        11
+#define STRTOKEN                        12
+#define IDENTIFIER                      13

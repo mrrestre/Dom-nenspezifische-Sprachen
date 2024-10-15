@@ -1,0 +1,1 @@
+[["1", "WRITE", "WRITE"], ["1", "STRTOKEN", "hello world"], ["1", "SEMICOLON", ";"], ["2", "WRITE", "WRITE"], ["2", "STRTOKEN", "bye bye world O_O"], ["2", "SEMICOLON", ";"], ["3", "WRITE", "WRITE"], ["3", "SIN", "SIN"], ["3", "LPAR", "("], ["3", "NUMTOKEN", "1"], ["3", "PLUS", "+"], ["3", "NUMTOKEN", "1"], ["3", "RPAR", ")"], ["3", "SEMICOLON", ";"]]

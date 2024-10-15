@@ -1,0 +1,3 @@
+write "hello world";
+write "bye bye world O_O";
+write sin (1+1);

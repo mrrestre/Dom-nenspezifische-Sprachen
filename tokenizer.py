@@ -1,21 +1,23 @@
 import re
+import json
 
 class Tokenizer:
-    def __init__(self, file_path):
-        self.file_path = file_path
+    def __init__(self, input_file_path, token_file_path):
+        self.input_file_path = input_file_path
+        self.output_file_path = token_file_path
         self.tokens = []
 
         self.reserved_words = [ 'READ', 'WRITE', 'IF', 'THEN', 'ELSEIF', 'ELSE', 'ENDIF', 'FOR',
                                 'IN', 'DO', 'ENDDO', 'NOW', 'CURRENTTIME', 'MINIMUM', 'MAXIMUM',
-                                'FIRST', 'LAST', 'SUM', 'AVERAGE', 'EARLIEST', 'LATEST']
+                                'FIRST', 'LAST', 'SUM', 'AVERAGE', 'EARLIEST', 'LATEST', 'SIN']
         self.symbols = {
             ':=':   'ASSIGN',
             '**':   'POWER',
-            ';':    'SEMICOLON', 
             '<=':   'LTEQ', 
             '=>':   'GTEQ',
             '<>':   'NEQ',
 
+            ';':    'SEMICOLON', 
             '=':    'EQ', 
             ',':    'COMMA',
             '+':    'PLUS',
@@ -37,19 +39,23 @@ class Tokenizer:
             'IDENTIFIER' :  r'^[a-zA-Z][a-zA-Z0-9_]*\b',
             'TIMETOKEN':    r'^\d{4}-\d{2}-\d{2}(?:T\d{2}:\d{2}:\d{2})?\b',
             'NUMTOKEN':     r'\b\d+(\.\d+)?\b',
-            'STRLITERAL':   r'^["\'].*?["\']'
+            'STRTOKEN':     r'^["\'](.*?)["\']'
         }
 
         self.tokenize_file()
 
     def tokenize_file(self):
-        with open(self.file_path, 'r') as file:
+        with open(self.input_file_path, 'r') as file:
             for line_number, line in enumerate(file, start=1):
                 tokens = self.tokenize_line(line)
                 for token, category, column in tokens:
-                    temp_json = [str(line_number), str(column), category, token]
+                    # temp_json = [str(line_number), str(column), category, token]
+                    temp_json = [str(line_number), category, token]
 
                     self.tokens.append(temp_json)
+        # Save to a JSON file
+        with open(self.output_file_path, 'w') as file:
+            json.dump(self.tokens, file)
 
     def tokenize_line(self, line):        
         categorized_tokens = []
@@ -82,11 +88,11 @@ class Tokenizer:
             for description, pattern in self.regex.items():
                 result = re.match(pattern, line, re.I)
                 if result:
-                    value = result.group()
+                    value = result.group(1) if description == 'STRTOKEN' else result.group()
                     found = True
-                    categorized_tokens.append((value, description, column))
-                    column += len(value)
-                    line = line[len(value):]
+                    categorized_tokens.append((value, description, column))  
+                    column += len(result.group(0))
+                    line = line[len(result.group(0)):]
                     break
             
             if not found:

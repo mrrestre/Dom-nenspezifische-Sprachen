@@ -1,0 +1,40 @@
+{
+    "type": "STATEMENTBLOCK",
+    "statements": [
+        {
+            "type": "WRITE",
+            "arg": {
+                "type": "STRTOKEN",
+                "value": "hello world"
+            }
+        },
+        {
+            "type": "WRITE",
+            "arg": {
+                "type": "STRTOKEN",
+                "value": "bye bye world O_O"
+            }
+        },
+        {
+            "type": "WRITE",
+            "arg": {
+                "type": "SIN",
+                "arg": [
+                    {
+                        "type": "PLUS",
+                        "arg": [
+                            {
+                                "type": "NUMTOKEN",
+                                "value": "1"
+                            },
+                            {
+                                "type": "NUMTOKEN",
+                                "value": "1"
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    ]
+}

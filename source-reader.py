@@ -1,14 +1,14 @@
-import json
 from tokenizer import Tokenizer
+from compiler import Compiler
 
-file_path = 'tokenizer-source.txt'
+input_file_path = '01_input.txt'
+token_file_path = '02_tokenstream.txt'
+compiled_file_path = '03_compiled.txt'
 
-tokenizer = Tokenizer(file_path)
+tokenizer = Tokenizer(input_file_path, token_file_path)
 
-tokens = tokenizer.get_tokens()
-
-json_string = json.dumps(tokens, indent=4)
-print(json_string)
-
-# for token in tokens:
-#     print(token)
+compiler = Compiler(token_file_path, compiled_file_path)
+try:
+    output = compiler.compile()
+except ValueError as ve:
+    print(ve)
