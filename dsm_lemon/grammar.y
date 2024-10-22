@@ -181,6 +181,7 @@ cJSON* ternary (char *fname, cJSON *a, cJSON *b, cJSON *c)
 /////////////////////// 
 // je weiter unten, desto bindet der Operator stärker
 
+
 %left 	   PLUS MINUS .
 %left 	   TIMES DIVIDE .
 %right     POWER .
