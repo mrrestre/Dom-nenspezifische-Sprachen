@@ -5,35 +5,37 @@
             "type": "WRITE",
             "arg": {
                 "type": "STRTOKEN",
-                "value": "hello world"
+                "value": "Hello Welt :)"
             }
         },
         {
             "type": "WRITE",
             "arg": {
                 "type": "STRTOKEN",
-                "value": "bye bye world O_O"
+                "value": "Bye bye Welt O.O"
             }
         },
         {
             "type": "WRITE",
             "arg": {
-                "type": "SIN",
+                "type": "PLUS",
                 "arg": [
                     {
-                        "type": "PLUS",
-                        "arg": [
-                            {
-                                "type": "NUMTOKEN",
-                                "value": "1"
-                            },
-                            {
-                                "type": "NUMTOKEN",
-                                "value": "1"
-                            }
-                        ]
+                        "type": "NUMTOKEN",
+                        "value": "1.5"
+                    },
+                    {
+                        "type": "NUMTOKEN",
+                        "value": "1"
                     }
                 ]
+            }
+        },
+        {
+            "type": "WRITE",
+            "arg": {
+                "type": "NUMTOKEN",
+                "value": "25"
             }
         }
     ]

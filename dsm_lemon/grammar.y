@@ -105,6 +105,8 @@ int main(int argc, char* argv[]) {
 /////////////////////// 
 
 int get_token_id (char *token) {
+	if (strcmp(token, "ASSIGN") == 0) return ASSIGN;
+	if (strcmp(token, "COS") == 0) return COS;
 	if (strcmp(token, "DIVIDE") == 0) return DIVIDE;
 	if (strcmp(token, "IDENTIFIER") == 0) return IDENTIFIER;
 	if (strcmp(token, "LPAR") == 0) return LPAR; 
@@ -185,7 +187,7 @@ cJSON* ternary (char *fname, cJSON *a, cJSON *b, cJSON *c)
 %left 	   PLUS MINUS .
 %left 	   TIMES DIVIDE .
 %right     POWER .
-%right	   SIN .
+%right	   SIN COS .
 
 
 
@@ -239,6 +241,18 @@ statement(r) ::= WRITE ex(e) SEMICOLON .
 	r = res; 
 }
 
+///////////////////////////
+// ASSIGN
+///////////////////////////
+
+statement(r) ::= IDENTIFIER(i) ASSIGN ex(e) SEMICOLON .
+{
+	cJSON *res = cJSON_CreateObject(); 
+	cJSON_AddStringToObject(res, "type", "ASSIGN");
+	cJSON_AddStringToObject(res, "varname", getValue(i)); 
+	cJSON_AddItemToObject(res, "arg", e); 
+	r = res; 
+}
 
 
 
@@ -311,6 +325,9 @@ ex(r) ::= ex(a) POWER ex(b) .
 
 ex(r) ::= SIN ex(a) .                               
 {r = unary ("SIN", a); }
+
+ex(r) ::= COS ex(a) .                               
+{r = unary ("COS", a); }
 
 
 

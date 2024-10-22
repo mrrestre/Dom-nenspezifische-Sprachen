@@ -1,3 +1,4 @@
-write "hello world";
-write "bye bye world O_O";
-write sin (1+1);
+write 'Hello Welt :)';
+write 'Bye bye Welt O.O';
+write 1.5+1;
+write 25;

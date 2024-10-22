@@ -9,7 +9,7 @@ class Tokenizer:
 
         self.reserved_words = [ 'READ', 'WRITE', 'IF', 'THEN', 'ELSEIF', 'ELSE', 'ENDIF', 'FOR',
                                 'IN', 'DO', 'ENDDO', 'NOW', 'CURRENTTIME', 'MINIMUM', 'MAXIMUM',
-                                'FIRST', 'LAST', 'SUM', 'AVERAGE', 'EARLIEST', 'LATEST', 'SIN']
+                                'FIRST', 'LAST', 'SUM', 'AVERAGE', 'EARLIEST', 'LATEST', 'SIN', 'COS']
         self.symbols = {
             ':=':   'ASSIGN',
             '**':   'POWER',
