@@ -18,15 +18,33 @@
         {
             "type": "WRITE",
             "arg": {
-                "type": "PLUS",
+                "type": "MINUS",
                 "arg": [
                     {
-                        "type": "NUMTOKEN",
-                        "value": "1.5"
+                        "type": "PLUS",
+                        "arg": [
+                            {
+                                "type": "PLUS",
+                                "arg": [
+                                    {
+                                        "type": "NUMTOKEN",
+                                        "value": "1.5"
+                                    },
+                                    {
+                                        "type": "NUMTOKEN",
+                                        "value": "1"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "NUMTOKEN",
+                                "value": "3"
+                            }
+                        ]
                     },
                     {
                         "type": "NUMTOKEN",
-                        "value": "1"
+                        "value": "1.5"
                     }
                 ]
             }
@@ -36,6 +54,31 @@
             "arg": {
                 "type": "NUMTOKEN",
                 "value": "25"
+            }
+        },
+        {
+            "type": "ASSIGN",
+            "varname": "myvar",
+            "arg": {
+                "type": "PLUS",
+                "arg": [
+                    {
+                        "type": "NUMTOKEN",
+                        "value": "2"
+                    },
+                    {
+                        "type": "NUMTOKEN",
+                        "value": "5"
+                    }
+                ]
+            }
+        },
+        {
+            "type": "WRITE",
+            "arg": {
+                "type": "IDENTIFIER",
+                "name": "myvar2",
+                "line": "6"
             }
         }
     ]
