@@ -50,13 +50,6 @@
             }
         },
         {
-            "type": "WRITE",
-            "arg": {
-                "type": "NUMTOKEN",
-                "value": "25"
-            }
-        },
-        {
             "type": "ASSIGN",
             "varname": "myvar",
             "arg": {
@@ -71,6 +64,14 @@
                         "value": "5"
                     }
                 ]
+            }
+        },
+        {
+            "type": "WRITE",
+            "arg": {
+                "type": "IDENTIFIER",
+                "name": "myvar",
+                "line": "5"
             }
         },
         {
