@@ -112,13 +112,17 @@ int get_token_id (char *token) {
 	if (strcmp(token, "LPAR") == 0) return LPAR; 
 	if (strcmp(token, "RPAR") == 0) return RPAR;
 	if (strcmp(token, "MINUS") == 0) return MINUS;
+	if (strcmp(token, "NOW") == 0) return NOW;
 	if (strcmp(token, "NUMTOKEN") == 0) return NUMTOKEN;
+	if (strcmp(token, "OF") == 0) return OF;
 	if (strcmp(token, "PLUS") == 0) return PLUS;
 	if (strcmp(token, "POWER") == 0) return POWER;
 	if (strcmp(token, "SEMICOLON") == 0) return SEMICOLON;
 	if (strcmp(token, "SIN") == 0) return SIN;
 	if (strcmp(token, "STRTOKEN") == 0) return STRTOKEN;
+	if (strcmp(token, "TIME") == 0) return TIME;
 	if (strcmp(token, "TIMES") == 0) return TIMES;
+	if (strcmp(token, "TIMETOKEN") == 0) return TIMETOKEN;
 	if (strcmp(token, "WRITE") == 0) return WRITE;
 	
 	printf ("{\"error\" : true, \"message\": \"UNKNOWN TOKEN TYPE %s\"}\n", token);
@@ -242,6 +246,18 @@ statement(r) ::= WRITE ex(e) SEMICOLON .
 }
 
 ///////////////////////////
+// WRITE TIME
+///////////////////////////
+
+statement(r) ::= WRITE TIME OF ex(e) SEMICOLON .
+{
+	cJSON *res = cJSON_CreateObject(); 
+	cJSON_AddStringToObject(res, "type", "WRITE_TIME"); 
+	cJSON_AddItemToObject(res, "arg", e); 
+	r = res; 
+}
+
+///////////////////////////
 // ASSIGN
 ///////////////////////////
 
@@ -254,6 +270,18 @@ statement(r) ::= IDENTIFIER(i) ASSIGN ex(e) SEMICOLON .
 	r = res; 
 }
 
+///////////////////////////
+// ASSIGN TIME
+///////////////////////////
+
+statement(r) ::= TIME OF IDENTIFIER(i) ASSIGN ex(t) SEMICOLON .
+{
+	cJSON *res = cJSON_CreateObject(); 
+	cJSON_AddStringToObject(res, "type", "ASSIGN_TIME");
+	cJSON_AddStringToObject(res, "varname", getValue(i)); 
+	cJSON_AddItemToObject(res, "arg", t); 
+	r = res; 
+}
 
 
 
@@ -286,6 +314,14 @@ ex(r) ::= NUMTOKEN (a).
 	r = res; 
 } 
 
+ex(r) ::= TIMETOKEN (a).        
+{ 
+	cJSON *res = cJSON_CreateObject();
+	cJSON_AddStringToObject(res, "type", "TIMETOKEN"); 
+	cJSON_AddStringToObject(res, "value", getValue(a)); 
+	r = res; 
+} 
+
 
 ex(r) ::= STRTOKEN (a).        
 { 
@@ -302,6 +338,13 @@ ex(r) ::= IDENTIFIER(a) .
 	cJSON_AddStringToObject(res, "type", "IDENTIFIER"); 
 	cJSON_AddStringToObject(res, "name", getValue(a)); 
 	cJSON_AddStringToObject(res, "line", getLine(a)); 
+	r = res; 
+}
+
+ex(r) ::= NOW .      
+{ 
+	cJSON *res = cJSON_CreateObject(); 
+	cJSON_AddStringToObject(res, "type", "NOW"); 
 	r = res; 
 }
 

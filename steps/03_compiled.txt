@@ -4,49 +4,7 @@
         {
             "type": "WRITE",
             "arg": {
-                "type": "STRTOKEN",
-                "value": "Hello Welt :)"
-            }
-        },
-        {
-            "type": "WRITE",
-            "arg": {
-                "type": "STRTOKEN",
-                "value": "Bye bye Welt O.O"
-            }
-        },
-        {
-            "type": "WRITE",
-            "arg": {
-                "type": "MINUS",
-                "arg": [
-                    {
-                        "type": "PLUS",
-                        "arg": [
-                            {
-                                "type": "PLUS",
-                                "arg": [
-                                    {
-                                        "type": "NUMTOKEN",
-                                        "value": "1.5"
-                                    },
-                                    {
-                                        "type": "NUMTOKEN",
-                                        "value": "1"
-                                    }
-                                ]
-                            },
-                            {
-                                "type": "NUMTOKEN",
-                                "value": "3"
-                            }
-                        ]
-                    },
-                    {
-                        "type": "NUMTOKEN",
-                        "value": "1.5"
-                    }
-                ]
+                "type": "NOW"
             }
         },
         {
@@ -67,6 +25,14 @@
             }
         },
         {
+            "type": "ASSIGN_TIME",
+            "varname": "myvar",
+            "arg": {
+                "type": "TIMETOKEN",
+                "value": "2024-10-25"
+            }
+        },
+        {
             "type": "WRITE",
             "arg": {
                 "type": "IDENTIFIER",
@@ -75,11 +41,58 @@
             }
         },
         {
+            "type": "WRITE_TIME",
+            "arg": {
+                "type": "IDENTIFIER",
+                "name": "myvar",
+                "line": "6"
+            }
+        },
+        {
+            "type": "ASSIGN",
+            "varname": "myvar",
+            "arg": {
+                "type": "NUMTOKEN",
+                "value": "25"
+            }
+        },
+        {
             "type": "WRITE",
             "arg": {
                 "type": "IDENTIFIER",
-                "name": "myvar2",
-                "line": "6"
+                "name": "myvar",
+                "line": "9"
+            }
+        },
+        {
+            "type": "WRITE_TIME",
+            "arg": {
+                "type": "IDENTIFIER",
+                "name": "myvar",
+                "line": "10"
+            }
+        },
+        {
+            "type": "ASSIGN_TIME",
+            "varname": "myvar",
+            "arg": {
+                "type": "NOW"
+            }
+        },
+        {
+            "type": "WRITE",
+            "arg": {
+                "type": "IDENTIFIER",
+                "name": "myvar",
+                "line": "13"
+            }
+        },
+        {
+            "type": "WRITE_TIME",
+            "arg": {
+                "type": "IDENTIFIER",
+                "name": "myvar",
+                "line": "14"
             }
         }
     ]
