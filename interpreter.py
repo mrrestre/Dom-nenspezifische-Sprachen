@@ -1,6 +1,8 @@
 import json
 import datetime
 
+from myDataTypes import *
+
 class Interpreter:
     def __init__(self, path):
         self.path = path
@@ -19,9 +21,11 @@ class Interpreter:
             "IDENTIFIER": self.handle_identifier,
             "WRITE": self.handle_write,
             "WRITE_TIME": self.handle_write_time,
+            "TRACE": self.handle_trace,
             
             "PLUS": self.handle_plus,
             "MINUS": self.handle_minus,
+            "AMPERSAND": self.handle_string_concat,
 
             "STRTOKEN": self.handle_str_token,
             "NUMTOKEN": self.handle_num_token,
@@ -83,6 +87,14 @@ class Interpreter:
         result = self.eval_node(node["arg"])
         print(result['timestamp'])
 
+    def handle_trace(self, node):
+        line = node["line"]
+        result = self.eval_node(node["arg"])
+        if type(result) != dict:
+            print("Line", line, "-", result)
+        else:
+            print("Line", line, "-", result['value'])
+
     ## Expresions
     # Operations
     def handle_plus(self, node):
@@ -92,6 +104,10 @@ class Interpreter:
     def handle_minus(self, node):
         args = node["arg"]
         return self.eval_node(args[0]) - self.eval_node(args[1])
+    
+    def handle_string_concat(self, node):
+        args = node["arg"]
+        return self.eval_node(args[0]) + self.eval_node(args[1])
     
     # Terminal nodes
     def handle_str_token(self, node):

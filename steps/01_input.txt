@@ -1,14 +1,8 @@
-write now;
+myvar := 1;
+trace myvar;
 
-myvar := 2 + 5;
-time of myvar := 2024-10-25;
-write myvar;
-write time of myvar;
+trace 'blob';
 
-myvar := 25;
-write myvar;
-write time of myvar;
+write "Hallo " & "Welt" & '!';
 
-time of myvar := now;
-write myvar;
-write time of myvar;
+trace [1, 2, 'HALLO'];

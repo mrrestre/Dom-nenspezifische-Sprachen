@@ -1,0 +1,28 @@
+ex(r) ::= LSPAR RSPAR .
+{ 
+    cJSON *res = cJSON_CreateObject(); 
+    cJSON_AddStringToObject(res, "type", "EMPTYLIST"); 
+    r = res; 
+}
+
+
+ex(r) ::= LSPAR exlist(a) RSPAR .
+{
+    cJSON *res = cJSON_CreateObject();
+    cJSON_AddStringToObject(res, "type", "LIST");
+    cJSON_AddItemToObject(res, "items", a);
+    r = res;
+}
+
+exlist(r) ::= ex(a) .
+{
+    cJSON *arg = cJSON_CreateArray();
+    cJSON_AddItemToArray(arg, a);
+    r = arg;
+}
+
+exlist(r) ::= exlist(a) COMMA ex(b) .
+{
+    cJSON_AddItemToArray(a,b);
+    r = a;
+}

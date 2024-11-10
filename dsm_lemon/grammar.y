@@ -105,12 +105,16 @@ int main(int argc, char* argv[]) {
 /////////////////////// 
 
 int get_token_id (char *token) {
+	if (strcmp(token, "AMPERSAND") == 0) return AMPERSAND;
 	if (strcmp(token, "ASSIGN") == 0) return ASSIGN;
+	if (strcmp(token, "COMMA") == 0) return COMMA;
 	if (strcmp(token, "COS") == 0) return COS;
 	if (strcmp(token, "DIVIDE") == 0) return DIVIDE;
 	if (strcmp(token, "IDENTIFIER") == 0) return IDENTIFIER;
 	if (strcmp(token, "LPAR") == 0) return LPAR; 
 	if (strcmp(token, "RPAR") == 0) return RPAR;
+	if (strcmp(token, "LSPAR") == 0) return LSPAR;
+	if (strcmp(token, "RSPAR") == 0) return RSPAR;
 	if (strcmp(token, "MINUS") == 0) return MINUS;
 	if (strcmp(token, "NOW") == 0) return NOW;
 	if (strcmp(token, "NUMTOKEN") == 0) return NUMTOKEN;
@@ -123,6 +127,7 @@ int get_token_id (char *token) {
 	if (strcmp(token, "TIME") == 0) return TIME;
 	if (strcmp(token, "TIMES") == 0) return TIMES;
 	if (strcmp(token, "TIMETOKEN") == 0) return TIMETOKEN;
+	if (strcmp(token, "TRACE") == 0) return TRACE;
 	if (strcmp(token, "WRITE") == 0) return WRITE;
 	
 	printf ("{\"error\" : true, \"message\": \"UNKNOWN TOKEN TYPE %s\"}\n", token);
@@ -188,6 +193,8 @@ cJSON* ternary (char *fname, cJSON *a, cJSON *b, cJSON *c)
 // je weiter unten, desto bindet der Operator stärker
 
 
+%left 	   COMMA .
+%left 	   AMPERSAND .
 %left 	   PLUS MINUS .
 %left 	   TIMES DIVIDE .
 %right     POWER .
@@ -258,6 +265,19 @@ statement(r) ::= WRITE TIME OF ex(e) SEMICOLON .
 }
 
 ///////////////////////////
+// TRACE
+///////////////////////////
+
+statement(r) ::= TRACE(l) ex(e) SEMICOLON .
+{
+	cJSON *res = cJSON_CreateObject(); 
+	cJSON_AddStringToObject(res, "type", "TRACE"); 
+	cJSON_AddStringToObject(res, "line", getLine(l)); 
+	cJSON_AddItemToObject(res, "arg", e); 
+	r = res; 
+}
+
+///////////////////////////
 // ASSIGN
 ///////////////////////////
 
@@ -305,6 +325,34 @@ ex(r) ::= LPAR ex(a) RPAR .
 	r = a; 
 }
 
+// Empty list
+ex(r) ::= LSPAR RSPAR .    
+{ 
+	cJSON *res = cJSON_CreateObject();
+	cJSON_AddStringToObject(res, "type", "EMPTYLIST");
+	r = res; 
+}
+
+ex(r) ::= LSPAR exlist(a) RSPAR .    
+{ 
+	cJSON *res = cJSON_CreateObject();
+	cJSON_AddStringToObject(res, "type", "LIST");
+	cJSON_AddItemToObject(res, "elements", a); 
+	r = res; 
+}
+
+exlist(r) ::= ex(a) .
+{
+	cJSON *arg = cJSON_CreateArray();
+	cJSON_AddItemToArray(arg, a);
+	r = arg;
+}
+
+exlist(r) ::= exlist(a) COMMA ex(b) .
+{
+	cJSON_AddItemToArray(a, b);
+	r = a;
+}
 
 ex(r) ::= NUMTOKEN (a).        
 { 
@@ -349,7 +397,8 @@ ex(r) ::= NOW .
 }
 
 
-
+ex(r) ::= ex(a) AMPERSAND ex(b) .                                
+{r = binary ("AMPERSAND", a, b); }
 
 ex(r) ::= ex(a) PLUS ex(b) .                                
 {r = binary ("PLUS", a, b); }

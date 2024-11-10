@@ -9,6 +9,8 @@
         "xmemory": "cpp",
         "xtr1common": "cpp",
         "xutility": "cpp",
-        "*.y": "cpp"
+        "*.y": "cpp",
+        "ios": "cpp",
+        "xiosbase": "cpp"
     }
 }

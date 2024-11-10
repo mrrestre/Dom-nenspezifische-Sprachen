@@ -2,97 +2,74 @@
     "type": "STATEMENTBLOCK",
     "statements": [
         {
-            "type": "WRITE",
-            "arg": {
-                "type": "NOW"
-            }
-        },
-        {
             "type": "ASSIGN",
             "varname": "myvar",
             "arg": {
-                "type": "PLUS",
+                "type": "NUMTOKEN",
+                "value": "1"
+            }
+        },
+        {
+            "type": "TRACE",
+            "line": "2",
+            "arg": {
+                "type": "IDENTIFIER",
+                "name": "myvar",
+                "line": "2"
+            }
+        },
+        {
+            "type": "TRACE",
+            "line": "4",
+            "arg": {
+                "type": "STRTOKEN",
+                "value": "blob"
+            }
+        },
+        {
+            "type": "WRITE",
+            "arg": {
+                "type": "AMPERSAND",
                 "arg": [
                     {
-                        "type": "NUMTOKEN",
-                        "value": "2"
+                        "type": "AMPERSAND",
+                        "arg": [
+                            {
+                                "type": "STRTOKEN",
+                                "value": "Hallo "
+                            },
+                            {
+                                "type": "STRTOKEN",
+                                "value": "Welt"
+                            }
+                        ]
                     },
                     {
-                        "type": "NUMTOKEN",
-                        "value": "5"
+                        "type": "STRTOKEN",
+                        "value": "!"
                     }
                 ]
             }
         },
         {
-            "type": "ASSIGN_TIME",
-            "varname": "myvar",
+            "type": "TRACE",
+            "line": "8",
             "arg": {
-                "type": "TIMETOKEN",
-                "value": "2024-10-25"
-            }
-        },
-        {
-            "type": "WRITE",
-            "arg": {
-                "type": "IDENTIFIER",
-                "name": "myvar",
-                "line": "5"
-            }
-        },
-        {
-            "type": "WRITE_TIME",
-            "arg": {
-                "type": "IDENTIFIER",
-                "name": "myvar",
-                "line": "6"
-            }
-        },
-        {
-            "type": "ASSIGN",
-            "varname": "myvar",
-            "arg": {
-                "type": "NUMTOKEN",
-                "value": "25"
-            }
-        },
-        {
-            "type": "WRITE",
-            "arg": {
-                "type": "IDENTIFIER",
-                "name": "myvar",
-                "line": "9"
-            }
-        },
-        {
-            "type": "WRITE_TIME",
-            "arg": {
-                "type": "IDENTIFIER",
-                "name": "myvar",
-                "line": "10"
-            }
-        },
-        {
-            "type": "ASSIGN_TIME",
-            "varname": "myvar",
-            "arg": {
-                "type": "NOW"
-            }
-        },
-        {
-            "type": "WRITE",
-            "arg": {
-                "type": "IDENTIFIER",
-                "name": "myvar",
-                "line": "13"
-            }
-        },
-        {
-            "type": "WRITE_TIME",
-            "arg": {
-                "type": "IDENTIFIER",
-                "name": "myvar",
-                "line": "14"
+                "type": "LIST",
+                "elements": [
+                    {
+                        "type": "NUMTOKEN",
+                        "value": "1"
+                    },
+                    {
+                        "type": "NUMTOKEN",
+                        "value": "2"
+                    },
+                    {
+                        "type": "STRTOKEN",
+                        "value": "HALLO"
+                    }
+                ]
             }
         }
     ]
