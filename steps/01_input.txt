@@ -1,4 +1,4 @@
-mylist := [1, 2, 'HALLO', true];
+mylist := [1, 2, 'HALLO'];
 trace mylist;
-trace 1 & 1;
+trace True;
 trace [];

@@ -54,7 +54,10 @@ class DateType(BaseType):
 
 class BoolType(BaseType):
     def parse_value(self, input):
-        return bool(input)
+        if input.strip().lower() == "true":
+            return True
+        else:
+            return False
     
     def __add__(self, other):
         raise TypeError("Addition not supported for BoolType")

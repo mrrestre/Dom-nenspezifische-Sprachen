@@ -18,10 +18,6 @@
                     {
                         "type": "STRTOKEN",
                         "value": "HALLO"
-                    },
-                    {
-                        "type": "BOOLTOKEN",
-                        "value": "true"
                     }
                 ]
             }
@@ -39,17 +35,8 @@
             "type": "TRACE",
             "line": "3",
             "arg": {
-                "type": "AMPERSAND",
-                "arg": [
-                    {
-                        "type": "NUMTOKEN",
-                        "value": "1"
-                    },
-                    {
-                        "type": "NUMTOKEN",
-                        "value": "1"
-                    }
-                ]
+                "type": "BOOLTOKEN",
+                "value": "True"
             }
         },
         {
