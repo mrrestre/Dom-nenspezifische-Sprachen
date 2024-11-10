@@ -3,57 +3,7 @@
     "statements": [
         {
             "type": "ASSIGN",
-            "varname": "myvar",
-            "arg": {
-                "type": "NUMTOKEN",
-                "value": "1"
-            }
-        },
-        {
-            "type": "TRACE",
-            "line": "2",
-            "arg": {
-                "type": "IDENTIFIER",
-                "name": "myvar",
-                "line": "2"
-            }
-        },
-        {
-            "type": "TRACE",
-            "line": "4",
-            "arg": {
-                "type": "STRTOKEN",
-                "value": "blob"
-            }
-        },
-        {
-            "type": "WRITE",
-            "arg": {
-                "type": "AMPERSAND",
-                "arg": [
-                    {
-                        "type": "AMPERSAND",
-                        "arg": [
-                            {
-                                "type": "STRTOKEN",
-                                "value": "Hallo "
-                            },
-                            {
-                                "type": "STRTOKEN",
-                                "value": "Welt"
-                            }
-                        ]
-                    },
-                    {
-                        "type": "STRTOKEN",
-                        "value": "!"
-                    }
-                ]
-            }
-        },
-        {
-            "type": "TRACE",
-            "line": "8",
+            "varname": "mylist",
             "arg": {
                 "type": "LIST",
                 "elements": [
@@ -68,8 +18,45 @@
                     {
                         "type": "STRTOKEN",
                         "value": "HALLO"
+                    },
+                    {
+                        "type": "BOOLTOKEN",
+                        "value": "true"
                     }
                 ]
+            }
+        },
+        {
+            "type": "TRACE",
+            "line": "2",
+            "arg": {
+                "type": "IDENTIFIER",
+                "name": "mylist",
+                "line": "2"
+            }
+        },
+        {
+            "type": "TRACE",
+            "line": "3",
+            "arg": {
+                "type": "AMPERSAND",
+                "arg": [
+                    {
+                        "type": "NUMTOKEN",
+                        "value": "1"
+                    },
+                    {
+                        "type": "NUMTOKEN",
+                        "value": "1"
+                    }
+                ]
+            }
+        },
+        {
+            "type": "TRACE",
+            "line": "4",
+            "arg": {
+                "type": "EMPTYLIST"
             }
         }
     ]

@@ -18,6 +18,7 @@ State 1:
           ex ::= * NUMTOKEN
           ex ::= * TIMETOKEN
           ex ::= * STRTOKEN
+          ex ::= * BOOLTOKEN
           ex ::= * IDENTIFIER
           ex ::= * NOW
           ex ::= * ex AMPERSAND ex
@@ -31,14 +32,15 @@ State 1:
 
                            SIN shift        8      
                            COS shift        7      
-                    IDENTIFIER shift-reduce 16     ex ::= IDENTIFIER
+                    IDENTIFIER shift-reduce 17     ex ::= IDENTIFIER
                           LPAR shift        15     
                          LSPAR shift        1      
                          RSPAR shift-reduce 9      ex ::= LSPAR RSPAR
                       NUMTOKEN shift-reduce 13     ex ::= NUMTOKEN
                      TIMETOKEN shift-reduce 14     ex ::= TIMETOKEN
                       STRTOKEN shift-reduce 15     ex ::= STRTOKEN
-                           NOW shift-reduce 17     ex ::= NOW
+                     BOOLTOKEN shift-reduce 16     ex ::= BOOLTOKEN
+                           NOW shift-reduce 18     ex ::= NOW
                             ex shift        24     
                         exlist shift        29     
 
@@ -51,6 +53,7 @@ State 2:
           ex ::= * NUMTOKEN
           ex ::= * TIMETOKEN
           ex ::= * STRTOKEN
+          ex ::= * BOOLTOKEN
           ex ::= * IDENTIFIER
           ex ::= * NOW
           ex ::= * ex AMPERSAND ex
@@ -65,13 +68,14 @@ State 2:
                            SIN shift        8      
                            COS shift        7      
                           TIME shift        34     
-                    IDENTIFIER shift-reduce 16     ex ::= IDENTIFIER
+                    IDENTIFIER shift-reduce 17     ex ::= IDENTIFIER
                           LPAR shift        15     
                          LSPAR shift        1      
                       NUMTOKEN shift-reduce 13     ex ::= NUMTOKEN
                      TIMETOKEN shift-reduce 14     ex ::= TIMETOKEN
                       STRTOKEN shift-reduce 15     ex ::= STRTOKEN
-                           NOW shift-reduce 17     ex ::= NOW
+                     BOOLTOKEN shift-reduce 16     ex ::= BOOLTOKEN
+                           NOW shift-reduce 18     ex ::= NOW
                             ex shift        23     
 
 State 3:
@@ -82,6 +86,7 @@ State 3:
           ex ::= * NUMTOKEN
           ex ::= * TIMETOKEN
           ex ::= * STRTOKEN
+          ex ::= * BOOLTOKEN
           ex ::= * IDENTIFIER
           ex ::= * NOW
           ex ::= * ex AMPERSAND ex
@@ -95,13 +100,14 @@ State 3:
 
                            SIN shift        8      
                            COS shift        7      
-                    IDENTIFIER shift-reduce 16     ex ::= IDENTIFIER
+                    IDENTIFIER shift-reduce 17     ex ::= IDENTIFIER
                           LPAR shift        15     
                          LSPAR shift        1      
                       NUMTOKEN shift-reduce 13     ex ::= NUMTOKEN
                      TIMETOKEN shift-reduce 14     ex ::= TIMETOKEN
                       STRTOKEN shift-reduce 15     ex ::= STRTOKEN
-                           NOW shift-reduce 17     ex ::= NOW
+                     BOOLTOKEN shift-reduce 16     ex ::= BOOLTOKEN
+                           NOW shift-reduce 18     ex ::= NOW
                             ex shift        18     
 
 State 4:
@@ -112,6 +118,7 @@ State 4:
           ex ::= * NUMTOKEN
           ex ::= * TIMETOKEN
           ex ::= * STRTOKEN
+          ex ::= * BOOLTOKEN
           ex ::= * IDENTIFIER
           ex ::= * NOW
           ex ::= * ex AMPERSAND ex
@@ -125,13 +132,14 @@ State 4:
 
                            SIN shift        8      
                            COS shift        7      
-                    IDENTIFIER shift-reduce 16     ex ::= IDENTIFIER
+                    IDENTIFIER shift-reduce 17     ex ::= IDENTIFIER
                           LPAR shift        15     
                          LSPAR shift        1      
                       NUMTOKEN shift-reduce 13     ex ::= NUMTOKEN
                      TIMETOKEN shift-reduce 14     ex ::= TIMETOKEN
                       STRTOKEN shift-reduce 15     ex ::= STRTOKEN
-                           NOW shift-reduce 17     ex ::= NOW
+                     BOOLTOKEN shift-reduce 16     ex ::= BOOLTOKEN
+                           NOW shift-reduce 18     ex ::= NOW
                             ex shift        19     
 
 State 5:
@@ -142,6 +150,7 @@ State 5:
           ex ::= * NUMTOKEN
           ex ::= * TIMETOKEN
           ex ::= * STRTOKEN
+          ex ::= * BOOLTOKEN
           ex ::= * IDENTIFIER
           ex ::= * NOW
           ex ::= * ex AMPERSAND ex
@@ -155,13 +164,14 @@ State 5:
 
                            SIN shift        8      
                            COS shift        7      
-                    IDENTIFIER shift-reduce 16     ex ::= IDENTIFIER
+                    IDENTIFIER shift-reduce 17     ex ::= IDENTIFIER
                           LPAR shift        15     
                          LSPAR shift        1      
                       NUMTOKEN shift-reduce 13     ex ::= NUMTOKEN
                      TIMETOKEN shift-reduce 14     ex ::= TIMETOKEN
                       STRTOKEN shift-reduce 15     ex ::= STRTOKEN
-                           NOW shift-reduce 17     ex ::= NOW
+                     BOOLTOKEN shift-reduce 16     ex ::= BOOLTOKEN
+                           NOW shift-reduce 18     ex ::= NOW
                             ex shift        20     
 
 State 6:
@@ -172,6 +182,7 @@ State 6:
           ex ::= * NUMTOKEN
           ex ::= * TIMETOKEN
           ex ::= * STRTOKEN
+          ex ::= * BOOLTOKEN
           ex ::= * IDENTIFIER
           ex ::= * NOW
           ex ::= * ex AMPERSAND ex
@@ -185,13 +196,14 @@ State 6:
 
                            SIN shift        8      
                            COS shift        7      
-                    IDENTIFIER shift-reduce 16     ex ::= IDENTIFIER
+                    IDENTIFIER shift-reduce 17     ex ::= IDENTIFIER
                           LPAR shift        15     
                          LSPAR shift        1      
                       NUMTOKEN shift-reduce 13     ex ::= NUMTOKEN
                      TIMETOKEN shift-reduce 14     ex ::= TIMETOKEN
                       STRTOKEN shift-reduce 15     ex ::= STRTOKEN
-                           NOW shift-reduce 17     ex ::= NOW
+                     BOOLTOKEN shift-reduce 16     ex ::= BOOLTOKEN
+                           NOW shift-reduce 18     ex ::= NOW
                             ex shift        21     
 
 State 7:
@@ -201,6 +213,7 @@ State 7:
           ex ::= * NUMTOKEN
           ex ::= * TIMETOKEN
           ex ::= * STRTOKEN
+          ex ::= * BOOLTOKEN
           ex ::= * IDENTIFIER
           ex ::= * NOW
           ex ::= * ex AMPERSAND ex
@@ -215,14 +228,15 @@ State 7:
 
                            SIN shift        8      
                            COS shift        7      
-                    IDENTIFIER shift-reduce 16     ex ::= IDENTIFIER
+                    IDENTIFIER shift-reduce 17     ex ::= IDENTIFIER
                           LPAR shift        15     
                          LSPAR shift        1      
                       NUMTOKEN shift-reduce 13     ex ::= NUMTOKEN
                      TIMETOKEN shift-reduce 14     ex ::= TIMETOKEN
                       STRTOKEN shift-reduce 15     ex ::= STRTOKEN
-                           NOW shift-reduce 17     ex ::= NOW
-                            ex shift-reduce 25     ex ::= COS ex
+                     BOOLTOKEN shift-reduce 16     ex ::= BOOLTOKEN
+                           NOW shift-reduce 18     ex ::= NOW
+                            ex shift-reduce 26     ex ::= COS ex
 
 State 8:
           ex ::= * LPAR ex RPAR
@@ -231,6 +245,7 @@ State 8:
           ex ::= * NUMTOKEN
           ex ::= * TIMETOKEN
           ex ::= * STRTOKEN
+          ex ::= * BOOLTOKEN
           ex ::= * IDENTIFIER
           ex ::= * NOW
           ex ::= * ex AMPERSAND ex
@@ -245,14 +260,15 @@ State 8:
 
                            SIN shift        8      
                            COS shift        7      
-                    IDENTIFIER shift-reduce 16     ex ::= IDENTIFIER
+                    IDENTIFIER shift-reduce 17     ex ::= IDENTIFIER
                           LPAR shift        15     
                          LSPAR shift        1      
                       NUMTOKEN shift-reduce 13     ex ::= NUMTOKEN
                      TIMETOKEN shift-reduce 14     ex ::= TIMETOKEN
                       STRTOKEN shift-reduce 15     ex ::= STRTOKEN
-                           NOW shift-reduce 17     ex ::= NOW
-                            ex shift-reduce 24     ex ::= SIN ex
+                     BOOLTOKEN shift-reduce 16     ex ::= BOOLTOKEN
+                           NOW shift-reduce 18     ex ::= NOW
+                            ex shift-reduce 25     ex ::= SIN ex
 
 State 9:
           ex ::= * LPAR ex RPAR
@@ -261,6 +277,7 @@ State 9:
           ex ::= * NUMTOKEN
           ex ::= * TIMETOKEN
           ex ::= * STRTOKEN
+          ex ::= * BOOLTOKEN
           ex ::= * IDENTIFIER
           ex ::= * NOW
           ex ::= * ex AMPERSAND ex
@@ -275,13 +292,14 @@ State 9:
 
                            SIN shift        8      
                            COS shift        7      
-                    IDENTIFIER shift-reduce 16     ex ::= IDENTIFIER
+                    IDENTIFIER shift-reduce 17     ex ::= IDENTIFIER
                           LPAR shift        15     
                          LSPAR shift        1      
                       NUMTOKEN shift-reduce 13     ex ::= NUMTOKEN
                      TIMETOKEN shift-reduce 14     ex ::= TIMETOKEN
                       STRTOKEN shift-reduce 15     ex ::= STRTOKEN
-                           NOW shift-reduce 17     ex ::= NOW
+                     BOOLTOKEN shift-reduce 16     ex ::= BOOLTOKEN
+                           NOW shift-reduce 18     ex ::= NOW
                             ex shift        35     
 
 State 10:
@@ -291,6 +309,7 @@ State 10:
           ex ::= * NUMTOKEN
           ex ::= * TIMETOKEN
           ex ::= * STRTOKEN
+          ex ::= * BOOLTOKEN
           ex ::= * IDENTIFIER
           ex ::= * NOW
           ex ::= * ex AMPERSAND ex
@@ -305,13 +324,14 @@ State 10:
 
                            SIN shift        8      
                            COS shift        7      
-                    IDENTIFIER shift-reduce 16     ex ::= IDENTIFIER
+                    IDENTIFIER shift-reduce 17     ex ::= IDENTIFIER
                           LPAR shift        15     
                          LSPAR shift        1      
                       NUMTOKEN shift-reduce 13     ex ::= NUMTOKEN
                      TIMETOKEN shift-reduce 14     ex ::= TIMETOKEN
                       STRTOKEN shift-reduce 15     ex ::= STRTOKEN
-                           NOW shift-reduce 17     ex ::= NOW
+                     BOOLTOKEN shift-reduce 16     ex ::= BOOLTOKEN
+                           NOW shift-reduce 18     ex ::= NOW
                             ex shift        36     
 
 State 11:
@@ -321,6 +341,7 @@ State 11:
           ex ::= * NUMTOKEN
           ex ::= * TIMETOKEN
           ex ::= * STRTOKEN
+          ex ::= * BOOLTOKEN
           ex ::= * IDENTIFIER
           ex ::= * NOW
           ex ::= * ex AMPERSAND ex
@@ -335,13 +356,14 @@ State 11:
 
                            SIN shift        8      
                            COS shift        7      
-                    IDENTIFIER shift-reduce 16     ex ::= IDENTIFIER
+                    IDENTIFIER shift-reduce 17     ex ::= IDENTIFIER
                           LPAR shift        15     
                          LSPAR shift        1      
                       NUMTOKEN shift-reduce 13     ex ::= NUMTOKEN
                      TIMETOKEN shift-reduce 14     ex ::= TIMETOKEN
                       STRTOKEN shift-reduce 15     ex ::= STRTOKEN
-                           NOW shift-reduce 17     ex ::= NOW
+                     BOOLTOKEN shift-reduce 16     ex ::= BOOLTOKEN
+                           NOW shift-reduce 18     ex ::= NOW
                             ex shift        37     
 
 State 12:
@@ -351,6 +373,7 @@ State 12:
           ex ::= * NUMTOKEN
           ex ::= * TIMETOKEN
           ex ::= * STRTOKEN
+          ex ::= * BOOLTOKEN
           ex ::= * IDENTIFIER
           ex ::= * NOW
           ex ::= * ex AMPERSAND ex
@@ -365,13 +388,14 @@ State 12:
 
                            SIN shift        8      
                            COS shift        7      
-                    IDENTIFIER shift-reduce 16     ex ::= IDENTIFIER
+                    IDENTIFIER shift-reduce 17     ex ::= IDENTIFIER
                           LPAR shift        15     
                          LSPAR shift        1      
                       NUMTOKEN shift-reduce 13     ex ::= NUMTOKEN
                      TIMETOKEN shift-reduce 14     ex ::= TIMETOKEN
                       STRTOKEN shift-reduce 15     ex ::= STRTOKEN
-                           NOW shift-reduce 17     ex ::= NOW
+                     BOOLTOKEN shift-reduce 16     ex ::= BOOLTOKEN
+                           NOW shift-reduce 18     ex ::= NOW
                             ex shift        28     
 
 State 13:
@@ -382,6 +406,7 @@ State 13:
           ex ::= * NUMTOKEN
           ex ::= * TIMETOKEN
           ex ::= * STRTOKEN
+          ex ::= * BOOLTOKEN
           ex ::= * IDENTIFIER
           ex ::= * NOW
           ex ::= * ex AMPERSAND ex
@@ -395,13 +420,14 @@ State 13:
 
                            SIN shift        8      
                            COS shift        7      
-                    IDENTIFIER shift-reduce 16     ex ::= IDENTIFIER
+                    IDENTIFIER shift-reduce 17     ex ::= IDENTIFIER
                           LPAR shift        15     
                          LSPAR shift        1      
                       NUMTOKEN shift-reduce 13     ex ::= NUMTOKEN
                      TIMETOKEN shift-reduce 14     ex ::= TIMETOKEN
                       STRTOKEN shift-reduce 15     ex ::= STRTOKEN
-                           NOW shift-reduce 17     ex ::= NOW
+                     BOOLTOKEN shift-reduce 16     ex ::= BOOLTOKEN
+                           NOW shift-reduce 18     ex ::= NOW
                             ex shift        25     
 
 State 14:
@@ -411,6 +437,7 @@ State 14:
           ex ::= * NUMTOKEN
           ex ::= * TIMETOKEN
           ex ::= * STRTOKEN
+          ex ::= * BOOLTOKEN
           ex ::= * IDENTIFIER
           ex ::= * NOW
           ex ::= * ex AMPERSAND ex
@@ -425,13 +452,14 @@ State 14:
 
                            SIN shift        8      
                            COS shift        7      
-                    IDENTIFIER shift-reduce 16     ex ::= IDENTIFIER
+                    IDENTIFIER shift-reduce 17     ex ::= IDENTIFIER
                           LPAR shift        15     
                          LSPAR shift        1      
                       NUMTOKEN shift-reduce 13     ex ::= NUMTOKEN
                      TIMETOKEN shift-reduce 14     ex ::= TIMETOKEN
                       STRTOKEN shift-reduce 15     ex ::= STRTOKEN
-                           NOW shift-reduce 17     ex ::= NOW
+                     BOOLTOKEN shift-reduce 16     ex ::= BOOLTOKEN
+                           NOW shift-reduce 18     ex ::= NOW
                             ex shift        27     
 
 State 15:
@@ -442,6 +470,7 @@ State 15:
           ex ::= * NUMTOKEN
           ex ::= * TIMETOKEN
           ex ::= * STRTOKEN
+          ex ::= * BOOLTOKEN
           ex ::= * IDENTIFIER
           ex ::= * NOW
           ex ::= * ex AMPERSAND ex
@@ -455,13 +484,14 @@ State 15:
 
                            SIN shift        8      
                            COS shift        7      
-                    IDENTIFIER shift-reduce 16     ex ::= IDENTIFIER
+                    IDENTIFIER shift-reduce 17     ex ::= IDENTIFIER
                           LPAR shift        15     
                          LSPAR shift        1      
                       NUMTOKEN shift-reduce 13     ex ::= NUMTOKEN
                      TIMETOKEN shift-reduce 14     ex ::= TIMETOKEN
                       STRTOKEN shift-reduce 15     ex ::= STRTOKEN
-                           NOW shift-reduce 17     ex ::= NOW
+                     BOOLTOKEN shift-reduce 16     ex ::= BOOLTOKEN
+                           NOW shift-reduce 18     ex ::= NOW
                             ex shift        22     
 
 State 16:
@@ -471,6 +501,7 @@ State 16:
           ex ::= * NUMTOKEN
           ex ::= * TIMETOKEN
           ex ::= * STRTOKEN
+          ex ::= * BOOLTOKEN
           ex ::= * IDENTIFIER
           ex ::= * NOW
           ex ::= * ex AMPERSAND ex
@@ -485,13 +516,14 @@ State 16:
 
                            SIN shift        8      
                            COS shift        7      
-                    IDENTIFIER shift-reduce 16     ex ::= IDENTIFIER
+                    IDENTIFIER shift-reduce 17     ex ::= IDENTIFIER
                           LPAR shift        15     
                          LSPAR shift        1      
                       NUMTOKEN shift-reduce 13     ex ::= NUMTOKEN
                      TIMETOKEN shift-reduce 14     ex ::= TIMETOKEN
                       STRTOKEN shift-reduce 15     ex ::= STRTOKEN
-                           NOW shift-reduce 17     ex ::= NOW
+                     BOOLTOKEN shift-reduce 16     ex ::= BOOLTOKEN
+                           NOW shift-reduce 18     ex ::= NOW
                             ex shift        26     
 
 State 17:
@@ -648,7 +680,7 @@ State 25:
 
 State 26:
           ex ::= ex * AMPERSAND ex
-     (18) ex ::= ex AMPERSAND ex *
+     (19) ex ::= ex AMPERSAND ex *
           ex ::= ex * PLUS ex
           ex ::= ex * MINUS ex
           ex ::= ex * TIMES ex
@@ -660,12 +692,12 @@ State 26:
                          TIMES shift        11     
                         DIVIDE shift        10     
                          POWER shift        9      
-                     {default} reduce       18     ex ::= ex AMPERSAND ex
+                     {default} reduce       19     ex ::= ex AMPERSAND ex
 
 State 27:
           ex ::= ex * AMPERSAND ex
           ex ::= ex * PLUS ex
-     (19) ex ::= ex PLUS ex *
+     (20) ex ::= ex PLUS ex *
           ex ::= ex * MINUS ex
           ex ::= ex * TIMES ex
           ex ::= ex * DIVIDE ex
@@ -674,13 +706,13 @@ State 27:
                          TIMES shift        11     
                         DIVIDE shift        10     
                          POWER shift        9      
-                     {default} reduce       19     ex ::= ex PLUS ex
+                     {default} reduce       20     ex ::= ex PLUS ex
 
 State 28:
           ex ::= ex * AMPERSAND ex
           ex ::= ex * PLUS ex
           ex ::= ex * MINUS ex
-     (20) ex ::= ex MINUS ex *
+     (21) ex ::= ex MINUS ex *
           ex ::= ex * TIMES ex
           ex ::= ex * DIVIDE ex
           ex ::= ex * POWER ex
@@ -688,7 +720,7 @@ State 28:
                          TIMES shift        11     
                         DIVIDE shift        10     
                          POWER shift        9      
-                     {default} reduce       20     ex ::= ex MINUS ex
+                     {default} reduce       21     ex ::= ex MINUS ex
 
 State 29:
           ex ::= LSPAR exlist * RSPAR
@@ -729,10 +761,10 @@ State 35:
           ex ::= ex * TIMES ex
           ex ::= ex * DIVIDE ex
           ex ::= ex * POWER ex
-     (23) ex ::= ex POWER ex *
+     (24) ex ::= ex POWER ex *
 
                          POWER shift        9      
-                     {default} reduce       23     ex ::= ex POWER ex
+                     {default} reduce       24     ex ::= ex POWER ex
 
 State 36:
           ex ::= ex * AMPERSAND ex
@@ -740,23 +772,23 @@ State 36:
           ex ::= ex * MINUS ex
           ex ::= ex * TIMES ex
           ex ::= ex * DIVIDE ex
-     (22) ex ::= ex DIVIDE ex *
+     (23) ex ::= ex DIVIDE ex *
           ex ::= ex * POWER ex
 
                          POWER shift        9      
-                     {default} reduce       22     ex ::= ex DIVIDE ex
+                     {default} reduce       23     ex ::= ex DIVIDE ex
 
 State 37:
           ex ::= ex * AMPERSAND ex
           ex ::= ex * PLUS ex
           ex ::= ex * MINUS ex
           ex ::= ex * TIMES ex
-     (21) ex ::= ex TIMES ex *
+     (22) ex ::= ex TIMES ex *
           ex ::= ex * DIVIDE ex
           ex ::= ex * POWER ex
 
                          POWER shift        9      
-                     {default} reduce       21     ex ::= ex TIMES ex
+                     {default} reduce       22     ex ::= ex TIMES ex
 
 ----------------------------------------------------
 Symbols:
@@ -784,10 +816,11 @@ Symbols:
    21: NUMTOKEN
    22: TIMETOKEN
    23: STRTOKEN
-   24: NOW
-   25: error:
-   26: code: <lambda> WRITE TIME TRACE IDENTIFIER
-   27: statementblock: <lambda> WRITE TIME TRACE IDENTIFIER
-   28: statement: WRITE TIME TRACE IDENTIFIER
-   29: ex: SIN COS IDENTIFIER LPAR LSPAR NUMTOKEN TIMETOKEN STRTOKEN NOW
-   30: exlist: SIN COS IDENTIFIER LPAR LSPAR NUMTOKEN TIMETOKEN STRTOKEN NOW
+   24: BOOLTOKEN
+   25: NOW
+   26: error:
+   27: code: <lambda> WRITE TIME TRACE IDENTIFIER
+   28: statementblock: <lambda> WRITE TIME TRACE IDENTIFIER
+   29: statement: WRITE TIME TRACE IDENTIFIER
+   30: ex: SIN COS IDENTIFIER LPAR LSPAR NUMTOKEN TIMETOKEN STRTOKEN BOOLTOKEN NOW
+   31: exlist: SIN COS IDENTIFIER LPAR LSPAR NUMTOKEN TIMETOKEN STRTOKEN BOOLTOKEN NOW

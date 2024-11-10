@@ -21,4 +21,5 @@
 #define NUMTOKEN                        21
 #define TIMETOKEN                       22
 #define STRTOKEN                        23
-#define NOW                             24
+#define BOOLTOKEN                       24
+#define NOW                             25

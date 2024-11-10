@@ -107,6 +107,7 @@ int main(int argc, char* argv[]) {
 int get_token_id (char *token) {
 	if (strcmp(token, "AMPERSAND") == 0) return AMPERSAND;
 	if (strcmp(token, "ASSIGN") == 0) return ASSIGN;
+	if (strcmp(token, "BOOLTOKEN") == 0) return BOOLTOKEN;
 	if (strcmp(token, "COMMA") == 0) return COMMA;
 	if (strcmp(token, "COS") == 0) return COS;
 	if (strcmp(token, "DIVIDE") == 0) return DIVIDE;
@@ -375,6 +376,14 @@ ex(r) ::= STRTOKEN (a).
 { 
 	cJSON *res = cJSON_CreateObject();
 	cJSON_AddStringToObject(res, "type", "STRTOKEN"); 
+	cJSON_AddStringToObject(res, "value", getValue(a)); 
+	r = res; 
+}
+
+ex(r) ::= BOOLTOKEN (a).        
+{ 
+	cJSON *res = cJSON_CreateObject();
+	cJSON_AddStringToObject(res, "type", "BOOLTOKEN"); 
 	cJSON_AddStringToObject(res, "value", getValue(a)); 
 	r = res; 
 }

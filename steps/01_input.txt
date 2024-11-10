@@ -1,8 +1,4 @@
-myvar := 1;
-trace myvar;
-
-trace 'blob';
-
-write "Hallo " & "Welt" & '!';
-
-trace [1, 2, 'HALLO'];
+mylist := [1, 2, 'HALLO', true];
+trace mylist;
+trace 1 & 1;
+trace [];
