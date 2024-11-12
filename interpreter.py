@@ -1,4 +1,5 @@
 import json
+import math
 
 from data_types import *
 from help_classes import SymbolTable
@@ -26,6 +27,7 @@ class Interpreter:
             
             "PLUS": self.handle_plus,
             "MINUS": self.handle_minus,
+            "SIN": self.handle_sin,
             "AMPERSAND": self.handle_string_concat,
 
             "STRTOKEN": self.handle_str_token,
@@ -52,9 +54,6 @@ class Interpreter:
         for statement in node["statements"]:
             self.eval_node(statement)
 
-    def debug_symbol_list(self):
-        print(self.symbol_table) if self.debug else None
-
     # Statements
     def handle_assign(self, node):
         variable = self.eval_node(node["arg"])
@@ -68,6 +67,7 @@ class Interpreter:
     def handle_assign_time(self, node):
         timestamp = self.eval_node(node["arg"])
         self.symbol_table[node['varname']].timestamp = timestamp
+        self.debug_symbol_list()
     
     def handle_identifier(self, node):
         variable = self.symbol_table[node['name']]
@@ -96,6 +96,18 @@ class Interpreter:
     def handle_minus(self, node):
         left, right = self.abstract_args(node)
         return left - right
+    
+    def handle_sin(self, node):
+        arg = self.abstract_args(node)
+        if isinstance(arg, ListType):
+            for index, listItem in enumerate(arg):
+                if isinstance(listItem, NumType):
+                    arg[index] = NumType(math.sin(listItem.value))
+                else:
+                    arg[index] = NullType(None)
+            return arg
+        else:
+            return math.sin(arg.value)
     
     def handle_string_concat(self, node):
         left, right = self.abstract_args(node)
@@ -137,6 +149,9 @@ class Interpreter:
             return self.eval_node(node_args[0]), self.eval_node(node_args[1]), self.eval_node(node_args[2])
         else:
             return None
+    
+    def debug_symbol_list(self):
+        print('[DEBUG] ', self.symbol_table) if self.debug else None
 
 
 

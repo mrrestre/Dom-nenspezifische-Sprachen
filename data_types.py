@@ -13,6 +13,10 @@ class BaseType(ABC):
     def parse_value(self, value):
         pass
 
+    def debug_str(self):
+        timestamp = self.timestamp.strftime(datetime_format) if self.timestamp is not None else None
+        return f"{str(self.value)} (Timestamp: {timestamp})"
+
     def __str__(self):
         return str(self.value)
     
@@ -52,7 +56,10 @@ class NumType(BaseType):
 class DateType(BaseType):
     def parse_value(self, input):
         try:
-            return datetime.strptime(input, datetime_format)
+            if(isinstance(input, datetime)):
+                return datetime
+            else: 
+                return datetime.strptime(input, datetime_format)
         except ValueError:
             return datetime.strptime(input, date_format)
     
@@ -62,15 +69,15 @@ class DateType(BaseType):
 class BoolType(BaseType):
     def parse_value(self, input):
         if input.strip().lower() == "true":
-            return True
+            return 'true'
         else:
-            return False
+            return 'false'
     
     def __add__(self, other):
         raise TypeError("Addition not supported for BoolType")
 
 class ListType(BaseType):
-    allowed_types = (StrType, NumType, DateType, BoolType)
+    allowed_types = (StrType, NumType, DateType, BoolType, NullType)
     
     def parse_value(self, input):
         self.value = []
@@ -89,13 +96,7 @@ class ListType(BaseType):
     
     def __add__(self, other):
         raise TypeError("Addition not supported for ListType")
-
-    def append(self, item):
-        if isinstance(item, self.allowed_types):
-            self.value.append(item)
-        else:
-            raise TypeError(f"Only instances of {self.allowed_types} are allowed")
-
+    
     def __getitem__(self, index):
         return self.value[index]
 
@@ -103,7 +104,30 @@ class ListType(BaseType):
         return len(self.value)
 
     def __str__(self):
-        list_str = ''
+        list_str = '['
         for element in self.value:
-            list_str += f"{element.value} "
+            list_str += f"{element.value}, "
+        list_str = list_str.rstrip(", ")
+        list_str += ']'
         return list_str
+    
+    def __setitem__(self, index, item):
+        if isinstance(item, self.allowed_types):
+            self.value[index] = item
+        else:
+            raise TypeError(f"Only instances of {self.allowed_types} are allowed")
+    
+    def append(self, item):
+        if isinstance(item, self.allowed_types):
+            self.value.append(item)
+        else:
+            raise TypeError(f"Only instances of {self.allowed_types} are allowed")
+
+    def debug_str(self):
+        debug_str = '['
+        for element in self.value:
+            timestamp = element.timestamp.strftime(datetime_format) if element.timestamp != None else None
+            debug_str +=  f"{str(element)} (Timestamp: {timestamp}), "
+        debug_str = debug_str.rstrip(", ")
+        debug_str += ']'
+        return debug_str

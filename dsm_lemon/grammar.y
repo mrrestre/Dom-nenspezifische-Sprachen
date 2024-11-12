@@ -112,11 +112,14 @@ int get_token_id (char *token) {
 	if (strcmp(token, "COS") == 0) return COS;
 	if (strcmp(token, "DIVIDE") == 0) return DIVIDE;
 	if (strcmp(token, "IDENTIFIER") == 0) return IDENTIFIER;
+	if (strcmp(token, "IS") == 0) return IS;
 	if (strcmp(token, "LPAR") == 0) return LPAR; 
 	if (strcmp(token, "RPAR") == 0) return RPAR;
 	if (strcmp(token, "LSPAR") == 0) return LSPAR;
 	if (strcmp(token, "RSPAR") == 0) return RSPAR;
+	if (strcmp(token, "LIST") == 0) return LIST;
 	if (strcmp(token, "MINUS") == 0) return MINUS;
+	if (strcmp(token, "NOT") == 0) return NOT;
 	if (strcmp(token, "NOW") == 0) return NOW;
 	if (strcmp(token, "NUMTOKEN") == 0) return NUMTOKEN;
 	if (strcmp(token, "OF") == 0) return OF;
@@ -423,6 +426,12 @@ ex(r) ::= ex(a) DIVIDE ex(b) .
 
 ex(r) ::= ex(a) POWER ex(b) .                               
 {r = binary ("POWER", a, b); }
+
+ex(r) ::= IS LIST ex(a) .                               
+{r = unary ("IS_LIST", a); }
+
+ex(r) ::= IS NOT LIST ex(a) .                               
+{r = unary ("IS_NOT_LIST", a); }
 
 ex(r) ::= SIN ex(a) .                               
 {r = unary ("SIN", a); }

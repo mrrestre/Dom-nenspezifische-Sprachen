@@ -3,6 +3,21 @@
     "statements": [
         {
             "type": "ASSIGN",
+            "varname": "myvar",
+            "arg": {
+                "type": "STRTOKEN",
+                "value": "hello"
+            }
+        },
+        {
+            "type": "ASSIGN_TIME",
+            "varname": "myvar",
+            "arg": {
+                "type": "NOW"
+            }
+        },
+        {
+            "type": "ASSIGN",
             "varname": "mylist",
             "arg": {
                 "type": "LIST",
@@ -14,142 +29,17 @@
                     {
                         "type": "NUMTOKEN",
                         "value": "2"
-                    },
-                    {
-                        "type": "STRTOKEN",
-                        "value": "HALLO"
-                    },
-                    {
-                        "type": "BOOLTOKEN",
-                        "value": "True"
-                    },
-                    {
-                        "type": "BOOLTOKEN",
-                        "value": "False"
                     }
                 ]
-            }
-        },
-        {
-            "type": "TRACE",
-            "line": "2",
-            "arg": {
-                "type": "IDENTIFIER",
-                "name": "mylist",
-                "line": "2"
-            }
-        },
-        {
-            "type": "TRACE",
-            "line": "3",
-            "arg": {
-                "type": "EMPTYLIST"
             }
         },
         {
             "type": "TRACE",
             "line": "4",
             "arg": {
-                "type": "AMPERSAND",
-                "arg": [
-                    {
-                        "type": "NUMTOKEN",
-                        "value": "1"
-                    },
-                    {
-                        "type": "BOOLTOKEN",
-                        "value": "True"
-                    }
-                ]
-            }
-        },
-        {
-            "type": "TRACE",
-            "line": "5",
-            "arg": {
-                "type": "AMPERSAND",
-                "arg": [
-                    {
-                        "type": "NUMTOKEN",
-                        "value": "1"
-                    },
-                    {
-                        "type": "STRTOKEN",
-                        "value": "1"
-                    }
-                ]
-            }
-        },
-        {
-            "type": "ASSIGN",
-            "varname": "myvar",
-            "arg": {
-                "type": "NUMTOKEN",
-                "value": "1"
-            }
-        },
-        {
-            "type": "WRITE",
-            "arg": {
-                "type": "PLUS",
-                "arg": [
-                    {
-                        "type": "NUMTOKEN",
-                        "value": "1"
-                    },
-                    {
-                        "type": "STRTOKEN",
-                        "value": "1"
-                    }
-                ]
-            }
-        },
-        {
-            "type": "WRITE",
-            "arg": {
-                "type": "PLUS",
-                "arg": [
-                    {
-                        "type": "NUMTOKEN",
-                        "value": "1"
-                    },
-                    {
-                        "type": "BOOLTOKEN",
-                        "value": "true"
-                    }
-                ]
-            }
-        },
-        {
-            "type": "WRITE",
-            "arg": {
-                "type": "AMPERSAND",
-                "arg": [
-                    {
-                        "type": "NUMTOKEN",
-                        "value": "1"
-                    },
-                    {
-                        "type": "STRTOKEN",
-                        "value": "1"
-                    }
-                ]
-            }
-        },
-        {
-            "type": "WRITE",
-            "arg": {
-                "type": "AMPERSAND",
-                "arg": [
-                    {
-                        "type": "STRTOKEN",
-                        "value": "1"
-                    },
-                    {
-                        "type": "BOOLTOKEN",
-                        "value": "true"
-                    }
-                ]
+                "type": "IDENTIFIER",
+                "name": "mylist",
+                "line": "4"
             }
         }
     ]

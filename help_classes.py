@@ -1,4 +1,4 @@
-from data_types import BaseType, ListType
+from data_types import BaseType
 
 
 class SymbolTable:
@@ -25,12 +25,8 @@ class SymbolTable:
         for variable in self._symbol_table:
             str_map += variable
             str_map += ':\t'
-            if(isinstance(self._symbol_table[variable], ListType)):
-                for list_element in self._symbol_table[variable]:
-                    str_map += str(list_element)
-                    str_map += ' '
-            else:
-                str_map += str(self._symbol_table[variable])
+            str_map += self._symbol_table[variable].debug_str()
             str_map += '\n'
         str_map = str_map.rstrip("\n")
         return str_map
+    

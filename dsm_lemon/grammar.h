@@ -23,3 +23,6 @@
 #define STRTOKEN                        23
 #define BOOLTOKEN                       24
 #define NOW                             25
+#define IS                              26
+#define LIST                            27
+#define NOT                             28

@@ -1,0 +1,4 @@
+mylist := [1, 2, 'HALLO', True, False];
+trace mylist;
+trace sin [1, 2, 3];
+trace sin mylist;
