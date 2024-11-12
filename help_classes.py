@@ -1,4 +1,4 @@
-from myDataTypes import BaseType
+from data_types import BaseType
 
 
 class SymbolTable:

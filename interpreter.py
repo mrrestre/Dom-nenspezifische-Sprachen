@@ -1,7 +1,7 @@
 import json
 
-from myDataTypes import *
-from helpClasses import SymbolTable
+from data_types import *
+from help_classes import SymbolTable
 
 class Interpreter:
     def __init__(self, path):
@@ -31,8 +31,8 @@ class Interpreter:
             "NUMTOKEN": self.handle_num_token,
             "TIMETOKEN": self.handle_time_token,
             "BOOLTOKEN": self.handle_bool_token,
-            "NOW": self.handle_now,
             "LIST": self.handle_list,
+            "NOW": self.handle_now,
             "EMPTYLIST": self.handle_empty_list,
         }
 
@@ -122,7 +122,6 @@ class Interpreter:
     
     # Helper functions
     def abstract_args(self, node):
-        args = []
         node_args = node["arg"]
         if len(node_args) == 1:
             return self.eval_node(node_args[0])

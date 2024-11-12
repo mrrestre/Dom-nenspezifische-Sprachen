@@ -18,6 +18,14 @@
                     {
                         "type": "STRTOKEN",
                         "value": "HALLO"
+                    },
+                    {
+                        "type": "BOOLTOKEN",
+                        "value": "True"
+                    },
+                    {
+                        "type": "BOOLTOKEN",
+                        "value": "False"
                     }
                 ]
             }
@@ -35,15 +43,41 @@
             "type": "TRACE",
             "line": "3",
             "arg": {
-                "type": "BOOLTOKEN",
-                "value": "True"
+                "type": "EMPTYLIST"
             }
         },
         {
             "type": "TRACE",
             "line": "4",
             "arg": {
-                "type": "EMPTYLIST"
+                "type": "AMPERSAND",
+                "arg": [
+                    {
+                        "type": "NUMTOKEN",
+                        "value": "1"
+                    },
+                    {
+                        "type": "BOOLTOKEN",
+                        "value": "True"
+                    }
+                ]
+            }
+        },
+        {
+            "type": "TRACE",
+            "line": "5",
+            "arg": {
+                "type": "AMPERSAND",
+                "arg": [
+                    {
+                        "type": "NUMTOKEN",
+                        "value": "1"
+                    },
+                    {
+                        "type": "STRTOKEN",
+                        "value": "1"
+                    }
+                ]
             }
         }
     ]
