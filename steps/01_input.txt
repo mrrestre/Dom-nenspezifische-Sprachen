@@ -3,3 +3,9 @@ trace mylist;
 trace [];
 trace 1 & True;
 trace 1 & '1';
+myvar := 1;
+
+write 1 + "1" ;
+write 1 + true;
+write 1 & "1" ;
+write "1" & true;

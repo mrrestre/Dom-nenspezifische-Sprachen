@@ -79,6 +79,78 @@
                     }
                 ]
             }
+        },
+        {
+            "type": "ASSIGN",
+            "varname": "myvar",
+            "arg": {
+                "type": "NUMTOKEN",
+                "value": "1"
+            }
+        },
+        {
+            "type": "WRITE",
+            "arg": {
+                "type": "PLUS",
+                "arg": [
+                    {
+                        "type": "NUMTOKEN",
+                        "value": "1"
+                    },
+                    {
+                        "type": "STRTOKEN",
+                        "value": "1"
+                    }
+                ]
+            }
+        },
+        {
+            "type": "WRITE",
+            "arg": {
+                "type": "PLUS",
+                "arg": [
+                    {
+                        "type": "NUMTOKEN",
+                        "value": "1"
+                    },
+                    {
+                        "type": "BOOLTOKEN",
+                        "value": "true"
+                    }
+                ]
+            }
+        },
+        {
+            "type": "WRITE",
+            "arg": {
+                "type": "AMPERSAND",
+                "arg": [
+                    {
+                        "type": "NUMTOKEN",
+                        "value": "1"
+                    },
+                    {
+                        "type": "STRTOKEN",
+                        "value": "1"
+                    }
+                ]
+            }
+        },
+        {
+            "type": "WRITE",
+            "arg": {
+                "type": "AMPERSAND",
+                "arg": [
+                    {
+                        "type": "STRTOKEN",
+                        "value": "1"
+                    },
+                    {
+                        "type": "BOOLTOKEN",
+                        "value": "true"
+                    }
+                ]
+            }
         }
     ]
 }

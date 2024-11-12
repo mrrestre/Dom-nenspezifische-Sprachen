@@ -5,6 +5,7 @@ from help_classes import SymbolTable
 
 class Interpreter:
     def __init__(self, path):
+        self.debug = False
         self.path = path
         self.symbol_table = SymbolTable()
         self.ast = {}
@@ -51,6 +52,9 @@ class Interpreter:
         for statement in node["statements"]:
             self.eval_node(statement)
 
+    def debug_symbol_list(self):
+        print(self.symbol_table) if self.debug else None
+
     # Statements
     def handle_assign(self, node):
         variable = self.eval_node(node["arg"])
@@ -59,6 +63,7 @@ class Interpreter:
             self.symbol_table[node['varname']].value = variable.value
         else:
             self.symbol_table[node['varname']] = variable
+        self.debug_symbol_list()
             
     def handle_assign_time(self, node):
         timestamp = self.eval_node(node["arg"])
@@ -66,6 +71,7 @@ class Interpreter:
     
     def handle_identifier(self, node):
         variable = self.symbol_table[node['name']]
+        self.debug_symbol_list()
         return variable if variable else 'Variable ' + node['name'] + ' in line ' + node['line'] + ' not defined in scope'
 
     def handle_write(self, node):

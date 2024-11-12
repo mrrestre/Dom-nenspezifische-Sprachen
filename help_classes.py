@@ -1,4 +1,4 @@
-from data_types import BaseType
+from data_types import BaseType, ListType
 
 
 class SymbolTable:
@@ -21,4 +21,16 @@ class SymbolTable:
         self.set_item(key, value)
 
     def __str__(self):
-        return str(self._symbol_table)
+        str_map = ''
+        for variable in self._symbol_table:
+            str_map += variable
+            str_map += ':\t'
+            if(isinstance(self._symbol_table[variable], ListType)):
+                for list_element in self._symbol_table[variable]:
+                    str_map += str(list_element)
+                    str_map += ' '
+            else:
+                str_map += str(self._symbol_table[variable])
+            str_map += '\n'
+        str_map = str_map.rstrip("\n")
+        return str_map

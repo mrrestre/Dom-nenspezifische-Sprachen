@@ -22,6 +22,13 @@ class BaseType(ABC):
         else:
             return NotImplemented
 
+class NullType(BaseType):
+    def parse_value(self, input):
+        return 'null'
+
+    def __add__(self, other):
+        return 'null'
+        
 class StrType(BaseType):
     def parse_value(self, input):
         return str(input)
@@ -30,7 +37,7 @@ class StrType(BaseType):
         if isinstance(other, StrType):
             return StrType(self.value + other.value)
         else:
-            return NotImplemented
+            return NullType()
 
 class NumType(BaseType):
     def parse_value(self, input):
@@ -40,7 +47,7 @@ class NumType(BaseType):
         if isinstance(other, NumType):
             return NumType(self.value + other.value)
         else:
-            return NotImplemented
+            return NullType(None)
 
 class DateType(BaseType):
     def parse_value(self, input):
