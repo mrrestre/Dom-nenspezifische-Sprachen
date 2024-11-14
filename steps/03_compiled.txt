@@ -2,44 +2,63 @@
     "type": "STATEMENTBLOCK",
     "statements": [
         {
-            "type": "ASSIGN",
-            "varname": "myvar",
+            "type": "TRACE",
+            "line": "1",
             "arg": {
-                "type": "STRTOKEN",
-                "value": "hello"
-            }
-        },
-        {
-            "type": "ASSIGN_TIME",
-            "varname": "myvar",
-            "arg": {
-                "type": "NOW"
-            }
-        },
-        {
-            "type": "ASSIGN",
-            "varname": "mylist",
-            "arg": {
-                "type": "LIST",
-                "elements": [
+                "type": "PLUS",
+                "arg": [
                     {
                         "type": "NUMTOKEN",
                         "value": "1"
                     },
                     {
                         "type": "NUMTOKEN",
-                        "value": "2"
+                        "value": "1"
                     }
                 ]
             }
         },
         {
             "type": "TRACE",
-            "line": "4",
+            "line": "2",
             "arg": {
-                "type": "IDENTIFIER",
-                "name": "mylist",
-                "line": "4"
+                "type": "SIN",
+                "arg": [
+                    {
+                        "type": "LIST",
+                        "elements": [
+                            {
+                                "type": "NUMTOKEN",
+                                "value": "1"
+                            },
+                            {
+                                "type": "NUMTOKEN",
+                                "value": "2"
+                            },
+                            {
+                                "type": "BOOLTOKEN",
+                                "value": "true"
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "type": "TRACE",
+            "line": "3",
+            "arg": {
+                "type": "AMPERSAND",
+                "arg": [
+                    {
+                        "type": "STRTOKEN",
+                        "value": "a"
+                    },
+                    {
+                        "type": "NUMTOKEN",
+                        "value": "1"
+                    }
+                ]
             }
         }
     ]

@@ -1,4 +1,4 @@
-from data_types import BaseType
+from data_types import *
 
 
 class SymbolTable:
@@ -30,3 +30,33 @@ class SymbolTable:
         str_map = str_map.rstrip("\n")
         return str_map
     
+TERMINAL_NODE_NAMES = ["STRTOKEN", "NUMTOKEN", "TIMETOKEN", "BOOLTOKEN", "LIST", "EMPTYLIST", "NOW"]
+
+def is_terminal_node(node):
+    if isinstance(node, list):
+        return False
+    elif node["type"] in TERMINAL_NODE_NAMES:
+        return True
+    else:
+        return False
+    
+class TerminalNode:
+    def __init__(self, node):
+        match node["type"]:
+            case "STRTOKEN":
+                self._value = StrType(node["value"])
+            case "NUMTOKEN":
+                self._value = NumType(node["value"])
+            case "TIMETOKEN":
+                self._value = DateType(node["value"])
+            case "BOOLTOKEN":
+                self._value = BoolType(node["value"])
+            case "LIST":
+                self._value = ListType(node["elements"])
+            case "EMPTYLIST":
+                self._value = ListType(None)
+            case "NOW":
+                self._value = DateType(datetime.strftime(datetime.now(), DATETIME_FORMAT))
+
+    def get_value(self):
+        return self._value

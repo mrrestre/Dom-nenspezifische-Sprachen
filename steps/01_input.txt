@@ -1,4 +1,3 @@
-myvar := 'hello';
-time of myvar := now;
-mylist := [1, 2];
-trace mylist;
+trace 1 + 1;
+trace sin [1, 2, true];
+trace 'a' & 1;

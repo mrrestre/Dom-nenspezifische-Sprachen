@@ -2,11 +2,11 @@ import json
 import math
 
 from data_types import *
-from help_classes import SymbolTable
+from help_classes import *
 
 class Interpreter:
     def __init__(self, path):
-        self.debug = False
+        self.debug = True
         self.path = path
         self.symbol_table = SymbolTable()
         self.ast = {}
@@ -15,39 +15,57 @@ class Interpreter:
         with open(self.path, 'r') as file:
             self.ast = json.load(file)
 
-        self.node_type_handlers = {
+        self.statement_handlers = {
             "STATEMENTBLOCK": self.handle_statement_block,
-
             "ASSIGN": self.handle_assign,
             "ASSIGN_TIME": self.handle_assign_time,
             "IDENTIFIER": self.handle_identifier,
             "WRITE": self.handle_write,
             "WRITE_TIME": self.handle_write_time,
-            "TRACE": self.handle_trace,
-            
+            "TRACE": self.handle_trace
+        }
+
+        self.operation_handlers = {            
             "PLUS": self.handle_plus,
             "MINUS": self.handle_minus,
             "SIN": self.handle_sin,
-            "AMPERSAND": self.handle_string_concat,
-
-            "STRTOKEN": self.handle_str_token,
-            "NUMTOKEN": self.handle_num_token,
-            "TIMETOKEN": self.handle_time_token,
-            "BOOLTOKEN": self.handle_bool_token,
-            "LIST": self.handle_list,
-            "NOW": self.handle_now,
-            "EMPTYLIST": self.handle_empty_list,
+            "AMPERSAND": self.handle_string_concat
         }
+
+        self.allowed_operations = list(self.operation_handlers.keys()) 
 
     def interpret(self):
         self.eval_node(self.ast)
 
     def eval_node(self, node):
-        node_type = node["type"]
-        handler = self.node_type_handlers.get(node_type)
-        if not handler:
-            raise ValueError(f"Handler not found for node type: {node_type}")
-        return handler(node)
+        if is_terminal_node(node):
+            return TerminalNode(node).get_value()
+        elif self.is_operator_node(node):
+            evaluated_params = []
+            for operation_node in node['arg']:
+                evaluated_params.append(self.eval_node(operation_node))
+
+            operation_handler = self.operation_handlers.get(node["type"])
+            match len(evaluated_params):
+                case 1:
+                    # Unary operation
+                    # TODO: This should be better
+                    result = ListType(None)
+                    if node["type"] == 'SIN' and isinstance(evaluated_params[0], ListType):
+                        for list_member in evaluated_params[0]:
+                            result.append(operation_handler(list_member))
+                    return result
+                case 2:
+                    # Binary operation
+                    return operation_handler(evaluated_params)
+                case 3:
+                    # Terniary operation
+                    return operation_handler(evaluated_params)
+        else:
+            handler = self.statement_handlers.get(node["type"])
+            if not handler:
+                raise ValueError(f"Handler not found for node type: {node["type"]}")
+            return handler(node)
 
     # Statement Block
     def handle_statement_block(self, node):
@@ -89,69 +107,31 @@ class Interpreter:
 
     ## Expresions
     # Operations
-    def handle_plus(self, node):
-        left, right = self.abstract_args(node)
-        return left + right
+    def handle_plus(self, operator_args):
+        return operator_args[0] + operator_args[1]
     
-    def handle_minus(self, node):
-        left, right = self.abstract_args(node)
-        return left - right
+    def handle_minus(self, operator_args):
+        return operator_args[0] - operator_args[1]
     
-    def handle_sin(self, node):
-        arg = self.abstract_args(node)
-        if isinstance(arg, ListType):
-            for index, listItem in enumerate(arg):
-                if isinstance(listItem, NumType):
-                    arg[index] = NumType(math.sin(listItem.value))
-                else:
-                    arg[index] = NullType(None)
-            return arg
+    def handle_sin(self, operator_args):
+        if isinstance(operator_args, NumType):
+            return NumType(math.sin(operator_args.value))
         else:
-            return math.sin(arg.value)
+            return NullType(None)
     
-    def handle_string_concat(self, node):
-        left, right = self.abstract_args(node)
+    def handle_string_concat(self, operator_args):
+        left, right = operator_args[0], operator_args[1]
         if isinstance(left, StrType) or isinstance(right, StrType):
             return StrType(left) + StrType(right)
         else:
-            return None
+            return NullType(None)
     
-    # Terminal nodes
-    def handle_str_token(self, node):
-        return StrType(node["value"])
-
-    def handle_num_token(self, node):
-        return NumType(node["value"])
-    
-    def handle_time_token(self, node):
-        return DateType(node["value"])
-    
-    def handle_bool_token(self, node):
-        return BoolType(node["value"])
-    
-    def handle_now(self, node):
-        return self.now
-    
-    def handle_list(self, node):
-        return ListType(node["elements"])
-    
-    def handle_empty_list(self, node):
-        return ListType(None)
-    
-    # Helper functions
-    def abstract_args(self, node):
-        node_args = node["arg"]
-        if len(node_args) == 1:
-            return self.eval_node(node_args[0])
-        elif len(node_args) == 2:
-            return self.eval_node(node_args[0]), self.eval_node(node_args[1])
-        elif len(node_args) == 3:
-            return self.eval_node(node_args[0]), self.eval_node(node_args[1]), self.eval_node(node_args[2])
-        else:
-            return None
-    
+    # Helper functions   
     def debug_symbol_list(self):
         print('[DEBUG] ', self.symbol_table) if self.debug else None
+
+    def is_operator_node(self, node):
+        return True if node["type"] in self.allowed_operations else False
 
 
 

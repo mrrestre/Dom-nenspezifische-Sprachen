@@ -7,10 +7,9 @@ class Tokenizer:
         self.output_file_path = token_file_path
         self.tokens = []
 
-        self.reserved_words = [ 'READ', 'WRITE', 'IF', 'THEN', 'ELSEIF', 'ELSE', 'ENDIF', 'FOR',
-                                'TIME', 'OF', 'NOW', 'TRACE', 'IS', 'LIST', 'NOT'
-                                'IN', 'DO', 'ENDDO', 'NOW', 'CURRENTTIME', 'MINIMUM', 'MAXIMUM',
-                                'FIRST', 'LAST', 'SUM', 'AVERAGE', 'EARLIEST', 'LATEST', 'SIN', 'COS']
+        self.reserved_words = [ 'AVERAGE', 'COS', 'COUNT', 'CURRENTTIME', 'DO', 'EARLIEST', 'ELSE', 'ELSEIF', 'ENDDO', 'ENDIF', 
+                                'FIRST', 'FOR', 'IF', 'IN', 'IS', 'LAST', 'LATEST', 'LIST', 'MAXIMUM', 'MINIMUM', 'NOT', 'NOW', 
+                                'NUMBER', 'OF', 'READ', 'SIN', 'SUM', 'THEN', 'TIME', 'TRACE', 'WRITE']
         self.symbols = {
             ':=':   'ASSIGN',
             '**':   'POWER',

@@ -110,7 +110,9 @@ int get_token_id (char *token) {
 	if (strcmp(token, "BOOLTOKEN") == 0) return BOOLTOKEN;
 	if (strcmp(token, "COMMA") == 0) return COMMA;
 	if (strcmp(token, "COS") == 0) return COS;
+	if (strcmp(token, "COUNT") == 0) return COUNT;
 	if (strcmp(token, "DIVIDE") == 0) return DIVIDE;
+	if (strcmp(token, "FIRST") == 0) return FIRST;
 	if (strcmp(token, "IDENTIFIER") == 0) return IDENTIFIER;
 	if (strcmp(token, "IS") == 0) return IS;
 	if (strcmp(token, "LPAR") == 0) return LPAR; 
@@ -121,6 +123,7 @@ int get_token_id (char *token) {
 	if (strcmp(token, "MINUS") == 0) return MINUS;
 	if (strcmp(token, "NOT") == 0) return NOT;
 	if (strcmp(token, "NOW") == 0) return NOW;
+	if (strcmp(token, "NUMBER") == 0) return NUMTOKEN;
 	if (strcmp(token, "NUMTOKEN") == 0) return NUMTOKEN;
 	if (strcmp(token, "OF") == 0) return OF;
 	if (strcmp(token, "PLUS") == 0) return PLUS;
@@ -196,7 +199,7 @@ cJSON* ternary (char *fname, cJSON *a, cJSON *b, cJSON *c)
 /////////////////////// 
 // je weiter unten, desto bindet der Operator stärker
 
-
+%right     COUNT FIRST .
 %left 	   COMMA .
 %left 	   AMPERSAND .
 %left 	   PLUS MINUS .
@@ -321,15 +324,31 @@ statement(r) ::= TIME OF IDENTIFIER(i) ASSIGN ex(t) SEMICOLON .
 
 
 
+///////////////////////////
+// EXPRESSIONS
+///////////////////////////
 
-
-
+// ()
 ex(r) ::= LPAR ex(a) RPAR .    
 { 
 	r = a; 
 }
 
-// Empty list
+// Variable
+ex(r) ::= IDENTIFIER(a) .      
+{ 
+	cJSON *res = cJSON_CreateObject(); 
+	cJSON_AddStringToObject(res, "type", "IDENTIFIER"); 
+	cJSON_AddStringToObject(res, "name", getValue(a)); 
+	cJSON_AddStringToObject(res, "line", getLine(a)); 
+	r = res; 
+}
+
+/////////////////
+// Lists
+/////////////////
+
+// Empty list []
 ex(r) ::= LSPAR RSPAR .    
 { 
 	cJSON *res = cJSON_CreateObject();
@@ -337,6 +356,7 @@ ex(r) ::= LSPAR RSPAR .
 	r = res; 
 }
 
+// [1]
 ex(r) ::= LSPAR exlist(a) RSPAR .    
 { 
 	cJSON *res = cJSON_CreateObject();
@@ -345,6 +365,7 @@ ex(r) ::= LSPAR exlist(a) RSPAR .
 	r = res; 
 }
 
+// [1] = 1
 exlist(r) ::= ex(a) .
 {
 	cJSON *arg = cJSON_CreateArray();
@@ -352,11 +373,18 @@ exlist(r) ::= ex(a) .
 	r = arg;
 }
 
+// [1] = [1], 1
 exlist(r) ::= exlist(a) COMMA ex(b) .
 {
 	cJSON_AddItemToArray(a, b);
 	r = a;
 }
+
+
+
+///////////////////////////
+// Terminal nodes
+///////////////////////////
 
 ex(r) ::= NUMTOKEN (a).        
 { 
@@ -391,16 +419,6 @@ ex(r) ::= BOOLTOKEN (a).
 	r = res; 
 }
 
-
-ex(r) ::= IDENTIFIER(a) .      
-{ 
-	cJSON *res = cJSON_CreateObject(); 
-	cJSON_AddStringToObject(res, "type", "IDENTIFIER"); 
-	cJSON_AddStringToObject(res, "name", getValue(a)); 
-	cJSON_AddStringToObject(res, "line", getLine(a)); 
-	r = res; 
-}
-
 ex(r) ::= NOW .      
 { 
 	cJSON *res = cJSON_CreateObject(); 
@@ -408,6 +426,9 @@ ex(r) ::= NOW .
 	r = res; 
 }
 
+///////////////////////////
+// Operations
+///////////////////////////
 
 ex(r) ::= ex(a) AMPERSAND ex(b) .                                
 {r = binary ("AMPERSAND", a, b); }
@@ -427,11 +448,21 @@ ex(r) ::= ex(a) DIVIDE ex(b) .
 ex(r) ::= ex(a) POWER ex(b) .                               
 {r = binary ("POWER", a, b); }
 
-ex(r) ::= IS LIST ex(a) .                               
-{r = unary ("IS_LIST", a); }
+ex(r) ::= ex(a) IS LIST ex(b) .                               
+{r = binary ("IS_LIST", a, b); }
 
-ex(r) ::= IS NOT LIST ex(a) .                               
-{r = unary ("IS_NOT_LIST", a); }
+ex(r) ::= ex(a) IS NOT LIST ex(b) .                               
+{r = binary ("IS_NOT_LIST", a, b); }
+
+ex(r) ::= ex(a) IS NUMBER ex(b) .                               
+{r = binary ("IS_LIST", a, b); }
+
+
+ex(r) ::= COUNT ex(a) .                               
+{r = unary ("SIN", a); }
+
+ex(r) ::= FIRST ex(a) .                               
+{r = unary ("SIN", a); }
 
 ex(r) ::= SIN ex(a) .                               
 {r = unary ("SIN", a); }
