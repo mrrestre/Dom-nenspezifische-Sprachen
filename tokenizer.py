@@ -36,6 +36,7 @@ class Tokenizer:
         }
 
         self.regex = {
+            'NULLTOKEN':    r'(?i)\bnull\b',
             'BOOLTOKEN':    r'(?i)\btrue\b|\bfalse\b',
             'IDENTIFIER':   r'^[a-zA-Z][a-zA-Z0-9_]*\b',
             'TIMETOKEN':    r'^\d{4}-\d{2}-\d{2}(?:T\d{2}:\d{2}:\d{2})?\b',

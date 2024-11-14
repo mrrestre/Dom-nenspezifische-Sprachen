@@ -25,7 +25,8 @@
 #define STRTOKEN                        25
 #define BOOLTOKEN                       26
 #define NOW                             27
-#define IS                              28
-#define LIST                            29
-#define NOT                             30
-#define NUMBER                          31
+#define NULLTOKEN                       28
+#define IS                              29
+#define LIST                            30
+#define NOT                             31
+#define NUMBER                          32

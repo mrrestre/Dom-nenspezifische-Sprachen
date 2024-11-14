@@ -123,8 +123,9 @@ int get_token_id (char *token) {
 	if (strcmp(token, "MINUS") == 0) return MINUS;
 	if (strcmp(token, "NOT") == 0) return NOT;
 	if (strcmp(token, "NOW") == 0) return NOW;
-	if (strcmp(token, "NUMBER") == 0) return NUMTOKEN;
+	if (strcmp(token, "NUMBER") == 0) return NUMBER;
 	if (strcmp(token, "NUMTOKEN") == 0) return NUMTOKEN;
+	if (strcmp(token, "NULLTOKEN") == 0) return NULLTOKEN;
 	if (strcmp(token, "OF") == 0) return OF;
 	if (strcmp(token, "PLUS") == 0) return PLUS;
 	if (strcmp(token, "POWER") == 0) return POWER;
@@ -271,6 +272,14 @@ statement(r) ::= WRITE TIME OF ex(e) SEMICOLON .
 	r = res; 
 }
 
+statement(r) ::= WRITE TIME ex(e) SEMICOLON .
+{
+	cJSON *res = cJSON_CreateObject(); 
+	cJSON_AddStringToObject(res, "type", "WRITE_TIME"); 
+	cJSON_AddItemToObject(res, "arg", e); 
+	r = res; 
+}
+
 ///////////////////////////
 // TRACE
 ///////////////////////////
@@ -280,6 +289,28 @@ statement(r) ::= TRACE(l) ex(e) SEMICOLON .
 	cJSON *res = cJSON_CreateObject(); 
 	cJSON_AddStringToObject(res, "type", "TRACE"); 
 	cJSON_AddStringToObject(res, "line", getLine(l)); 
+	cJSON_AddItemToObject(res, "arg", e); 
+	r = res; 
+}
+
+///////////////////////////
+// TRACE TIME
+///////////////////////////
+
+statement(r) ::= TRACE(l) TIME OF ex(e) SEMICOLON .
+{
+	cJSON *res = cJSON_CreateObject(); 
+	cJSON_AddStringToObject(res, "type", "TRACE_TIME"); 
+	cJSON_AddStringToObject(res, "line", getLine(l));
+	cJSON_AddItemToObject(res, "arg", e); 
+	r = res; 
+}
+
+statement(r) ::= TRACE(l) TIME ex(e) SEMICOLON .
+{
+	cJSON *res = cJSON_CreateObject(); 
+	cJSON_AddStringToObject(res, "type", "TRACE_TIME");
+	cJSON_AddStringToObject(res, "line", getLine(l));
 	cJSON_AddItemToObject(res, "arg", e); 
 	r = res; 
 }
@@ -302,6 +333,15 @@ statement(r) ::= IDENTIFIER(i) ASSIGN ex(e) SEMICOLON .
 ///////////////////////////
 
 statement(r) ::= TIME OF IDENTIFIER(i) ASSIGN ex(t) SEMICOLON .
+{
+	cJSON *res = cJSON_CreateObject(); 
+	cJSON_AddStringToObject(res, "type", "ASSIGN_TIME");
+	cJSON_AddStringToObject(res, "varname", getValue(i)); 
+	cJSON_AddItemToObject(res, "arg", t); 
+	r = res; 
+}
+
+statement(r) ::= TIME IDENTIFIER(i) ASSIGN ex(t) SEMICOLON .
 {
 	cJSON *res = cJSON_CreateObject(); 
 	cJSON_AddStringToObject(res, "type", "ASSIGN_TIME");
@@ -426,6 +466,13 @@ ex(r) ::= NOW .
 	r = res; 
 }
 
+ex(r) ::= NULLTOKEN .      
+{ 
+	cJSON *res = cJSON_CreateObject(); 
+	cJSON_AddStringToObject(res, "type", "NULLTOKEN"); 
+	r = res; 
+}
+
 ///////////////////////////
 // Operations
 ///////////////////////////
@@ -448,21 +495,20 @@ ex(r) ::= ex(a) DIVIDE ex(b) .
 ex(r) ::= ex(a) POWER ex(b) .                               
 {r = binary ("POWER", a, b); }
 
-ex(r) ::= ex(a) IS LIST ex(b) .                               
-{r = binary ("IS_LIST", a, b); }
+ex(r) ::= ex(a) IS LIST .                               
+{r = unary ("IS_LIST", a); }
 
-ex(r) ::= ex(a) IS NOT LIST ex(b) .                               
-{r = binary ("IS_NOT_LIST", a, b); }
+ex(r) ::= ex(a) IS NOT LIST .                               
+{r = unary ("IS_NOT_LIST", a); }
 
-ex(r) ::= ex(a) IS NUMBER ex(b) .                               
-{r = binary ("IS_LIST", a, b); }
-
+ex(r) ::= ex(a) IS NUMBER .                               
+{r = unary ("IS_NUMBER", a); }
 
 ex(r) ::= COUNT ex(a) .                               
-{r = unary ("SIN", a); }
+{r = unary ("COUNT", a); }
 
 ex(r) ::= FIRST ex(a) .                               
-{r = unary ("SIN", a); }
+{r = unary ("FIRST", a); }
 
 ex(r) ::= SIN ex(a) .                               
 {r = unary ("SIN", a); }

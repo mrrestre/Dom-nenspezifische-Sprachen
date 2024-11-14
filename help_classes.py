@@ -14,6 +14,15 @@ class SymbolTable:
     def get_item(self, key):
         return self._symbol_table.get(key, None)
 
+    def update(self, data):
+        if isinstance(data, dict):
+            self._symbol_table.update(data)
+        else:
+            raise TypeError("update() argument must be a dictionary")
+        
+    def isKeyPresent(self, key):
+        return True if key in self._symbol_table else False
+        
     def __getitem__(self, key):
         return self.get_item(key)
 
@@ -23,11 +32,11 @@ class SymbolTable:
     def __str__(self):
         str_map = ''
         for variable in self._symbol_table:
+            str_map += '[DEBUG] '
             str_map += variable
             str_map += ':\t'
             str_map += self._symbol_table[variable].debug_str()
             str_map += '\n'
-        str_map = str_map.rstrip("\n")
         return str_map
     
 TERMINAL_NODE_NAMES = ["STRTOKEN", "NUMTOKEN", "TIMETOKEN", "BOOLTOKEN", "LIST", "EMPTYLIST", "NOW"]

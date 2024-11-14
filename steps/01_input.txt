@@ -1,3 +1,7 @@
-trace 1 + 1;
-trace sin [1, 2, true];
-trace 'a' & 1;
+a := 11;
+b := 2020-01-01T12:00:00;
+time a := b;
+c := a;
+time c := now;
+trace time c;
+trace time a;

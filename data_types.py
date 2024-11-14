@@ -2,7 +2,7 @@ from datetime import datetime
 from abc import ABC, abstractmethod
 
 DATE_FORMAT = "%Y-%m-%d"
-DATETIME_FORMAT = "%Y-%m-%d %H:%M:%S"
+DATETIME_FORMAT = "%Y-%m-%dT%H:%M:%S"
 
 class BaseType(ABC):
     def __init__(self, input, timestamp=None):
@@ -14,12 +14,21 @@ class BaseType(ABC):
         pass
 
     def debug_str(self):
-        if isinstance(self.timestamp, DateType):
-            timestamp = self.timestamp.value.strftime(DATETIME_FORMAT)
+        if isinstance(self.timestamp, datetime):
+            timestamp = self.timestamp.strftime(DATETIME_FORMAT)
         else:
             timestamp = None
 
         return f"{str(self.value)} (Timestamp: {timestamp})"
+    
+    def copy(self):
+        return self.__class__(self.value, self._get_timestamp_string())
+    
+    def _get_timestamp_string(self):
+        if self.timestamp != None:
+            return datetime.strftime(self.timestamp, DATETIME_FORMAT) 
+        else: 
+            return None
 
     def __str__(self):
         return str(self.value)
@@ -59,7 +68,7 @@ class DateType(BaseType):
     def parse_value(self, input):
         try:
             if(isinstance(input, datetime)):
-                return datetime
+                return input
             else: 
                 return datetime.strptime(input, DATETIME_FORMAT)
         except ValueError:
@@ -87,6 +96,8 @@ class ListType(BaseType):
                     self.value.append(DateType(element.get('value')))
                 if element.get('type') == 'BOOLTOKEN':
                     self.value.append(BoolType(element.get('value')))
+                if element.get('type') == 'NULLTOKEN':
+                    self.value.append(NullType(None))
         
         return self.value
     
