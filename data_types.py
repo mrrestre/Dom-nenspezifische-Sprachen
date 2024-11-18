@@ -87,18 +87,21 @@ class ListType(BaseType):
     def parse_value(self, input):
         self.value = []
         if input:
-            for element in input:
-                if element.get('type') == 'NUMTOKEN':
-                    self.value.append(NumType(element.get('value')))
-                if element.get('type') == 'STRTOKEN':
-                    self.value.append(StrType(element.get('value')))
-                if element.get('type') == 'TIMETOKEN':
-                    self.value.append(DateType(element.get('value')))
-                if element.get('type') == 'BOOLTOKEN':
-                    self.value.append(BoolType(element.get('value')))
-                if element.get('type') == 'NULLTOKEN':
-                    self.value.append(NullType(None))
-        
+            for element in input:      
+                if hasattr(element, 'get'):
+                    if element.get('type') == 'NUMTOKEN':
+                        self.value.append(NumType(element.get('value')))
+                    if element.get('type') == 'STRTOKEN':
+                        self.value.append(StrType(element.get('value')))
+                    if element.get('type') == 'TIMETOKEN':
+                        self.value.append(DateType(element.get('value')))
+                    if element.get('type') == 'BOOLTOKEN':
+                        self.value.append(BoolType(element.get('value')))
+                    if element.get('type') == 'NULLTOKEN':
+                        self.value.append(NullType(None))
+                else:
+                    self.value.append(element)
+    
         return self.value
     
     def __getitem__(self, index):

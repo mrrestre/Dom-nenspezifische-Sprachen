@@ -6,7 +6,7 @@ from help_classes import *
 
 class Interpreter:
     def __init__(self, path):
-        self.debug = True
+        self.debug = False
         self.path = path
         self.symbol_table = SymbolTable()
         self.ast = {}
@@ -26,19 +26,19 @@ class Interpreter:
             "TRACE_TIME": self.handle_trace_time,
         }
 
-        self.unary_operation_wie_sin = {
+        self.unary_member_operations = {
             "SIN": self.handle_sin,
             "IS_NUMBER": self.handle_is_number,
         }
 
-        self.unary_operation_others = {
+        self.unary_list_operations = {
             "COUNT": self.handle_count,
             "FIRST": self.handle_first,
             "IS_LIST": self.handle_is_list,
             "IS_NOT_LIST": self.handle_is_not_list,
         }
 
-        self.unary_operations = self.unary_operation_wie_sin | self.unary_operation_others
+        self.unary_operations = self.unary_member_operations | self.unary_list_operations
 
         self.binary_operations = {
             "PLUS": self.handle_plus,
@@ -46,7 +46,10 @@ class Interpreter:
             "AMPERSAND": self.handle_string_concat
         }
 
-        self.operation_handlers = self.unary_operations | self.binary_operations
+        self.ternary_operations = {
+        }
+
+        self.operation_handlers = self.unary_operations | self.binary_operations | self.ternary_operations
 
         self.allowed_operations = list(self.operation_handlers.keys()) 
 
@@ -57,26 +60,27 @@ class Interpreter:
         if is_terminal_node(node):
             return TerminalNode(node).get_value()
         elif self.is_operator_node(node):
-            evaluated_params = []
-            for operation_node in node['arg']:
-                evaluated_params.append(self.eval_node(operation_node))
-
+            evaluated_params = self.evaluate_params(node)
             operation_handler = self.operation_handlers.get(node["type"])
+
             match len(evaluated_params):
                 case 1:
                     # Unary operation
-                    result = ListType(None)
-                    if node["type"] in self.unary_operation_wie_sin:
-                        for list_member in evaluated_params[0]:
-                            result.append(operation_handler(list_member))
-                    elif node["type"] in self.unary_operation_others:
+                    if node["type"] in self.unary_member_operations:
+                        if(isinstance(evaluated_params[0], ListType)):
+                            result = ListType(None)
+                            for list_member in evaluated_params[0]:
+                                result.append(operation_handler(list_member))
+                        else:
+                            result = operation_handler(evaluated_params[0])
+                    elif node["type"] in self.unary_list_operations:
                         result = operation_handler(evaluated_params[0])
                     return result
                 case 2:
                     # Binary operation
                     return operation_handler(evaluated_params)
                 case 3:
-                    # Terniary operation
+                    # Ternary operation
                     return operation_handler(evaluated_params)
         else:
             handler = self.statement_handlers.get(node["type"])
@@ -172,6 +176,12 @@ class Interpreter:
             return NullType(None)
     
     # Helper functions   
+    def evaluate_params(self, node):
+        evaluated_params = []
+        for operation_node in node['arg']:
+            evaluated_params.append(self.eval_node(operation_node))
+        return evaluated_params
+
     def debug_symbol_list(self):
         print(self.symbol_table) if self.debug else None
 

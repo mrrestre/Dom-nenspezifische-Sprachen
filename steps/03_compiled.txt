@@ -3,61 +3,121 @@
     "statements": [
         {
             "type": "ASSIGN",
-            "varname": "a",
+            "varname": "testlist",
             "arg": {
-                "type": "NUMTOKEN",
-                "value": "11"
+                "type": "LIST",
+                "elements": [
+                    {
+                        "type": "NUMTOKEN",
+                        "value": "1"
+                    },
+                    {
+                        "type": "NUMTOKEN",
+                        "value": "2"
+                    },
+                    {
+                        "type": "STRTOKEN",
+                        "value": "Hallo"
+                    },
+                    {
+                        "type": "NUMTOKEN",
+                        "value": "4"
+                    },
+                    {
+                        "type": "NUMTOKEN",
+                        "value": "5"
+                    },
+                    {
+                        "type": "NULLTOKEN"
+                    },
+                    {
+                        "type": "BOOLTOKEN",
+                        "value": "false"
+                    },
+                    {
+                        "type": "BOOLTOKEN",
+                        "value": "true"
+                    }
+                ]
             }
         },
         {
-            "type": "ASSIGN",
-            "varname": "b",
-            "arg": {
-                "type": "TIMETOKEN",
-                "value": "2020-01-01T12:00:00"
-            }
-        },
-        {
-            "type": "ASSIGN_TIME",
-            "varname": "a",
+            "type": "TRACE",
+            "line": "2",
             "arg": {
                 "type": "IDENTIFIER",
-                "name": "b",
-                "line": "3"
+                "name": "testlist",
+                "line": "2"
             }
         },
         {
-            "type": "ASSIGN",
-            "varname": "c",
+            "type": "TRACE",
+            "line": "3",
             "arg": {
-                "type": "IDENTIFIER",
-                "name": "a",
-                "line": "4"
+                "type": "IS_NUMBER",
+                "arg": [
+                    {
+                        "type": "IDENTIFIER",
+                        "name": "testlist",
+                        "line": "3"
+                    }
+                ]
             }
         },
         {
-            "type": "ASSIGN_TIME",
-            "varname": "c",
+            "type": "TRACE",
+            "line": "4",
             "arg": {
-                "type": "NOW"
+                "type": "IS_LIST",
+                "arg": [
+                    {
+                        "type": "IDENTIFIER",
+                        "name": "testlist",
+                        "line": "4"
+                    }
+                ]
             }
         },
         {
-            "type": "TRACE_TIME",
+            "type": "TRACE",
+            "line": "5",
+            "arg": {
+                "type": "IS_NOT_LIST",
+                "arg": [
+                    {
+                        "type": "IDENTIFIER",
+                        "name": "testlist",
+                        "line": "5"
+                    }
+                ]
+            }
+        },
+        {
+            "type": "TRACE",
             "line": "6",
             "arg": {
-                "type": "IDENTIFIER",
-                "name": "c",
-                "line": "6"
+                "type": "COUNT",
+                "arg": [
+                    {
+                        "type": "IDENTIFIER",
+                        "name": "testlist",
+                        "line": "6"
+                    }
+                ]
             }
         },
         {
-            "type": "TRACE_TIME",
+            "type": "TRACE",
             "line": "7",
             "arg": {
-                "type": "IDENTIFIER",
-                "name": "a",
-                "line": "7"
+                "type": "FIRST",
+                "arg": [
+                    {
+                        "type": "IDENTIFIER",
+                        "name": "testlist",
+                        "line": "7"
+                    }
+                ]
             }
         }
     ]

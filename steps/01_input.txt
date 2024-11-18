@@ -1,7 +1,7 @@
-a := 11;
-b := 2020-01-01T12:00:00;
-time a := b;
-c := a;
-time c := now;
-trace time c;
-trace time a;
+testlist := [1,2,"Hallo",4,5,null,false,true];
+trace testlist;
+trace testlist is number;
+trace testlist is list;
+trace testlist is not list;
+trace count testlist;
+trace first testlist;
