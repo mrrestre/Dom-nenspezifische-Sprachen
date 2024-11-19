@@ -22,12 +22,6 @@ State 1:
           ex ::= * BOOLTOKEN
           ex ::= * NOW
           ex ::= * NULLTOKEN
-          ex ::= * ex AMPERSAND ex
-          ex ::= * ex PLUS ex
-          ex ::= * ex MINUS ex
-          ex ::= * ex TIMES ex
-          ex ::= * ex DIVIDE ex
-          ex ::= * ex POWER ex
           ex ::= * ex IS LIST
           ex ::= * ex IS NOT LIST
           ex ::= * ex IS NUMBER
@@ -35,6 +29,12 @@ State 1:
           ex ::= * FIRST ex
           ex ::= * SIN ex
           ex ::= * COS ex
+          ex ::= * ex AMPERSAND ex
+          ex ::= * ex PLUS ex
+          ex ::= * ex MINUS ex
+          ex ::= * ex TIMES ex
+          ex ::= * ex DIVIDE ex
+          ex ::= * ex POWER ex
 
                          COUNT shift        14     
                          FIRST shift        13     
@@ -66,12 +66,6 @@ State 2:
           ex ::= * BOOLTOKEN
           ex ::= * NOW
           ex ::= * NULLTOKEN
-          ex ::= * ex AMPERSAND ex
-          ex ::= * ex PLUS ex
-          ex ::= * ex MINUS ex
-          ex ::= * ex TIMES ex
-          ex ::= * ex DIVIDE ex
-          ex ::= * ex POWER ex
           ex ::= * ex IS LIST
           ex ::= * ex IS NOT LIST
           ex ::= * ex IS NUMBER
@@ -79,6 +73,12 @@ State 2:
           ex ::= * FIRST ex
           ex ::= * SIN ex
           ex ::= * COS ex
+          ex ::= * ex AMPERSAND ex
+          ex ::= * ex PLUS ex
+          ex ::= * ex MINUS ex
+          ex ::= * ex TIMES ex
+          ex ::= * ex DIVIDE ex
+          ex ::= * ex POWER ex
 
                          COUNT shift        14     
                          FIRST shift        13     
@@ -110,12 +110,6 @@ State 3:
           ex ::= * BOOLTOKEN
           ex ::= * NOW
           ex ::= * NULLTOKEN
-          ex ::= * ex AMPERSAND ex
-          ex ::= * ex PLUS ex
-          ex ::= * ex MINUS ex
-          ex ::= * ex TIMES ex
-          ex ::= * ex DIVIDE ex
-          ex ::= * ex POWER ex
           ex ::= * ex IS LIST
           ex ::= * ex IS NOT LIST
           ex ::= * ex IS NUMBER
@@ -123,6 +117,12 @@ State 3:
           ex ::= * FIRST ex
           ex ::= * SIN ex
           ex ::= * COS ex
+          ex ::= * ex AMPERSAND ex
+          ex ::= * ex PLUS ex
+          ex ::= * ex MINUS ex
+          ex ::= * ex TIMES ex
+          ex ::= * ex DIVIDE ex
+          ex ::= * ex POWER ex
 
                          COUNT shift        14     
                          FIRST shift        13     
@@ -153,12 +153,6 @@ State 4:
           ex ::= * BOOLTOKEN
           ex ::= * NOW
           ex ::= * NULLTOKEN
-          ex ::= * ex AMPERSAND ex
-          ex ::= * ex PLUS ex
-          ex ::= * ex MINUS ex
-          ex ::= * ex TIMES ex
-          ex ::= * ex DIVIDE ex
-          ex ::= * ex POWER ex
           ex ::= * ex IS LIST
           ex ::= * ex IS NOT LIST
           ex ::= * ex IS NUMBER
@@ -166,6 +160,12 @@ State 4:
           ex ::= * FIRST ex
           ex ::= * SIN ex
           ex ::= * COS ex
+          ex ::= * ex AMPERSAND ex
+          ex ::= * ex PLUS ex
+          ex ::= * ex MINUS ex
+          ex ::= * ex TIMES ex
+          ex ::= * ex DIVIDE ex
+          ex ::= * ex POWER ex
 
                          COUNT shift        14     
                          FIRST shift        13     
@@ -197,12 +197,6 @@ State 5:
           ex ::= * BOOLTOKEN
           ex ::= * NOW
           ex ::= * NULLTOKEN
-          ex ::= * ex AMPERSAND ex
-          ex ::= * ex PLUS ex
-          ex ::= * ex MINUS ex
-          ex ::= * ex TIMES ex
-          ex ::= * ex DIVIDE ex
-          ex ::= * ex POWER ex
           ex ::= * ex IS LIST
           ex ::= * ex IS NOT LIST
           ex ::= * ex IS NUMBER
@@ -210,6 +204,12 @@ State 5:
           ex ::= * FIRST ex
           ex ::= * SIN ex
           ex ::= * COS ex
+          ex ::= * ex AMPERSAND ex
+          ex ::= * ex PLUS ex
+          ex ::= * ex MINUS ex
+          ex ::= * ex TIMES ex
+          ex ::= * ex DIVIDE ex
+          ex ::= * ex POWER ex
 
                          COUNT shift        14     
                          FIRST shift        13     
@@ -239,12 +239,6 @@ State 6:
           ex ::= * BOOLTOKEN
           ex ::= * NOW
           ex ::= * NULLTOKEN
-          ex ::= * ex AMPERSAND ex
-          ex ::= * ex PLUS ex
-          ex ::= * ex MINUS ex
-          ex ::= * ex TIMES ex
-          ex ::= * ex DIVIDE ex
-          ex ::= * ex POWER ex
           ex ::= * ex IS LIST
           ex ::= * ex IS NOT LIST
           ex ::= * ex IS NUMBER
@@ -252,6 +246,12 @@ State 6:
           ex ::= * FIRST ex
           ex ::= * SIN ex
           ex ::= * COS ex
+          ex ::= * ex AMPERSAND ex
+          ex ::= * ex PLUS ex
+          ex ::= * ex MINUS ex
+          ex ::= * ex TIMES ex
+          ex ::= * ex DIVIDE ex
+          ex ::= * ex POWER ex
 
                          COUNT shift        14     
                          FIRST shift        13     
@@ -280,12 +280,6 @@ State 7:
           ex ::= * BOOLTOKEN
           ex ::= * NOW
           ex ::= * NULLTOKEN
-          ex ::= * ex AMPERSAND ex
-          ex ::= * ex PLUS ex
-          ex ::= * ex MINUS ex
-          ex ::= * ex TIMES ex
-          ex ::= * ex DIVIDE ex
-          ex ::= * ex POWER ex
           ex ::= * ex IS LIST
           ex ::= * ex IS NOT LIST
           ex ::= * ex IS NUMBER
@@ -293,6 +287,12 @@ State 7:
           ex ::= * FIRST ex
           ex ::= * SIN ex
           ex ::= * COS ex
+          ex ::= * ex AMPERSAND ex
+          ex ::= * ex PLUS ex
+          ex ::= * ex MINUS ex
+          ex ::= * ex TIMES ex
+          ex ::= * ex DIVIDE ex
+          ex ::= * ex POWER ex
 
                          COUNT shift        14     
                          FIRST shift        13     
@@ -321,12 +321,6 @@ State 8:
           ex ::= * BOOLTOKEN
           ex ::= * NOW
           ex ::= * NULLTOKEN
-          ex ::= * ex AMPERSAND ex
-          ex ::= * ex PLUS ex
-          ex ::= * ex MINUS ex
-          ex ::= * ex TIMES ex
-          ex ::= * ex DIVIDE ex
-          ex ::= * ex POWER ex
           ex ::= * ex IS LIST
           ex ::= * ex IS NOT LIST
           ex ::= * ex IS NUMBER
@@ -334,6 +328,12 @@ State 8:
           ex ::= * FIRST ex
           ex ::= * SIN ex
           ex ::= * COS ex
+          ex ::= * ex AMPERSAND ex
+          ex ::= * ex PLUS ex
+          ex ::= * ex MINUS ex
+          ex ::= * ex TIMES ex
+          ex ::= * ex DIVIDE ex
+          ex ::= * ex POWER ex
 
                          COUNT shift        14     
                          FIRST shift        13     
@@ -362,12 +362,6 @@ State 9:
           ex ::= * BOOLTOKEN
           ex ::= * NOW
           ex ::= * NULLTOKEN
-          ex ::= * ex AMPERSAND ex
-          ex ::= * ex PLUS ex
-          ex ::= * ex MINUS ex
-          ex ::= * ex TIMES ex
-          ex ::= * ex DIVIDE ex
-          ex ::= * ex POWER ex
           ex ::= * ex IS LIST
           ex ::= * ex IS NOT LIST
           ex ::= * ex IS NUMBER
@@ -375,6 +369,12 @@ State 9:
           ex ::= * FIRST ex
           ex ::= * SIN ex
           ex ::= * COS ex
+          ex ::= * ex AMPERSAND ex
+          ex ::= * ex PLUS ex
+          ex ::= * ex MINUS ex
+          ex ::= * ex TIMES ex
+          ex ::= * ex DIVIDE ex
+          ex ::= * ex POWER ex
 
                          COUNT shift        14     
                          FIRST shift        13     
@@ -403,12 +403,6 @@ State 10:
           ex ::= * BOOLTOKEN
           ex ::= * NOW
           ex ::= * NULLTOKEN
-          ex ::= * ex AMPERSAND ex
-          ex ::= * ex PLUS ex
-          ex ::= * ex MINUS ex
-          ex ::= * ex TIMES ex
-          ex ::= * ex DIVIDE ex
-          ex ::= * ex POWER ex
           ex ::= * ex IS LIST
           ex ::= * ex IS NOT LIST
           ex ::= * ex IS NUMBER
@@ -416,6 +410,12 @@ State 10:
           ex ::= * FIRST ex
           ex ::= * SIN ex
           ex ::= * COS ex
+          ex ::= * ex AMPERSAND ex
+          ex ::= * ex PLUS ex
+          ex ::= * ex MINUS ex
+          ex ::= * ex TIMES ex
+          ex ::= * ex DIVIDE ex
+          ex ::= * ex POWER ex
 
                          COUNT shift        14     
                          FIRST shift        13     
@@ -443,12 +443,6 @@ State 11:
           ex ::= * BOOLTOKEN
           ex ::= * NOW
           ex ::= * NULLTOKEN
-          ex ::= * ex AMPERSAND ex
-          ex ::= * ex PLUS ex
-          ex ::= * ex MINUS ex
-          ex ::= * ex TIMES ex
-          ex ::= * ex DIVIDE ex
-          ex ::= * ex POWER ex
           ex ::= * ex IS LIST
           ex ::= * ex IS NOT LIST
           ex ::= * ex IS NUMBER
@@ -457,6 +451,12 @@ State 11:
           ex ::= * SIN ex
           ex ::= * COS ex
           ex ::= COS * ex
+          ex ::= * ex AMPERSAND ex
+          ex ::= * ex PLUS ex
+          ex ::= * ex MINUS ex
+          ex ::= * ex TIMES ex
+          ex ::= * ex DIVIDE ex
+          ex ::= * ex POWER ex
 
                          COUNT shift        14     
                          FIRST shift        13     
@@ -484,12 +484,6 @@ State 12:
           ex ::= * BOOLTOKEN
           ex ::= * NOW
           ex ::= * NULLTOKEN
-          ex ::= * ex AMPERSAND ex
-          ex ::= * ex PLUS ex
-          ex ::= * ex MINUS ex
-          ex ::= * ex TIMES ex
-          ex ::= * ex DIVIDE ex
-          ex ::= * ex POWER ex
           ex ::= * ex IS LIST
           ex ::= * ex IS NOT LIST
           ex ::= * ex IS NUMBER
@@ -498,6 +492,12 @@ State 12:
           ex ::= * SIN ex
           ex ::= SIN * ex
           ex ::= * COS ex
+          ex ::= * ex AMPERSAND ex
+          ex ::= * ex PLUS ex
+          ex ::= * ex MINUS ex
+          ex ::= * ex TIMES ex
+          ex ::= * ex DIVIDE ex
+          ex ::= * ex POWER ex
 
                          COUNT shift        14     
                          FIRST shift        13     
@@ -525,12 +525,6 @@ State 13:
           ex ::= * BOOLTOKEN
           ex ::= * NOW
           ex ::= * NULLTOKEN
-          ex ::= * ex AMPERSAND ex
-          ex ::= * ex PLUS ex
-          ex ::= * ex MINUS ex
-          ex ::= * ex TIMES ex
-          ex ::= * ex DIVIDE ex
-          ex ::= * ex POWER ex
           ex ::= * ex IS LIST
           ex ::= * ex IS NOT LIST
           ex ::= * ex IS NUMBER
@@ -539,6 +533,12 @@ State 13:
           ex ::= FIRST * ex
           ex ::= * SIN ex
           ex ::= * COS ex
+          ex ::= * ex AMPERSAND ex
+          ex ::= * ex PLUS ex
+          ex ::= * ex MINUS ex
+          ex ::= * ex TIMES ex
+          ex ::= * ex DIVIDE ex
+          ex ::= * ex POWER ex
 
                          COUNT shift        14     
                          FIRST shift        13     
@@ -566,12 +566,6 @@ State 14:
           ex ::= * BOOLTOKEN
           ex ::= * NOW
           ex ::= * NULLTOKEN
-          ex ::= * ex AMPERSAND ex
-          ex ::= * ex PLUS ex
-          ex ::= * ex MINUS ex
-          ex ::= * ex TIMES ex
-          ex ::= * ex DIVIDE ex
-          ex ::= * ex POWER ex
           ex ::= * ex IS LIST
           ex ::= * ex IS NOT LIST
           ex ::= * ex IS NUMBER
@@ -580,6 +574,12 @@ State 14:
           ex ::= * FIRST ex
           ex ::= * SIN ex
           ex ::= * COS ex
+          ex ::= * ex AMPERSAND ex
+          ex ::= * ex PLUS ex
+          ex ::= * ex MINUS ex
+          ex ::= * ex TIMES ex
+          ex ::= * ex DIVIDE ex
+          ex ::= * ex POWER ex
 
                          COUNT shift        14     
                          FIRST shift        13     
@@ -607,13 +607,6 @@ State 15:
           ex ::= * BOOLTOKEN
           ex ::= * NOW
           ex ::= * NULLTOKEN
-          ex ::= * ex AMPERSAND ex
-          ex ::= * ex PLUS ex
-          ex ::= * ex MINUS ex
-          ex ::= * ex TIMES ex
-          ex ::= * ex DIVIDE ex
-          ex ::= * ex POWER ex
-          ex ::= ex POWER * ex
           ex ::= * ex IS LIST
           ex ::= * ex IS NOT LIST
           ex ::= * ex IS NUMBER
@@ -621,6 +614,13 @@ State 15:
           ex ::= * FIRST ex
           ex ::= * SIN ex
           ex ::= * COS ex
+          ex ::= * ex AMPERSAND ex
+          ex ::= * ex PLUS ex
+          ex ::= * ex MINUS ex
+          ex ::= * ex TIMES ex
+          ex ::= * ex DIVIDE ex
+          ex ::= * ex POWER ex
+          ex ::= ex POWER * ex
 
                          COUNT shift        14     
                          FIRST shift        13     
@@ -648,13 +648,6 @@ State 16:
           ex ::= * BOOLTOKEN
           ex ::= * NOW
           ex ::= * NULLTOKEN
-          ex ::= * ex AMPERSAND ex
-          ex ::= * ex PLUS ex
-          ex ::= * ex MINUS ex
-          ex ::= * ex TIMES ex
-          ex ::= * ex DIVIDE ex
-          ex ::= ex DIVIDE * ex
-          ex ::= * ex POWER ex
           ex ::= * ex IS LIST
           ex ::= * ex IS NOT LIST
           ex ::= * ex IS NUMBER
@@ -662,6 +655,13 @@ State 16:
           ex ::= * FIRST ex
           ex ::= * SIN ex
           ex ::= * COS ex
+          ex ::= * ex AMPERSAND ex
+          ex ::= * ex PLUS ex
+          ex ::= * ex MINUS ex
+          ex ::= * ex TIMES ex
+          ex ::= * ex DIVIDE ex
+          ex ::= ex DIVIDE * ex
+          ex ::= * ex POWER ex
 
                          COUNT shift        14     
                          FIRST shift        13     
@@ -689,13 +689,6 @@ State 17:
           ex ::= * BOOLTOKEN
           ex ::= * NOW
           ex ::= * NULLTOKEN
-          ex ::= * ex AMPERSAND ex
-          ex ::= * ex PLUS ex
-          ex ::= * ex MINUS ex
-          ex ::= * ex TIMES ex
-          ex ::= ex TIMES * ex
-          ex ::= * ex DIVIDE ex
-          ex ::= * ex POWER ex
           ex ::= * ex IS LIST
           ex ::= * ex IS NOT LIST
           ex ::= * ex IS NUMBER
@@ -703,6 +696,13 @@ State 17:
           ex ::= * FIRST ex
           ex ::= * SIN ex
           ex ::= * COS ex
+          ex ::= * ex AMPERSAND ex
+          ex ::= * ex PLUS ex
+          ex ::= * ex MINUS ex
+          ex ::= * ex TIMES ex
+          ex ::= ex TIMES * ex
+          ex ::= * ex DIVIDE ex
+          ex ::= * ex POWER ex
 
                          COUNT shift        14     
                          FIRST shift        13     
@@ -730,13 +730,6 @@ State 18:
           ex ::= * BOOLTOKEN
           ex ::= * NOW
           ex ::= * NULLTOKEN
-          ex ::= * ex AMPERSAND ex
-          ex ::= * ex PLUS ex
-          ex ::= * ex MINUS ex
-          ex ::= ex MINUS * ex
-          ex ::= * ex TIMES ex
-          ex ::= * ex DIVIDE ex
-          ex ::= * ex POWER ex
           ex ::= * ex IS LIST
           ex ::= * ex IS NOT LIST
           ex ::= * ex IS NUMBER
@@ -744,6 +737,13 @@ State 18:
           ex ::= * FIRST ex
           ex ::= * SIN ex
           ex ::= * COS ex
+          ex ::= * ex AMPERSAND ex
+          ex ::= * ex PLUS ex
+          ex ::= * ex MINUS ex
+          ex ::= ex MINUS * ex
+          ex ::= * ex TIMES ex
+          ex ::= * ex DIVIDE ex
+          ex ::= * ex POWER ex
 
                          COUNT shift        14     
                          FIRST shift        13     
@@ -772,12 +772,6 @@ State 19:
           ex ::= * BOOLTOKEN
           ex ::= * NOW
           ex ::= * NULLTOKEN
-          ex ::= * ex AMPERSAND ex
-          ex ::= * ex PLUS ex
-          ex ::= * ex MINUS ex
-          ex ::= * ex TIMES ex
-          ex ::= * ex DIVIDE ex
-          ex ::= * ex POWER ex
           ex ::= * ex IS LIST
           ex ::= * ex IS NOT LIST
           ex ::= * ex IS NUMBER
@@ -785,6 +779,12 @@ State 19:
           ex ::= * FIRST ex
           ex ::= * SIN ex
           ex ::= * COS ex
+          ex ::= * ex AMPERSAND ex
+          ex ::= * ex PLUS ex
+          ex ::= * ex MINUS ex
+          ex ::= * ex TIMES ex
+          ex ::= * ex DIVIDE ex
+          ex ::= * ex POWER ex
 
                          COUNT shift        14     
                          FIRST shift        13     
@@ -812,13 +812,6 @@ State 20:
           ex ::= * BOOLTOKEN
           ex ::= * NOW
           ex ::= * NULLTOKEN
-          ex ::= * ex AMPERSAND ex
-          ex ::= * ex PLUS ex
-          ex ::= ex PLUS * ex
-          ex ::= * ex MINUS ex
-          ex ::= * ex TIMES ex
-          ex ::= * ex DIVIDE ex
-          ex ::= * ex POWER ex
           ex ::= * ex IS LIST
           ex ::= * ex IS NOT LIST
           ex ::= * ex IS NUMBER
@@ -826,6 +819,13 @@ State 20:
           ex ::= * FIRST ex
           ex ::= * SIN ex
           ex ::= * COS ex
+          ex ::= * ex AMPERSAND ex
+          ex ::= * ex PLUS ex
+          ex ::= ex PLUS * ex
+          ex ::= * ex MINUS ex
+          ex ::= * ex TIMES ex
+          ex ::= * ex DIVIDE ex
+          ex ::= * ex POWER ex
 
                          COUNT shift        14     
                          FIRST shift        13     
@@ -854,12 +854,6 @@ State 21:
           ex ::= * BOOLTOKEN
           ex ::= * NOW
           ex ::= * NULLTOKEN
-          ex ::= * ex AMPERSAND ex
-          ex ::= * ex PLUS ex
-          ex ::= * ex MINUS ex
-          ex ::= * ex TIMES ex
-          ex ::= * ex DIVIDE ex
-          ex ::= * ex POWER ex
           ex ::= * ex IS LIST
           ex ::= * ex IS NOT LIST
           ex ::= * ex IS NUMBER
@@ -867,6 +861,12 @@ State 21:
           ex ::= * FIRST ex
           ex ::= * SIN ex
           ex ::= * COS ex
+          ex ::= * ex AMPERSAND ex
+          ex ::= * ex PLUS ex
+          ex ::= * ex MINUS ex
+          ex ::= * ex TIMES ex
+          ex ::= * ex DIVIDE ex
+          ex ::= * ex POWER ex
 
                          COUNT shift        14     
                          FIRST shift        13     
@@ -894,13 +894,6 @@ State 22:
           ex ::= * BOOLTOKEN
           ex ::= * NOW
           ex ::= * NULLTOKEN
-          ex ::= * ex AMPERSAND ex
-          ex ::= ex AMPERSAND * ex
-          ex ::= * ex PLUS ex
-          ex ::= * ex MINUS ex
-          ex ::= * ex TIMES ex
-          ex ::= * ex DIVIDE ex
-          ex ::= * ex POWER ex
           ex ::= * ex IS LIST
           ex ::= * ex IS NOT LIST
           ex ::= * ex IS NUMBER
@@ -908,6 +901,13 @@ State 22:
           ex ::= * FIRST ex
           ex ::= * SIN ex
           ex ::= * COS ex
+          ex ::= * ex AMPERSAND ex
+          ex ::= ex AMPERSAND * ex
+          ex ::= * ex PLUS ex
+          ex ::= * ex MINUS ex
+          ex ::= * ex TIMES ex
+          ex ::= * ex DIVIDE ex
+          ex ::= * ex POWER ex
 
                          COUNT shift        14     
                          FIRST shift        13     
@@ -946,15 +946,15 @@ State 23:
 
 State 24:
           statement ::= TIME IDENTIFIER ASSIGN ex * SEMICOLON
+          ex ::= ex * IS LIST
+          ex ::= ex * IS NOT LIST
+          ex ::= ex * IS NUMBER
           ex ::= ex * AMPERSAND ex
           ex ::= ex * PLUS ex
           ex ::= ex * MINUS ex
           ex ::= ex * TIMES ex
           ex ::= ex * DIVIDE ex
           ex ::= ex * POWER ex
-          ex ::= ex * IS LIST
-          ex ::= ex * IS NOT LIST
-          ex ::= ex * IS NUMBER
 
                      AMPERSAND shift        22     
                           PLUS shift        20     
@@ -962,20 +962,20 @@ State 24:
                          TIMES shift        17     
                         DIVIDE shift        16     
                          POWER shift        15     
-                     SEMICOLON shift-reduce 11     statement ::= TIME IDENTIFIER ASSIGN ex SEMICOLON
                             IS shift        41     
+                     SEMICOLON shift-reduce 11     statement ::= TIME IDENTIFIER ASSIGN ex SEMICOLON
 
 State 25:
           statement ::= TIME OF IDENTIFIER ASSIGN ex * SEMICOLON
+          ex ::= ex * IS LIST
+          ex ::= ex * IS NOT LIST
+          ex ::= ex * IS NUMBER
           ex ::= ex * AMPERSAND ex
           ex ::= ex * PLUS ex
           ex ::= ex * MINUS ex
           ex ::= ex * TIMES ex
           ex ::= ex * DIVIDE ex
           ex ::= ex * POWER ex
-          ex ::= ex * IS LIST
-          ex ::= ex * IS NOT LIST
-          ex ::= ex * IS NUMBER
 
                      AMPERSAND shift        22     
                           PLUS shift        20     
@@ -983,20 +983,20 @@ State 25:
                          TIMES shift        17     
                         DIVIDE shift        16     
                          POWER shift        15     
-                     SEMICOLON shift-reduce 10     statement ::= TIME OF IDENTIFIER ASSIGN ex SEMICOLON
                             IS shift        41     
+                     SEMICOLON shift-reduce 10     statement ::= TIME OF IDENTIFIER ASSIGN ex SEMICOLON
 
 State 26:
           statement ::= IDENTIFIER ASSIGN ex * SEMICOLON
+          ex ::= ex * IS LIST
+          ex ::= ex * IS NOT LIST
+          ex ::= ex * IS NUMBER
           ex ::= ex * AMPERSAND ex
           ex ::= ex * PLUS ex
           ex ::= ex * MINUS ex
           ex ::= ex * TIMES ex
           ex ::= ex * DIVIDE ex
           ex ::= ex * POWER ex
-          ex ::= ex * IS LIST
-          ex ::= ex * IS NOT LIST
-          ex ::= ex * IS NUMBER
 
                      AMPERSAND shift        22     
                           PLUS shift        20     
@@ -1004,20 +1004,20 @@ State 26:
                          TIMES shift        17     
                         DIVIDE shift        16     
                          POWER shift        15     
-                     SEMICOLON shift-reduce 9      statement ::= IDENTIFIER ASSIGN ex SEMICOLON
                             IS shift        41     
+                     SEMICOLON shift-reduce 9      statement ::= IDENTIFIER ASSIGN ex SEMICOLON
 
 State 27:
           statement ::= TRACE TIME ex * SEMICOLON
+          ex ::= ex * IS LIST
+          ex ::= ex * IS NOT LIST
+          ex ::= ex * IS NUMBER
           ex ::= ex * AMPERSAND ex
           ex ::= ex * PLUS ex
           ex ::= ex * MINUS ex
           ex ::= ex * TIMES ex
           ex ::= ex * DIVIDE ex
           ex ::= ex * POWER ex
-          ex ::= ex * IS LIST
-          ex ::= ex * IS NOT LIST
-          ex ::= ex * IS NUMBER
 
                      AMPERSAND shift        22     
                           PLUS shift        20     
@@ -1025,20 +1025,20 @@ State 27:
                          TIMES shift        17     
                         DIVIDE shift        16     
                          POWER shift        15     
-                     SEMICOLON shift-reduce 8      statement ::= TRACE TIME ex SEMICOLON
                             IS shift        41     
+                     SEMICOLON shift-reduce 8      statement ::= TRACE TIME ex SEMICOLON
 
 State 28:
           statement ::= TRACE TIME OF ex * SEMICOLON
+          ex ::= ex * IS LIST
+          ex ::= ex * IS NOT LIST
+          ex ::= ex * IS NUMBER
           ex ::= ex * AMPERSAND ex
           ex ::= ex * PLUS ex
           ex ::= ex * MINUS ex
           ex ::= ex * TIMES ex
           ex ::= ex * DIVIDE ex
           ex ::= ex * POWER ex
-          ex ::= ex * IS LIST
-          ex ::= ex * IS NOT LIST
-          ex ::= ex * IS NUMBER
 
                      AMPERSAND shift        22     
                           PLUS shift        20     
@@ -1046,20 +1046,20 @@ State 28:
                          TIMES shift        17     
                         DIVIDE shift        16     
                          POWER shift        15     
-                     SEMICOLON shift-reduce 7      statement ::= TRACE TIME OF ex SEMICOLON
                             IS shift        41     
+                     SEMICOLON shift-reduce 7      statement ::= TRACE TIME OF ex SEMICOLON
 
 State 29:
           statement ::= TRACE ex * SEMICOLON
+          ex ::= ex * IS LIST
+          ex ::= ex * IS NOT LIST
+          ex ::= ex * IS NUMBER
           ex ::= ex * AMPERSAND ex
           ex ::= ex * PLUS ex
           ex ::= ex * MINUS ex
           ex ::= ex * TIMES ex
           ex ::= ex * DIVIDE ex
           ex ::= ex * POWER ex
-          ex ::= ex * IS LIST
-          ex ::= ex * IS NOT LIST
-          ex ::= ex * IS NUMBER
 
                      AMPERSAND shift        22     
                           PLUS shift        20     
@@ -1067,20 +1067,20 @@ State 29:
                          TIMES shift        17     
                         DIVIDE shift        16     
                          POWER shift        15     
-                     SEMICOLON shift-reduce 6      statement ::= TRACE ex SEMICOLON
                             IS shift        41     
+                     SEMICOLON shift-reduce 6      statement ::= TRACE ex SEMICOLON
 
 State 30:
           statement ::= WRITE TIME ex * SEMICOLON
+          ex ::= ex * IS LIST
+          ex ::= ex * IS NOT LIST
+          ex ::= ex * IS NUMBER
           ex ::= ex * AMPERSAND ex
           ex ::= ex * PLUS ex
           ex ::= ex * MINUS ex
           ex ::= ex * TIMES ex
           ex ::= ex * DIVIDE ex
           ex ::= ex * POWER ex
-          ex ::= ex * IS LIST
-          ex ::= ex * IS NOT LIST
-          ex ::= ex * IS NUMBER
 
                      AMPERSAND shift        22     
                           PLUS shift        20     
@@ -1088,20 +1088,20 @@ State 30:
                          TIMES shift        17     
                         DIVIDE shift        16     
                          POWER shift        15     
-                     SEMICOLON shift-reduce 5      statement ::= WRITE TIME ex SEMICOLON
                             IS shift        41     
+                     SEMICOLON shift-reduce 5      statement ::= WRITE TIME ex SEMICOLON
 
 State 31:
           statement ::= WRITE TIME OF ex * SEMICOLON
+          ex ::= ex * IS LIST
+          ex ::= ex * IS NOT LIST
+          ex ::= ex * IS NUMBER
           ex ::= ex * AMPERSAND ex
           ex ::= ex * PLUS ex
           ex ::= ex * MINUS ex
           ex ::= ex * TIMES ex
           ex ::= ex * DIVIDE ex
           ex ::= ex * POWER ex
-          ex ::= ex * IS LIST
-          ex ::= ex * IS NOT LIST
-          ex ::= ex * IS NUMBER
 
                      AMPERSAND shift        22     
                           PLUS shift        20     
@@ -1109,20 +1109,20 @@ State 31:
                          TIMES shift        17     
                         DIVIDE shift        16     
                          POWER shift        15     
-                     SEMICOLON shift-reduce 4      statement ::= WRITE TIME OF ex SEMICOLON
                             IS shift        41     
+                     SEMICOLON shift-reduce 4      statement ::= WRITE TIME OF ex SEMICOLON
 
 State 32:
           ex ::= LPAR ex * RPAR
+          ex ::= ex * IS LIST
+          ex ::= ex * IS NOT LIST
+          ex ::= ex * IS NUMBER
           ex ::= ex * AMPERSAND ex
           ex ::= ex * PLUS ex
           ex ::= ex * MINUS ex
           ex ::= ex * TIMES ex
           ex ::= ex * DIVIDE ex
           ex ::= ex * POWER ex
-          ex ::= ex * IS LIST
-          ex ::= ex * IS NOT LIST
-          ex ::= ex * IS NUMBER
 
                      AMPERSAND shift        22     
                           PLUS shift        20     
@@ -1130,20 +1130,20 @@ State 32:
                          TIMES shift        17     
                         DIVIDE shift        16     
                          POWER shift        15     
-                          RPAR shift-reduce 12     ex ::= LPAR ex RPAR
                             IS shift        41     
+                          RPAR shift-reduce 12     ex ::= LPAR ex RPAR
 
 State 33:
           statement ::= WRITE ex * SEMICOLON
+          ex ::= ex * IS LIST
+          ex ::= ex * IS NOT LIST
+          ex ::= ex * IS NUMBER
           ex ::= ex * AMPERSAND ex
           ex ::= ex * PLUS ex
           ex ::= ex * MINUS ex
           ex ::= ex * TIMES ex
           ex ::= ex * DIVIDE ex
           ex ::= ex * POWER ex
-          ex ::= ex * IS LIST
-          ex ::= ex * IS NOT LIST
-          ex ::= ex * IS NUMBER
 
                      AMPERSAND shift        22     
                           PLUS shift        20     
@@ -1151,20 +1151,20 @@ State 33:
                          TIMES shift        17     
                         DIVIDE shift        16     
                          POWER shift        15     
-                     SEMICOLON shift-reduce 3      statement ::= WRITE ex SEMICOLON
                             IS shift        41     
+                     SEMICOLON shift-reduce 3      statement ::= WRITE ex SEMICOLON
 
 State 34:
      (16) exlist ::= ex *
+          ex ::= ex * IS LIST
+          ex ::= ex * IS NOT LIST
+          ex ::= ex * IS NUMBER
           ex ::= ex * AMPERSAND ex
           ex ::= ex * PLUS ex
           ex ::= ex * MINUS ex
           ex ::= ex * TIMES ex
           ex ::= ex * DIVIDE ex
           ex ::= ex * POWER ex
-          ex ::= ex * IS LIST
-          ex ::= ex * IS NOT LIST
-          ex ::= ex * IS NUMBER
 
                      AMPERSAND shift        22     
                           PLUS shift        20     
@@ -1176,16 +1176,16 @@ State 34:
                      {default} reduce       16     exlist ::= ex
 
 State 35:
+          ex ::= ex * IS LIST
+          ex ::= ex * IS NOT LIST
+          ex ::= ex * IS NUMBER
+     (28) ex ::= FIRST ex *
           ex ::= ex * AMPERSAND ex
           ex ::= ex * PLUS ex
           ex ::= ex * MINUS ex
           ex ::= ex * TIMES ex
           ex ::= ex * DIVIDE ex
           ex ::= ex * POWER ex
-          ex ::= ex * IS LIST
-          ex ::= ex * IS NOT LIST
-          ex ::= ex * IS NUMBER
-     (34) ex ::= FIRST ex *
 
                      AMPERSAND shift        22     
                           PLUS shift        20     
@@ -1194,20 +1194,19 @@ State 35:
                         DIVIDE shift        16     
                          POWER shift        15     
                             IS shift        41     
-                            IS reduce       34      ** Parsing conflict **
-                     {default} reduce       34     ex ::= FIRST ex
+                     {default} reduce       28     ex ::= FIRST ex
 
 State 36:
+          ex ::= ex * IS LIST
+          ex ::= ex * IS NOT LIST
+          ex ::= ex * IS NUMBER
+     (27) ex ::= COUNT ex *
           ex ::= ex * AMPERSAND ex
           ex ::= ex * PLUS ex
           ex ::= ex * MINUS ex
           ex ::= ex * TIMES ex
           ex ::= ex * DIVIDE ex
           ex ::= ex * POWER ex
-          ex ::= ex * IS LIST
-          ex ::= ex * IS NOT LIST
-          ex ::= ex * IS NUMBER
-     (33) ex ::= COUNT ex *
 
                      AMPERSAND shift        22     
                           PLUS shift        20     
@@ -1216,20 +1215,19 @@ State 36:
                         DIVIDE shift        16     
                          POWER shift        15     
                             IS shift        41     
-                            IS reduce       33      ** Parsing conflict **
-                     {default} reduce       33     ex ::= COUNT ex
+                     {default} reduce       27     ex ::= COUNT ex
 
 State 37:
      (17) exlist ::= exlist COMMA ex *
+          ex ::= ex * IS LIST
+          ex ::= ex * IS NOT LIST
+          ex ::= ex * IS NUMBER
           ex ::= ex * AMPERSAND ex
           ex ::= ex * PLUS ex
           ex ::= ex * MINUS ex
           ex ::= ex * TIMES ex
           ex ::= ex * DIVIDE ex
           ex ::= ex * POWER ex
-          ex ::= ex * IS LIST
-          ex ::= ex * IS NOT LIST
-          ex ::= ex * IS NUMBER
 
                      AMPERSAND shift        22     
                           PLUS shift        20     
@@ -1241,16 +1239,16 @@ State 37:
                      {default} reduce       17     exlist ::= exlist COMMA ex
 
 State 38:
+          ex ::= ex * IS LIST
+          ex ::= ex * IS NOT LIST
+          ex ::= ex * IS NUMBER
           ex ::= ex * AMPERSAND ex
-     (24) ex ::= ex AMPERSAND ex *
+     (31) ex ::= ex AMPERSAND ex *
           ex ::= ex * PLUS ex
           ex ::= ex * MINUS ex
           ex ::= ex * TIMES ex
           ex ::= ex * DIVIDE ex
           ex ::= ex * POWER ex
-          ex ::= ex * IS LIST
-          ex ::= ex * IS NOT LIST
-          ex ::= ex * IS NUMBER
 
                           PLUS shift        20     
                          MINUS shift        18     
@@ -1258,55 +1256,52 @@ State 38:
                         DIVIDE shift        16     
                          POWER shift        15     
                             IS shift        41     
-                            IS reduce       24      ** Parsing conflict **
-                     {default} reduce       24     ex ::= ex AMPERSAND ex
+                     {default} reduce       31     ex ::= ex AMPERSAND ex
 
 State 39:
+          ex ::= ex * IS LIST
+          ex ::= ex * IS NOT LIST
+          ex ::= ex * IS NUMBER
           ex ::= ex * AMPERSAND ex
           ex ::= ex * PLUS ex
-     (25) ex ::= ex PLUS ex *
+     (32) ex ::= ex PLUS ex *
           ex ::= ex * MINUS ex
           ex ::= ex * TIMES ex
           ex ::= ex * DIVIDE ex
           ex ::= ex * POWER ex
-          ex ::= ex * IS LIST
-          ex ::= ex * IS NOT LIST
-          ex ::= ex * IS NUMBER
 
                          TIMES shift        17     
                         DIVIDE shift        16     
                          POWER shift        15     
                             IS shift        41     
-                            IS reduce       25      ** Parsing conflict **
-                     {default} reduce       25     ex ::= ex PLUS ex
+                     {default} reduce       32     ex ::= ex PLUS ex
 
 State 40:
-          ex ::= ex * AMPERSAND ex
-          ex ::= ex * PLUS ex
-          ex ::= ex * MINUS ex
-     (26) ex ::= ex MINUS ex *
-          ex ::= ex * TIMES ex
-          ex ::= ex * DIVIDE ex
-          ex ::= ex * POWER ex
           ex ::= ex * IS LIST
           ex ::= ex * IS NOT LIST
           ex ::= ex * IS NUMBER
+          ex ::= ex * AMPERSAND ex
+          ex ::= ex * PLUS ex
+          ex ::= ex * MINUS ex
+     (33) ex ::= ex MINUS ex *
+          ex ::= ex * TIMES ex
+          ex ::= ex * DIVIDE ex
+          ex ::= ex * POWER ex
 
                          TIMES shift        17     
                         DIVIDE shift        16     
                          POWER shift        15     
                             IS shift        41     
-                            IS reduce       26      ** Parsing conflict **
-                     {default} reduce       26     ex ::= ex MINUS ex
+                     {default} reduce       33     ex ::= ex MINUS ex
 
 State 41:
           ex ::= ex IS * LIST
           ex ::= ex IS * NOT LIST
           ex ::= ex IS * NUMBER
 
-                          LIST shift-reduce 30     ex ::= ex IS LIST
+                          LIST shift-reduce 24     ex ::= ex IS LIST
                            NOT shift        53     
-                        NUMBER shift-reduce 32     ex ::= ex IS NUMBER
+                        NUMBER shift-reduce 26     ex ::= ex IS NUMBER
 
 State 42:
           statement ::= TIME * OF IDENTIFIER ASSIGN ex SEMICOLON
@@ -1316,55 +1311,52 @@ State 42:
                     IDENTIFIER shift        47     
 
 State 43:
+          ex ::= ex * IS LIST
+          ex ::= ex * IS NOT LIST
+          ex ::= ex * IS NUMBER
           ex ::= ex * AMPERSAND ex
           ex ::= ex * PLUS ex
           ex ::= ex * MINUS ex
           ex ::= ex * TIMES ex
           ex ::= ex * DIVIDE ex
           ex ::= ex * POWER ex
-     (29) ex ::= ex POWER ex *
-          ex ::= ex * IS LIST
-          ex ::= ex * IS NOT LIST
-          ex ::= ex * IS NUMBER
+     (36) ex ::= ex POWER ex *
 
                          POWER shift        15     
                             IS shift        41     
-                            IS reduce       29      ** Parsing conflict **
-                     {default} reduce       29     ex ::= ex POWER ex
+                     {default} reduce       36     ex ::= ex POWER ex
 
 State 44:
+          ex ::= ex * IS LIST
+          ex ::= ex * IS NOT LIST
+          ex ::= ex * IS NUMBER
           ex ::= ex * AMPERSAND ex
           ex ::= ex * PLUS ex
           ex ::= ex * MINUS ex
           ex ::= ex * TIMES ex
           ex ::= ex * DIVIDE ex
-     (28) ex ::= ex DIVIDE ex *
+     (35) ex ::= ex DIVIDE ex *
           ex ::= ex * POWER ex
-          ex ::= ex * IS LIST
-          ex ::= ex * IS NOT LIST
-          ex ::= ex * IS NUMBER
 
                          POWER shift        15     
                             IS shift        41     
-                            IS reduce       28      ** Parsing conflict **
-                     {default} reduce       28     ex ::= ex DIVIDE ex
+                     {default} reduce       35     ex ::= ex DIVIDE ex
 
 State 45:
+          ex ::= ex * IS LIST
+          ex ::= ex * IS NOT LIST
+          ex ::= ex * IS NUMBER
           ex ::= ex * AMPERSAND ex
           ex ::= ex * PLUS ex
           ex ::= ex * MINUS ex
           ex ::= ex * TIMES ex
-     (27) ex ::= ex TIMES ex *
+     (34) ex ::= ex TIMES ex *
           ex ::= ex * DIVIDE ex
           ex ::= ex * POWER ex
-          ex ::= ex * IS LIST
-          ex ::= ex * IS NOT LIST
-          ex ::= ex * IS NUMBER
 
                          POWER shift        15     
                             IS shift        41     
-                            IS reduce       27      ** Parsing conflict **
-                     {default} reduce       27     ex ::= ex TIMES ex
+                     {default} reduce       34     ex ::= ex TIMES ex
 
 State 46:
           ex ::= LSPAR exlist * RSPAR
@@ -1394,41 +1386,39 @@ State 50:
                         ASSIGN shift        8      
 
 State 51:
+          ex ::= ex * IS LIST
+          ex ::= ex * IS NOT LIST
+          ex ::= ex * IS NUMBER
+     (30) ex ::= COS ex *
           ex ::= ex * AMPERSAND ex
           ex ::= ex * PLUS ex
           ex ::= ex * MINUS ex
           ex ::= ex * TIMES ex
           ex ::= ex * DIVIDE ex
           ex ::= ex * POWER ex
-          ex ::= ex * IS LIST
-          ex ::= ex * IS NOT LIST
-          ex ::= ex * IS NUMBER
-     (36) ex ::= COS ex *
 
                             IS shift        41     
-                            IS reduce       36      ** Parsing conflict **
-                     {default} reduce       36     ex ::= COS ex
+                     {default} reduce       30     ex ::= COS ex
 
 State 52:
+          ex ::= ex * IS LIST
+          ex ::= ex * IS NOT LIST
+          ex ::= ex * IS NUMBER
+     (29) ex ::= SIN ex *
           ex ::= ex * AMPERSAND ex
           ex ::= ex * PLUS ex
           ex ::= ex * MINUS ex
           ex ::= ex * TIMES ex
           ex ::= ex * DIVIDE ex
           ex ::= ex * POWER ex
-          ex ::= ex * IS LIST
-          ex ::= ex * IS NOT LIST
-          ex ::= ex * IS NUMBER
-     (35) ex ::= SIN ex *
 
                             IS shift        41     
-                            IS reduce       35      ** Parsing conflict **
-                     {default} reduce       35     ex ::= SIN ex
+                     {default} reduce       29     ex ::= SIN ex
 
 State 53:
           ex ::= ex IS NOT * LIST
 
-                          LIST shift-reduce 31     ex ::= ex IS NOT LIST
+                          LIST shift-reduce 25     ex ::= ex IS NOT LIST
 
 ----------------------------------------------------
 Symbols:
@@ -1444,24 +1434,24 @@ Symbols:
     9: POWER
    10: SIN
    11: COS
-   12: WRITE
-   13: SEMICOLON
-   14: TIME
-   15: OF
-   16: TRACE
-   17: IDENTIFIER
-   18: ASSIGN
-   19: LPAR
-   20: RPAR
-   21: LSPAR
-   22: RSPAR
-   23: NUMTOKEN
-   24: TIMETOKEN
-   25: STRTOKEN
-   26: BOOLTOKEN
-   27: NOW
-   28: NULLTOKEN
-   29: IS
+   12: IS
+   13: WRITE
+   14: SEMICOLON
+   15: TIME
+   16: OF
+   17: TRACE
+   18: IDENTIFIER
+   19: ASSIGN
+   20: LPAR
+   21: RPAR
+   22: LSPAR
+   23: RSPAR
+   24: NUMTOKEN
+   25: TIMETOKEN
+   26: STRTOKEN
+   27: BOOLTOKEN
+   28: NOW
+   29: NULLTOKEN
    30: LIST
    31: NOT
    32: NUMBER

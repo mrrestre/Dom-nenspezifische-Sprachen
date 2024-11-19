@@ -154,8 +154,6 @@ cJSON* unary (char* fname, cJSON* a)
 	return res;
 } 
 
-
-
 cJSON* binary (char *fname, cJSON *a, cJSON *b) 
 {
 	cJSON *res = cJSON_CreateObject(); 
@@ -166,8 +164,6 @@ cJSON* binary (char *fname, cJSON *a, cJSON *b)
 	cJSON_AddItemToObject(res, "arg", arg);
 	return res;
 }
-
-
 
 cJSON* ternary (char *fname, cJSON *a, cJSON *b, cJSON *c) 
 {
@@ -180,8 +176,6 @@ cJSON* ternary (char *fname, cJSON *a, cJSON *b, cJSON *c)
 	cJSON_AddItemToObject(res, "arg", arg);
 	return res;
 }
-
-
 
 }
    
@@ -200,29 +194,23 @@ cJSON* ternary (char *fname, cJSON *a, cJSON *b, cJSON *c)
 /////////////////////// 
 // je weiter unten, desto bindet der Operator stärker
 
-%right     COUNT FIRST .
+%right	   COUNT FIRST .
 %left 	   COMMA .
 %left 	   AMPERSAND .
 %left 	   PLUS MINUS .
 %left 	   TIMES DIVIDE .
 %right     POWER .
 %right	   SIN COS .
-
-
-
+%nonassoc  IS .
 
 /////////////////////// 
 // CODE
 ///////////////////////
 
-
- 
 code ::= statementblock(sb) . 
 {
 	printf (cJSON_Print(sb)); 
 }  
-
-
 
 /////////////////////// 
 // STATEMENTBLOCK
@@ -238,15 +226,11 @@ statementblock(sb) ::= .
 	sb = res;
 }
 
-
 statementblock(sb) ::= statementblock(a) statement(b) .
 {
 	cJSON_AddItemToArray(cJSON_GetObjectItem ( a, "statements"), b);
 	sb = a;
 }
-
-
-
 
 ///////////////////////////
 // WRITE
@@ -350,20 +334,6 @@ statement(r) ::= TIME IDENTIFIER(i) ASSIGN ex(t) SEMICOLON .
 	r = res; 
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ///////////////////////////
 // EXPRESSIONS
 ///////////////////////////
@@ -420,8 +390,6 @@ exlist(r) ::= exlist(a) COMMA ex(b) .
 	r = a;
 }
 
-
-
 ///////////////////////////
 // Terminal nodes
 ///////////////////////////
@@ -477,23 +445,9 @@ ex(r) ::= NULLTOKEN .
 // Operations
 ///////////////////////////
 
-ex(r) ::= ex(a) AMPERSAND ex(b) .                                
-{r = binary ("AMPERSAND", a, b); }
-
-ex(r) ::= ex(a) PLUS ex(b) .                                
-{r = binary ("PLUS", a, b); }
-
-ex(r) ::= ex(a) MINUS ex(b) .                               
-{r = binary ("MINUS", a, b); }
-
-ex(r) ::= ex(a) TIMES ex(b) .                               
-{r = binary ("TIMES", a, b); }
-
-ex(r) ::= ex(a) DIVIDE ex(b) .                              
-{r = binary ("DIVIDE", a, b); }
-
-ex(r) ::= ex(a) POWER ex(b) .                               
-{r = binary ("POWER", a, b); }
+/////////////////
+// Unary
+/////////////////
 
 ex(r) ::= ex(a) IS LIST .                               
 {r = unary ("IS_LIST", a); }
@@ -516,7 +470,31 @@ ex(r) ::= SIN ex(a) .
 ex(r) ::= COS ex(a) .                               
 {r = unary ("COS", a); }
 
+/////////////////
+// Binary
+/////////////////
 
+ex(r) ::= ex(a) AMPERSAND ex(b) .                                
+{r = binary ("AMPERSAND", a, b); }
+
+ex(r) ::= ex(a) PLUS ex(b) .                                
+{r = binary ("PLUS", a, b); }
+
+ex(r) ::= ex(a) MINUS ex(b) .                               
+{r = binary ("MINUS", a, b); }
+
+ex(r) ::= ex(a) TIMES ex(b) .                               
+{r = binary ("TIMES", a, b); }
+
+ex(r) ::= ex(a) DIVIDE ex(b) .                              
+{r = binary ("DIVIDE", a, b); }
+
+ex(r) ::= ex(a) POWER ex(b) .                               
+{r = binary ("POWER", a, b); }
+
+/////////////////
+// Ternary
+/////////////////
 
 
                                            

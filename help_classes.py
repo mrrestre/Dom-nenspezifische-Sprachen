@@ -39,16 +39,6 @@ class SymbolTable:
             str_map += '\n'
         return str_map
     
-TERMINAL_NODE_NAMES = ["STRTOKEN", "NUMTOKEN", "TIMETOKEN", "BOOLTOKEN", "LIST", "EMPTYLIST", "NOW"]
-
-def is_terminal_node(node):
-    if isinstance(node, list):
-        return False
-    elif node["type"] in TERMINAL_NODE_NAMES:
-        return True
-    else:
-        return False
-    
 class TerminalNode:
     def __init__(self, node):
         match node["type"]:
@@ -65,7 +55,7 @@ class TerminalNode:
             case "EMPTYLIST":
                 self._value = ListType(None)
             case "NOW":
-                self._value = DateType(datetime.strftime(datetime.now(), DATETIME_FORMAT))
+                self._value = DateType(datetime.now())
 
     def get_value(self):
         return self._value

@@ -4,31 +4,31 @@ import math
 from data_types import *
 from help_classes import *
 
+TERMINAL_NODE_NAMES = ["STRTOKEN", "NUMTOKEN", "TIMETOKEN", "BOOLTOKEN", "LIST", "EMPTYLIST", "NOW"]
+
 class Interpreter:
     def __init__(self, path):
         self.debug = False
-        self.path = path
         self.symbol_table = SymbolTable()
         self.ast = {}
-        self.now = datetime.now()
 
-        with open(self.path, 'r') as file:
+        with open(path, 'r') as file:
             self.ast = json.load(file)
 
         self.statement_handlers = {
-            "STATEMENTBLOCK": self.handle_statement_block,
             "ASSIGN": self.handle_assign,
             "ASSIGN_TIME": self.handle_assign_time,
             "IDENTIFIER": self.handle_identifier,
-            "WRITE": self.handle_write,
-            "WRITE_TIME": self.handle_write_time,
+            "STATEMENTBLOCK": self.handle_statement_block,
             "TRACE": self.handle_trace,
             "TRACE_TIME": self.handle_trace_time,
+            "WRITE": self.handle_write,
+            "WRITE_TIME": self.handle_write_time,
         }
 
         self.unary_member_operations = {
-            "SIN": self.handle_sin,
             "IS_NUMBER": self.handle_is_number,
+            "SIN": self.handle_sin,
         }
 
         self.unary_list_operations = {
@@ -41,9 +41,9 @@ class Interpreter:
         self.unary_operations = self.unary_member_operations | self.unary_list_operations
 
         self.binary_operations = {
-            "PLUS": self.handle_plus,
+            "AMPERSAND": self.handle_string_concat,
             "MINUS": self.handle_minus,
-            "AMPERSAND": self.handle_string_concat
+            "PLUS": self.handle_plus,
         }
 
         self.ternary_operations = {
@@ -57,30 +57,34 @@ class Interpreter:
         self.eval_node(self.ast)
 
     def eval_node(self, node):
-        if is_terminal_node(node):
+        if self.is_terminal_node(node):
             return TerminalNode(node).get_value()
         elif self.is_operator_node(node):
             evaluated_params = self.evaluate_params(node)
             operation_handler = self.operation_handlers.get(node["type"])
 
             match len(evaluated_params):
+                # Unary operation
                 case 1:
-                    # Unary operation
+                    argument = evaluated_params[0]
+
                     if node["type"] in self.unary_member_operations:
-                        if(isinstance(evaluated_params[0], ListType)):
+                        if isinstance(argument, ListType):
                             result = ListType(None)
-                            for list_member in evaluated_params[0]:
+                            for list_member in argument:
                                 result.append(operation_handler(list_member))
+                            return result
                         else:
-                            result = operation_handler(evaluated_params[0])
+                            return operation_handler(argument)
                     elif node["type"] in self.unary_list_operations:
-                        result = operation_handler(evaluated_params[0])
-                    return result
+                        return operation_handler(argument)
+
+                # Binary operation
                 case 2:
-                    # Binary operation
                     return operation_handler(evaluated_params)
+                
+                # Ternary operation
                 case 3:
-                    # Ternary operation
                     return operation_handler(evaluated_params)
         else:
             handler = self.statement_handlers.get(node["type"])
@@ -108,8 +112,10 @@ class Interpreter:
         self.debug_symbol_list()
     
     def handle_identifier(self, node):
-        variable = self.symbol_table[node['name']]
-        return variable if variable else 'Variable ' + node['name'] + ' in line ' + node['line'] + ' not defined in scope'
+        if self.symbol_table.isKeyPresent(node['name']):
+            return self.symbol_table[node['name']]
+        else:
+            return 'Variable ' + node['name'] + ' in line ' + node['line'] + ' not defined in scope'
 
     def handle_write(self, node):
         result = self.eval_node(node["arg"])
@@ -144,10 +150,16 @@ class Interpreter:
             return BoolType('false')
     
     def handle_count(self, operator_args):
-        return len(operator_args)  
+        if isinstance(operator_args, ListType):
+            return NumType(len(operator_args))
+        else:
+            return NullType(None)
     
     def handle_first(self, operator_args):
-        return operator_args[0]
+        if isinstance(operator_args, ListType):
+            return NumType(operator_args[0])
+        else:
+            return NullType(None)
         
     def handle_is_list(self, operator_args):
         if isinstance(operator_args, ListType):
@@ -156,10 +168,7 @@ class Interpreter:
             return BoolType('false')
         
     def handle_is_not_list(self, operator_args):
-        if isinstance(operator_args, ListType):
-            return BoolType('false')
-        else:
-            return BoolType('true')
+        return self.handle_is_list(operator_args).negate()
 
     # Binary
     def handle_plus(self, operator_args):
@@ -187,10 +196,11 @@ class Interpreter:
 
     def is_operator_node(self, node):
         return True if node["type"] in self.allowed_operations else False
-
-
-
-
-
-
-
+    
+    def is_terminal_node(self, node):
+        if isinstance(node, list):
+            return False
+        elif node["type"] in TERMINAL_NODE_NAMES:
+            return True
+        else:
+            return False

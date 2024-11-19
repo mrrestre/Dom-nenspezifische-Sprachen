@@ -7,7 +7,13 @@ DATETIME_FORMAT = "%Y-%m-%dT%H:%M:%S"
 class BaseType(ABC):
     def __init__(self, input, timestamp=None):
         self.value = self.parse_value(input)
-        self.timestamp = datetime.strptime(timestamp, DATETIME_FORMAT) if timestamp is not None else None
+
+        if isinstance(timestamp, datetime):
+            self.timestamp = timestamp
+        elif timestamp == None:
+            self.timestamp = None
+        else:
+            self.timestamp = datetime.strptime(timestamp, DATETIME_FORMAT)
 
     @abstractmethod
     def parse_value(self, value):
@@ -17,18 +23,12 @@ class BaseType(ABC):
         if isinstance(self.timestamp, datetime):
             timestamp = self.timestamp.strftime(DATETIME_FORMAT)
         else:
-            timestamp = None
+            timestamp = 'null'
 
         return f"{str(self.value)} (Timestamp: {timestamp})"
     
     def copy(self):
-        return self.__class__(self.value, self._get_timestamp_string())
-    
-    def _get_timestamp_string(self):
-        if self.timestamp != None:
-            return datetime.strftime(self.timestamp, DATETIME_FORMAT) 
-        else: 
-            return None
+        return self.__class__(self.value, self.timestamp)
 
     def __str__(self):
         return str(self.value)
@@ -50,7 +50,7 @@ class StrType(BaseType):
 
 class NumType(BaseType):
     def parse_value(self, input):
-        return float(input)
+        return float(input) if not isinstance(input, NumType) else input
     
     def __add__(self, other):
         if isinstance(other, NumType):
@@ -80,6 +80,13 @@ class BoolType(BaseType):
             return 'true'
         else:
             return 'false'
+    
+    def negate(self):
+        if self.value == "true":
+            return 'false'
+        else:
+            return 'true'
+        
 
 class ListType(BaseType):
     allowed_types = (StrType, NumType, DateType, BoolType, NullType)
@@ -133,7 +140,7 @@ class ListType(BaseType):
     def debug_str(self):
         debug_str = '['
         for element in self.value:
-            timestamp = element.timestamp.strftime(DATETIME_FORMAT) if element.timestamp != None else None
+            timestamp = element.timestamp.strftime(DATETIME_FORMAT) if element.timestamp != None else 'null'
             debug_str +=  f"{str(element)} (Timestamp: {timestamp}), "
         debug_str = debug_str.rstrip(", ")
         debug_str += ']'
