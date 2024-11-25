@@ -29,6 +29,7 @@ class Interpreter:
         self.unary_member_operations = {
             "IS_NUMBER": self.handle_is_number,
             "SIN": self.handle_sin,
+            "NOT": self.handle_not,
         }
 
         self.unary_list_operations = {
@@ -44,6 +45,7 @@ class Interpreter:
             "AMPERSAND": self.handle_string_concat,
             "MINUS": self.handle_minus,
             "PLUS": self.handle_plus,
+            "WHERE": self.handle_where,
         }
 
         self.ternary_operations = {
@@ -81,7 +83,36 @@ class Interpreter:
 
                 # Binary operation
                 case 2:
-                    return operation_handler(evaluated_params)
+                    left = evaluated_params[0]
+                    right = evaluated_params[1]
+
+                    # Both are lists
+                    if isinstance(left, ListType) and isinstance(right, ListType):
+                        if len(left) == len(right):
+                            # Perform the operation position based: result[i] = left[i] <operation> right[i]
+                            result = ListType(None)
+                            for i in range(len(left)):
+                                result.append(operation_handler(left[i], right[i]))
+                            return result
+                        else:
+                            return NullType(None)
+                    # Only right is a list
+                    elif not isinstance(left, ListType) and isinstance(right, ListType):
+                        # Perform the operation on left with all elements of right: result[i] = left <operation> right[i]
+                        result = ListType(None)
+                        for i in range(len(right)):
+                            result.append(operation_handler(left, right[i]))
+                        return result
+                    # Only left is a list
+                    elif isinstance(left, ListType) and not isinstance(right, ListType):
+                        # Perform the operation on left with all elements of right: result[i] = left[i] <operation> right
+                        result = ListType(None)
+                        for i in range(len(left)):
+                            result.append(operation_handler(left[i], right))
+                        return result
+                    # Neither arg is a list
+                    elif not isinstance(left, ListType) and not isinstance(right, ListType):
+                        return operation_handler(left, right)
                 
                 # Ternary operation
                 case 3:
@@ -137,52 +168,62 @@ class Interpreter:
 
     ## Operations
     # Unary
-    def handle_sin(self, operator_args):
-        if isinstance(operator_args, NumType):
-            return NumType(math.sin(operator_args.value))
+    def handle_not(self, arg):
+        if isinstance(arg, BoolType):
+            return BoolType(arg.negate())
+        else:
+            return NullType(None)
+
+    def handle_sin(self, arg):
+        if isinstance(arg, NumType):
+            return NumType(math.sin(arg.value))
         else:
             return NullType(None)
     
-    def handle_is_number(self, operator_args):
-        if isinstance(operator_args, NumType):
+    def handle_is_number(self, arg):
+        if isinstance(arg, NumType):
             return BoolType('true')
         else:
             return BoolType('false')
     
-    def handle_count(self, operator_args):
-        if isinstance(operator_args, ListType):
-            return NumType(len(operator_args))
+    def handle_count(self, arg):
+        if isinstance(arg, ListType):
+            return NumType(len(arg))
         else:
             return NullType(None)
     
-    def handle_first(self, operator_args):
-        if isinstance(operator_args, ListType):
-            return NumType(operator_args[0])
+    def handle_first(self, arg):
+        if isinstance(arg, ListType):
+            return NumType(arg[0])
         else:
             return NullType(None)
         
-    def handle_is_list(self, operator_args):
-        if isinstance(operator_args, ListType):
+    def handle_is_list(self, arg):
+        if isinstance(arg, ListType):
             return BoolType('true')
         else:
             return BoolType('false')
         
-    def handle_is_not_list(self, operator_args):
-        return self.handle_is_list(operator_args).negate()
+    def handle_is_not_list(self, arg):
+        return BoolType(self.handle_is_list(arg).negate())
 
     # Binary
-    def handle_plus(self, operator_args):
-        return operator_args[0] + operator_args[1]
+    def handle_plus(self, left, right):
+        return left + right
     
-    def handle_minus(self, operator_args):
-        return operator_args[0] - operator_args[1]
+    def handle_minus(self, left, right):
+        return left - right
     
-    def handle_string_concat(self, operator_args):
-        left, right = operator_args[0], operator_args[1]
+    def handle_string_concat(self, left, right):
         if isinstance(left, StrType) or isinstance(right, StrType):
             return StrType(left) + StrType(right)
         else:
             return NullType(None)
+        
+    def handle_where(self, left, right):
+        if isinstance(right, BoolType):
+            if right.bool_value() == True:
+                return left
     
     # Helper functions   
     def evaluate_params(self, node):

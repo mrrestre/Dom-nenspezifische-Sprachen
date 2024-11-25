@@ -1,7 +1,5 @@
-testlist := [1,2,"Hallo",4,5,null,false,true];
-trace testlist;
-trace testlist is number;
-trace testlist is list;
-trace testlist is not list;
-trace count testlist;
-trace first testlist;
+trace 1 WHERE true;
+trace [1,2,3] WHERE true;
+trace 1 WHERE [true,false,true];
+trace 1 WHERE NOT[true,false,true];
+trace [1,2,3,4] WHERE [true,false,true];

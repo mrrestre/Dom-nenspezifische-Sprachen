@@ -136,6 +136,7 @@ int get_token_id (char *token) {
 	if (strcmp(token, "TIMES") == 0) return TIMES;
 	if (strcmp(token, "TIMETOKEN") == 0) return TIMETOKEN;
 	if (strcmp(token, "TRACE") == 0) return TRACE;
+	if (strcmp(token, "WHERE") == 0) return WHERE;
 	if (strcmp(token, "WRITE") == 0) return WRITE;
 	
 	printf ("{\"error\" : true, \"message\": \"UNKNOWN TOKEN TYPE %s\"}\n", token);
@@ -195,13 +196,13 @@ cJSON* ternary (char *fname, cJSON *a, cJSON *b, cJSON *c)
 // je weiter unten, desto bindet der Operator stärker
 
 %right	   COUNT FIRST .
+%right 	   WHERE .
 %left 	   COMMA .
-%left 	   AMPERSAND .
-%left 	   PLUS MINUS .
+%left 	   PLUS MINUS AMPERSAND .
 %left 	   TIMES DIVIDE .
 %right     POWER .
 %right	   SIN COS .
-%nonassoc  IS .
+%nonassoc  NOT IS .
 
 /////////////////////// 
 // CODE
@@ -449,6 +450,9 @@ ex(r) ::= NULLTOKEN .
 // Unary
 /////////////////
 
+ex(r) ::= NOT ex(a) .                               
+{r = unary ("NOT", a); }
+
 ex(r) ::= ex(a) IS LIST .                               
 {r = unary ("IS_LIST", a); }
 
@@ -491,6 +495,9 @@ ex(r) ::= ex(a) DIVIDE ex(b) .
 
 ex(r) ::= ex(a) POWER ex(b) .                               
 {r = binary ("POWER", a, b); }
+
+ex(r) ::= ex(a) WHERE ex(b) .                               
+{r = binary ("WHERE", a, b); }
 
 /////////////////
 // Ternary

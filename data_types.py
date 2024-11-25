@@ -86,6 +86,12 @@ class BoolType(BaseType):
             return 'false'
         else:
             return 'true'
+    
+    def bool_value(self):
+        if self.value == "true":
+            return True
+        else:
+            return False
         
 
 class ListType(BaseType):
@@ -128,12 +134,18 @@ class ListType(BaseType):
     def __setitem__(self, index, item):
         if isinstance(item, self.allowed_types):
             self.value[index] = item
+        elif item == None:
+            #Do nothing
+            None
         else:
             raise TypeError(f"Only instances of {self.allowed_types} are allowed")
     
     def append(self, item):
         if isinstance(item, self.allowed_types):
             self.value.append(item)
+        elif item == None:
+            #Do nothing
+            None
         else:
             raise TypeError(f"Only instances of {self.allowed_types} are allowed")
 
