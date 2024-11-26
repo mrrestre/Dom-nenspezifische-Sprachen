@@ -42,20 +42,20 @@ class SymbolTable:
 class TerminalNode:
     def __init__(self, node):
         match node["type"]:
-            case "STRTOKEN":
-                self._value = StrType(node["value"])
-            case "NUMTOKEN":
-                self._value = NumType(node["value"])
-            case "TIMETOKEN":
-                self._value = DateType(node["value"])
             case "BOOLTOKEN":
                 self._value = BoolType(node["value"])
-            case "LIST":
-                self._value = ListType(node["elements"])
             case "EMPTYLIST":
                 self._value = ListType(None)
+            case "LIST":
+                self._value = ListType(node["elements"])
+            case "NUMTOKEN":
+                self._value = NumType(node["value"])
             case "NOW":
                 self._value = DateType(datetime.now())
+            case "STRTOKEN":
+                self._value = StrType(node["value"])
+            case "TIMETOKEN":
+                self._value = DateType(node["value"])
 
     def get_value(self):
         return self._value

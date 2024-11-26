@@ -26,30 +26,30 @@ class Interpreter:
             "WRITE_TIME": self.handle_write_time,
         }
 
-        self.unary_member_operations = {
+        self.unary_operations_member_hdl = {
             "IS_NUMBER": self.handle_is_number,
             "SIN": self.handle_sin,
             "NOT": self.handle_not,
         }
 
-        self.unary_list_operations = {
+        self.unary_operations_default_hdl = {
             "COUNT": self.handle_count,
             "FIRST": self.handle_first,
             "IS_LIST": self.handle_is_list,
             "IS_NOT_LIST": self.handle_is_not_list,
         }
 
-        self.unary_operations = self.unary_member_operations | self.unary_list_operations
+        self.unary_operations = self.unary_operations_member_hdl | self.unary_operations_default_hdl
 
         self.binary_operations = {
             "AMPERSAND": self.handle_string_concat,
             "MINUS": self.handle_minus,
+            "LT": self.handle_less_than,
             "PLUS": self.handle_plus,
             "WHERE": self.handle_where,
         }
 
-        self.ternary_operations = {
-        }
+        self.ternary_operations = { }
 
         self.operation_handlers = self.unary_operations | self.binary_operations | self.ternary_operations
 
@@ -70,7 +70,7 @@ class Interpreter:
                 case 1:
                     argument = evaluated_params[0]
 
-                    if node["type"] in self.unary_member_operations:
+                    if node["type"] in self.unary_operations_member_hdl:
                         if isinstance(argument, ListType):
                             result = ListType(None)
                             for list_member in argument:
@@ -78,13 +78,14 @@ class Interpreter:
                             return result
                         else:
                             return operation_handler(argument)
-                    elif node["type"] in self.unary_list_operations:
+                    elif node["type"] in self.unary_operations_default_hdl:
                         return operation_handler(argument)
 
                 # Binary operation
                 case 2:
                     left = evaluated_params[0]
                     right = evaluated_params[1]
+
 
                     # Both are lists
                     if isinstance(left, ListType) and isinstance(right, ListType):
@@ -208,11 +209,14 @@ class Interpreter:
         return BoolType(self.handle_is_list(arg).negate())
 
     # Binary
-    def handle_plus(self, left, right):
-        return left + right
-    
+    def handle_less_than(self, left, right):
+        return BoolType(left < right)
+
     def handle_minus(self, left, right):
         return left - right
+    
+    def handle_plus(self, left, right):
+        return left + right
     
     def handle_string_concat(self, left, right):
         if isinstance(left, StrType) or isinstance(right, StrType):

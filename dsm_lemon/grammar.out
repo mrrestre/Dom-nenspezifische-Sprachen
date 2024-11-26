@@ -4,7 +4,7 @@ State 0:
           statementblock ::= * statementblock statement
 
                           code accept
-                statementblock shift        25     
+                statementblock shift        30     
                      {default} reduce       1      statementblock ::=
 
 State 1:
@@ -16,45 +16,54 @@ State 1:
           ex ::= LSPAR * exlist RSPAR
           exlist ::= * ex
           exlist ::= * exlist COMMA ex
-          ex ::= * NUMTOKEN
-          ex ::= * TIMETOKEN
-          ex ::= * STRTOKEN
           ex ::= * BOOLTOKEN
+          ex ::= * IT
           ex ::= * NOW
+          ex ::= * NUMTOKEN
           ex ::= * NULLTOKEN
-          ex ::= * NOT ex
+          ex ::= * STRTOKEN
+          ex ::= * TIMETOKEN
+          ex ::= * THEY
+          ex ::= * COUNT ex
+          ex ::= * COS ex
+          ex ::= * FIRST ex
           ex ::= * ex IS LIST
           ex ::= * ex IS NOT LIST
           ex ::= * ex IS NUMBER
-          ex ::= * COUNT ex
-          ex ::= * FIRST ex
+          ex ::= * NOT ex
           ex ::= * SIN ex
-          ex ::= * COS ex
           ex ::= * ex AMPERSAND ex
-          ex ::= * ex PLUS ex
-          ex ::= * ex MINUS ex
-          ex ::= * ex TIMES ex
           ex ::= * ex DIVIDE ex
+          ex ::= * ex GT ex
+          ex ::= * ex GTEQ ex
+          ex ::= * ex NEQ ex
+          ex ::= * ex MINUS ex
+          ex ::= * ex LT ex
+          ex ::= * ex LTEQ ex
+          ex ::= * ex PLUS ex
           ex ::= * ex POWER ex
+          ex ::= * ex TIMES ex
           ex ::= * ex WHERE ex
 
-                         COUNT shift        14     
-                         FIRST shift        13     
-                           SIN shift        12     
-                           COS shift        11     
-                           NOT shift        19     
+                         COUNT shift        24     
+                         FIRST shift        20     
+                           SIN shift        11     
+                           COS shift        22     
+                           NOT shift        12     
                     IDENTIFIER shift-reduce 13     ex ::= IDENTIFIER
-                          LPAR shift        23     
+                          LPAR shift        28     
                          LSPAR shift        1      
                          RSPAR shift-reduce 14     ex ::= LSPAR RSPAR
-                      NUMTOKEN shift-reduce 18     ex ::= NUMTOKEN
-                     TIMETOKEN shift-reduce 19     ex ::= TIMETOKEN
-                      STRTOKEN shift-reduce 20     ex ::= STRTOKEN
-                     BOOLTOKEN shift-reduce 21     ex ::= BOOLTOKEN
-                           NOW shift-reduce 22     ex ::= NOW
-                     NULLTOKEN shift-reduce 23     ex ::= NULLTOKEN
-                            ex shift        36     
-                        exlist shift        49     
+                     BOOLTOKEN shift-reduce 18     ex ::= BOOLTOKEN
+                            IT shift-reduce 19     ex ::= IT
+                           NOW shift-reduce 20     ex ::= NOW
+                      NUMTOKEN shift-reduce 21     ex ::= NUMTOKEN
+                     NULLTOKEN shift-reduce 22     ex ::= NULLTOKEN
+                      STRTOKEN shift-reduce 23     ex ::= STRTOKEN
+                     TIMETOKEN shift-reduce 24     ex ::= TIMETOKEN
+                          THEY shift-reduce 25     ex ::= THEY
+                            ex shift        41     
+                        exlist shift        59     
 
 State 2:
           statement ::= TRACE TIME * OF ex SEMICOLON
@@ -63,44 +72,53 @@ State 2:
           ex ::= * IDENTIFIER
           ex ::= * LSPAR RSPAR
           ex ::= * LSPAR exlist RSPAR
-          ex ::= * NUMTOKEN
-          ex ::= * TIMETOKEN
-          ex ::= * STRTOKEN
           ex ::= * BOOLTOKEN
+          ex ::= * IT
           ex ::= * NOW
+          ex ::= * NUMTOKEN
           ex ::= * NULLTOKEN
-          ex ::= * NOT ex
+          ex ::= * STRTOKEN
+          ex ::= * TIMETOKEN
+          ex ::= * THEY
+          ex ::= * COUNT ex
+          ex ::= * COS ex
+          ex ::= * FIRST ex
           ex ::= * ex IS LIST
           ex ::= * ex IS NOT LIST
           ex ::= * ex IS NUMBER
-          ex ::= * COUNT ex
-          ex ::= * FIRST ex
+          ex ::= * NOT ex
           ex ::= * SIN ex
-          ex ::= * COS ex
           ex ::= * ex AMPERSAND ex
-          ex ::= * ex PLUS ex
-          ex ::= * ex MINUS ex
-          ex ::= * ex TIMES ex
           ex ::= * ex DIVIDE ex
+          ex ::= * ex GT ex
+          ex ::= * ex GTEQ ex
+          ex ::= * ex NEQ ex
+          ex ::= * ex MINUS ex
+          ex ::= * ex LT ex
+          ex ::= * ex LTEQ ex
+          ex ::= * ex PLUS ex
           ex ::= * ex POWER ex
+          ex ::= * ex TIMES ex
           ex ::= * ex WHERE ex
 
-                         COUNT shift        14     
-                         FIRST shift        13     
-                           SIN shift        12     
-                           COS shift        11     
-                           NOT shift        19     
+                         COUNT shift        24     
+                         FIRST shift        20     
+                           SIN shift        11     
+                           COS shift        22     
+                           NOT shift        12     
                             OF shift        9      
                     IDENTIFIER shift-reduce 13     ex ::= IDENTIFIER
-                          LPAR shift        23     
+                          LPAR shift        28     
                          LSPAR shift        1      
-                      NUMTOKEN shift-reduce 18     ex ::= NUMTOKEN
-                     TIMETOKEN shift-reduce 19     ex ::= TIMETOKEN
-                      STRTOKEN shift-reduce 20     ex ::= STRTOKEN
-                     BOOLTOKEN shift-reduce 21     ex ::= BOOLTOKEN
-                           NOW shift-reduce 22     ex ::= NOW
-                     NULLTOKEN shift-reduce 23     ex ::= NULLTOKEN
-                            ex shift        29     
+                     BOOLTOKEN shift-reduce 18     ex ::= BOOLTOKEN
+                            IT shift-reduce 19     ex ::= IT
+                           NOW shift-reduce 20     ex ::= NOW
+                      NUMTOKEN shift-reduce 21     ex ::= NUMTOKEN
+                     NULLTOKEN shift-reduce 22     ex ::= NULLTOKEN
+                      STRTOKEN shift-reduce 23     ex ::= STRTOKEN
+                     TIMETOKEN shift-reduce 24     ex ::= TIMETOKEN
+                          THEY shift-reduce 25     ex ::= THEY
+                            ex shift        34     
 
 State 3:
           statement ::= TRACE * ex SEMICOLON
@@ -110,44 +128,53 @@ State 3:
           ex ::= * IDENTIFIER
           ex ::= * LSPAR RSPAR
           ex ::= * LSPAR exlist RSPAR
-          ex ::= * NUMTOKEN
-          ex ::= * TIMETOKEN
-          ex ::= * STRTOKEN
           ex ::= * BOOLTOKEN
+          ex ::= * IT
           ex ::= * NOW
+          ex ::= * NUMTOKEN
           ex ::= * NULLTOKEN
-          ex ::= * NOT ex
+          ex ::= * STRTOKEN
+          ex ::= * TIMETOKEN
+          ex ::= * THEY
+          ex ::= * COUNT ex
+          ex ::= * COS ex
+          ex ::= * FIRST ex
           ex ::= * ex IS LIST
           ex ::= * ex IS NOT LIST
           ex ::= * ex IS NUMBER
-          ex ::= * COUNT ex
-          ex ::= * FIRST ex
+          ex ::= * NOT ex
           ex ::= * SIN ex
-          ex ::= * COS ex
           ex ::= * ex AMPERSAND ex
-          ex ::= * ex PLUS ex
-          ex ::= * ex MINUS ex
-          ex ::= * ex TIMES ex
           ex ::= * ex DIVIDE ex
+          ex ::= * ex GT ex
+          ex ::= * ex GTEQ ex
+          ex ::= * ex NEQ ex
+          ex ::= * ex MINUS ex
+          ex ::= * ex LT ex
+          ex ::= * ex LTEQ ex
+          ex ::= * ex PLUS ex
           ex ::= * ex POWER ex
+          ex ::= * ex TIMES ex
           ex ::= * ex WHERE ex
 
-                         COUNT shift        14     
-                         FIRST shift        13     
-                           SIN shift        12     
-                           COS shift        11     
-                           NOT shift        19     
+                         COUNT shift        24     
+                         FIRST shift        20     
+                           SIN shift        11     
+                           COS shift        22     
+                           NOT shift        12     
                           TIME shift        2      
                     IDENTIFIER shift-reduce 13     ex ::= IDENTIFIER
-                          LPAR shift        23     
+                          LPAR shift        28     
                          LSPAR shift        1      
-                      NUMTOKEN shift-reduce 18     ex ::= NUMTOKEN
-                     TIMETOKEN shift-reduce 19     ex ::= TIMETOKEN
-                      STRTOKEN shift-reduce 20     ex ::= STRTOKEN
-                     BOOLTOKEN shift-reduce 21     ex ::= BOOLTOKEN
-                           NOW shift-reduce 22     ex ::= NOW
-                     NULLTOKEN shift-reduce 23     ex ::= NULLTOKEN
-                            ex shift        31     
+                     BOOLTOKEN shift-reduce 18     ex ::= BOOLTOKEN
+                            IT shift-reduce 19     ex ::= IT
+                           NOW shift-reduce 20     ex ::= NOW
+                      NUMTOKEN shift-reduce 21     ex ::= NUMTOKEN
+                     NULLTOKEN shift-reduce 22     ex ::= NULLTOKEN
+                      STRTOKEN shift-reduce 23     ex ::= STRTOKEN
+                     TIMETOKEN shift-reduce 24     ex ::= TIMETOKEN
+                          THEY shift-reduce 25     ex ::= THEY
+                            ex shift        36     
 
 State 4:
           statement ::= WRITE TIME * OF ex SEMICOLON
@@ -156,44 +183,53 @@ State 4:
           ex ::= * IDENTIFIER
           ex ::= * LSPAR RSPAR
           ex ::= * LSPAR exlist RSPAR
-          ex ::= * NUMTOKEN
-          ex ::= * TIMETOKEN
-          ex ::= * STRTOKEN
           ex ::= * BOOLTOKEN
+          ex ::= * IT
           ex ::= * NOW
+          ex ::= * NUMTOKEN
           ex ::= * NULLTOKEN
-          ex ::= * NOT ex
+          ex ::= * STRTOKEN
+          ex ::= * TIMETOKEN
+          ex ::= * THEY
+          ex ::= * COUNT ex
+          ex ::= * COS ex
+          ex ::= * FIRST ex
           ex ::= * ex IS LIST
           ex ::= * ex IS NOT LIST
           ex ::= * ex IS NUMBER
-          ex ::= * COUNT ex
-          ex ::= * FIRST ex
+          ex ::= * NOT ex
           ex ::= * SIN ex
-          ex ::= * COS ex
           ex ::= * ex AMPERSAND ex
-          ex ::= * ex PLUS ex
-          ex ::= * ex MINUS ex
-          ex ::= * ex TIMES ex
           ex ::= * ex DIVIDE ex
+          ex ::= * ex GT ex
+          ex ::= * ex GTEQ ex
+          ex ::= * ex NEQ ex
+          ex ::= * ex MINUS ex
+          ex ::= * ex LT ex
+          ex ::= * ex LTEQ ex
+          ex ::= * ex PLUS ex
           ex ::= * ex POWER ex
+          ex ::= * ex TIMES ex
           ex ::= * ex WHERE ex
 
-                         COUNT shift        14     
-                         FIRST shift        13     
-                           SIN shift        12     
-                           COS shift        11     
-                           NOT shift        19     
+                         COUNT shift        24     
+                         FIRST shift        20     
+                           SIN shift        11     
+                           COS shift        22     
+                           NOT shift        12     
                             OF shift        10     
                     IDENTIFIER shift-reduce 13     ex ::= IDENTIFIER
-                          LPAR shift        23     
+                          LPAR shift        28     
                          LSPAR shift        1      
-                      NUMTOKEN shift-reduce 18     ex ::= NUMTOKEN
-                     TIMETOKEN shift-reduce 19     ex ::= TIMETOKEN
-                      STRTOKEN shift-reduce 20     ex ::= STRTOKEN
-                     BOOLTOKEN shift-reduce 21     ex ::= BOOLTOKEN
-                           NOW shift-reduce 22     ex ::= NOW
-                     NULLTOKEN shift-reduce 23     ex ::= NULLTOKEN
-                            ex shift        32     
+                     BOOLTOKEN shift-reduce 18     ex ::= BOOLTOKEN
+                            IT shift-reduce 19     ex ::= IT
+                           NOW shift-reduce 20     ex ::= NOW
+                      NUMTOKEN shift-reduce 21     ex ::= NUMTOKEN
+                     NULLTOKEN shift-reduce 22     ex ::= NULLTOKEN
+                      STRTOKEN shift-reduce 23     ex ::= STRTOKEN
+                     TIMETOKEN shift-reduce 24     ex ::= TIMETOKEN
+                          THEY shift-reduce 25     ex ::= THEY
+                            ex shift        37     
 
 State 5:
           statement ::= WRITE * ex SEMICOLON
@@ -203,44 +239,53 @@ State 5:
           ex ::= * IDENTIFIER
           ex ::= * LSPAR RSPAR
           ex ::= * LSPAR exlist RSPAR
-          ex ::= * NUMTOKEN
-          ex ::= * TIMETOKEN
-          ex ::= * STRTOKEN
           ex ::= * BOOLTOKEN
+          ex ::= * IT
           ex ::= * NOW
+          ex ::= * NUMTOKEN
           ex ::= * NULLTOKEN
-          ex ::= * NOT ex
+          ex ::= * STRTOKEN
+          ex ::= * TIMETOKEN
+          ex ::= * THEY
+          ex ::= * COUNT ex
+          ex ::= * COS ex
+          ex ::= * FIRST ex
           ex ::= * ex IS LIST
           ex ::= * ex IS NOT LIST
           ex ::= * ex IS NUMBER
-          ex ::= * COUNT ex
-          ex ::= * FIRST ex
+          ex ::= * NOT ex
           ex ::= * SIN ex
-          ex ::= * COS ex
           ex ::= * ex AMPERSAND ex
-          ex ::= * ex PLUS ex
-          ex ::= * ex MINUS ex
-          ex ::= * ex TIMES ex
           ex ::= * ex DIVIDE ex
+          ex ::= * ex GT ex
+          ex ::= * ex GTEQ ex
+          ex ::= * ex NEQ ex
+          ex ::= * ex MINUS ex
+          ex ::= * ex LT ex
+          ex ::= * ex LTEQ ex
+          ex ::= * ex PLUS ex
           ex ::= * ex POWER ex
+          ex ::= * ex TIMES ex
           ex ::= * ex WHERE ex
 
-                         COUNT shift        14     
-                         FIRST shift        13     
-                           SIN shift        12     
-                           COS shift        11     
-                           NOT shift        19     
+                         COUNT shift        24     
+                         FIRST shift        20     
+                           SIN shift        11     
+                           COS shift        22     
+                           NOT shift        12     
                           TIME shift        4      
                     IDENTIFIER shift-reduce 13     ex ::= IDENTIFIER
-                          LPAR shift        23     
+                          LPAR shift        28     
                          LSPAR shift        1      
-                      NUMTOKEN shift-reduce 18     ex ::= NUMTOKEN
-                     TIMETOKEN shift-reduce 19     ex ::= TIMETOKEN
-                      STRTOKEN shift-reduce 20     ex ::= STRTOKEN
-                     BOOLTOKEN shift-reduce 21     ex ::= BOOLTOKEN
-                           NOW shift-reduce 22     ex ::= NOW
-                     NULLTOKEN shift-reduce 23     ex ::= NULLTOKEN
-                            ex shift        35     
+                     BOOLTOKEN shift-reduce 18     ex ::= BOOLTOKEN
+                            IT shift-reduce 19     ex ::= IT
+                           NOW shift-reduce 20     ex ::= NOW
+                      NUMTOKEN shift-reduce 21     ex ::= NUMTOKEN
+                     NULLTOKEN shift-reduce 22     ex ::= NULLTOKEN
+                      STRTOKEN shift-reduce 23     ex ::= STRTOKEN
+                     TIMETOKEN shift-reduce 24     ex ::= TIMETOKEN
+                          THEY shift-reduce 25     ex ::= THEY
+                            ex shift        40     
 
 State 6:
           statement ::= TIME IDENTIFIER ASSIGN * ex SEMICOLON
@@ -248,43 +293,52 @@ State 6:
           ex ::= * IDENTIFIER
           ex ::= * LSPAR RSPAR
           ex ::= * LSPAR exlist RSPAR
-          ex ::= * NUMTOKEN
-          ex ::= * TIMETOKEN
-          ex ::= * STRTOKEN
           ex ::= * BOOLTOKEN
+          ex ::= * IT
           ex ::= * NOW
+          ex ::= * NUMTOKEN
           ex ::= * NULLTOKEN
-          ex ::= * NOT ex
+          ex ::= * STRTOKEN
+          ex ::= * TIMETOKEN
+          ex ::= * THEY
+          ex ::= * COUNT ex
+          ex ::= * COS ex
+          ex ::= * FIRST ex
           ex ::= * ex IS LIST
           ex ::= * ex IS NOT LIST
           ex ::= * ex IS NUMBER
-          ex ::= * COUNT ex
-          ex ::= * FIRST ex
+          ex ::= * NOT ex
           ex ::= * SIN ex
-          ex ::= * COS ex
           ex ::= * ex AMPERSAND ex
-          ex ::= * ex PLUS ex
-          ex ::= * ex MINUS ex
-          ex ::= * ex TIMES ex
           ex ::= * ex DIVIDE ex
+          ex ::= * ex GT ex
+          ex ::= * ex GTEQ ex
+          ex ::= * ex NEQ ex
+          ex ::= * ex MINUS ex
+          ex ::= * ex LT ex
+          ex ::= * ex LTEQ ex
+          ex ::= * ex PLUS ex
           ex ::= * ex POWER ex
+          ex ::= * ex TIMES ex
           ex ::= * ex WHERE ex
 
-                         COUNT shift        14     
-                         FIRST shift        13     
-                           SIN shift        12     
-                           COS shift        11     
-                           NOT shift        19     
+                         COUNT shift        24     
+                         FIRST shift        20     
+                           SIN shift        11     
+                           COS shift        22     
+                           NOT shift        12     
                     IDENTIFIER shift-reduce 13     ex ::= IDENTIFIER
-                          LPAR shift        23     
+                          LPAR shift        28     
                          LSPAR shift        1      
-                      NUMTOKEN shift-reduce 18     ex ::= NUMTOKEN
-                     TIMETOKEN shift-reduce 19     ex ::= TIMETOKEN
-                      STRTOKEN shift-reduce 20     ex ::= STRTOKEN
-                     BOOLTOKEN shift-reduce 21     ex ::= BOOLTOKEN
-                           NOW shift-reduce 22     ex ::= NOW
-                     NULLTOKEN shift-reduce 23     ex ::= NULLTOKEN
-                            ex shift        26     
+                     BOOLTOKEN shift-reduce 18     ex ::= BOOLTOKEN
+                            IT shift-reduce 19     ex ::= IT
+                           NOW shift-reduce 20     ex ::= NOW
+                      NUMTOKEN shift-reduce 21     ex ::= NUMTOKEN
+                     NULLTOKEN shift-reduce 22     ex ::= NULLTOKEN
+                      STRTOKEN shift-reduce 23     ex ::= STRTOKEN
+                     TIMETOKEN shift-reduce 24     ex ::= TIMETOKEN
+                          THEY shift-reduce 25     ex ::= THEY
+                            ex shift        31     
 
 State 7:
           statement ::= TIME OF IDENTIFIER ASSIGN * ex SEMICOLON
@@ -292,43 +346,52 @@ State 7:
           ex ::= * IDENTIFIER
           ex ::= * LSPAR RSPAR
           ex ::= * LSPAR exlist RSPAR
-          ex ::= * NUMTOKEN
-          ex ::= * TIMETOKEN
-          ex ::= * STRTOKEN
           ex ::= * BOOLTOKEN
+          ex ::= * IT
           ex ::= * NOW
+          ex ::= * NUMTOKEN
           ex ::= * NULLTOKEN
-          ex ::= * NOT ex
+          ex ::= * STRTOKEN
+          ex ::= * TIMETOKEN
+          ex ::= * THEY
+          ex ::= * COUNT ex
+          ex ::= * COS ex
+          ex ::= * FIRST ex
           ex ::= * ex IS LIST
           ex ::= * ex IS NOT LIST
           ex ::= * ex IS NUMBER
-          ex ::= * COUNT ex
-          ex ::= * FIRST ex
+          ex ::= * NOT ex
           ex ::= * SIN ex
-          ex ::= * COS ex
           ex ::= * ex AMPERSAND ex
-          ex ::= * ex PLUS ex
-          ex ::= * ex MINUS ex
-          ex ::= * ex TIMES ex
           ex ::= * ex DIVIDE ex
+          ex ::= * ex GT ex
+          ex ::= * ex GTEQ ex
+          ex ::= * ex NEQ ex
+          ex ::= * ex MINUS ex
+          ex ::= * ex LT ex
+          ex ::= * ex LTEQ ex
+          ex ::= * ex PLUS ex
           ex ::= * ex POWER ex
+          ex ::= * ex TIMES ex
           ex ::= * ex WHERE ex
 
-                         COUNT shift        14     
-                         FIRST shift        13     
-                           SIN shift        12     
-                           COS shift        11     
-                           NOT shift        19     
+                         COUNT shift        24     
+                         FIRST shift        20     
+                           SIN shift        11     
+                           COS shift        22     
+                           NOT shift        12     
                     IDENTIFIER shift-reduce 13     ex ::= IDENTIFIER
-                          LPAR shift        23     
+                          LPAR shift        28     
                          LSPAR shift        1      
-                      NUMTOKEN shift-reduce 18     ex ::= NUMTOKEN
-                     TIMETOKEN shift-reduce 19     ex ::= TIMETOKEN
-                      STRTOKEN shift-reduce 20     ex ::= STRTOKEN
-                     BOOLTOKEN shift-reduce 21     ex ::= BOOLTOKEN
-                           NOW shift-reduce 22     ex ::= NOW
-                     NULLTOKEN shift-reduce 23     ex ::= NULLTOKEN
-                            ex shift        27     
+                     BOOLTOKEN shift-reduce 18     ex ::= BOOLTOKEN
+                            IT shift-reduce 19     ex ::= IT
+                           NOW shift-reduce 20     ex ::= NOW
+                      NUMTOKEN shift-reduce 21     ex ::= NUMTOKEN
+                     NULLTOKEN shift-reduce 22     ex ::= NULLTOKEN
+                      STRTOKEN shift-reduce 23     ex ::= STRTOKEN
+                     TIMETOKEN shift-reduce 24     ex ::= TIMETOKEN
+                          THEY shift-reduce 25     ex ::= THEY
+                            ex shift        32     
 
 State 8:
           statement ::= IDENTIFIER ASSIGN * ex SEMICOLON
@@ -336,43 +399,52 @@ State 8:
           ex ::= * IDENTIFIER
           ex ::= * LSPAR RSPAR
           ex ::= * LSPAR exlist RSPAR
-          ex ::= * NUMTOKEN
-          ex ::= * TIMETOKEN
-          ex ::= * STRTOKEN
           ex ::= * BOOLTOKEN
+          ex ::= * IT
           ex ::= * NOW
+          ex ::= * NUMTOKEN
           ex ::= * NULLTOKEN
-          ex ::= * NOT ex
+          ex ::= * STRTOKEN
+          ex ::= * TIMETOKEN
+          ex ::= * THEY
+          ex ::= * COUNT ex
+          ex ::= * COS ex
+          ex ::= * FIRST ex
           ex ::= * ex IS LIST
           ex ::= * ex IS NOT LIST
           ex ::= * ex IS NUMBER
-          ex ::= * COUNT ex
-          ex ::= * FIRST ex
+          ex ::= * NOT ex
           ex ::= * SIN ex
-          ex ::= * COS ex
           ex ::= * ex AMPERSAND ex
-          ex ::= * ex PLUS ex
-          ex ::= * ex MINUS ex
-          ex ::= * ex TIMES ex
           ex ::= * ex DIVIDE ex
+          ex ::= * ex GT ex
+          ex ::= * ex GTEQ ex
+          ex ::= * ex NEQ ex
+          ex ::= * ex MINUS ex
+          ex ::= * ex LT ex
+          ex ::= * ex LTEQ ex
+          ex ::= * ex PLUS ex
           ex ::= * ex POWER ex
+          ex ::= * ex TIMES ex
           ex ::= * ex WHERE ex
 
-                         COUNT shift        14     
-                         FIRST shift        13     
-                           SIN shift        12     
-                           COS shift        11     
-                           NOT shift        19     
+                         COUNT shift        24     
+                         FIRST shift        20     
+                           SIN shift        11     
+                           COS shift        22     
+                           NOT shift        12     
                     IDENTIFIER shift-reduce 13     ex ::= IDENTIFIER
-                          LPAR shift        23     
+                          LPAR shift        28     
                          LSPAR shift        1      
-                      NUMTOKEN shift-reduce 18     ex ::= NUMTOKEN
-                     TIMETOKEN shift-reduce 19     ex ::= TIMETOKEN
-                      STRTOKEN shift-reduce 20     ex ::= STRTOKEN
-                     BOOLTOKEN shift-reduce 21     ex ::= BOOLTOKEN
-                           NOW shift-reduce 22     ex ::= NOW
-                     NULLTOKEN shift-reduce 23     ex ::= NULLTOKEN
-                            ex shift        28     
+                     BOOLTOKEN shift-reduce 18     ex ::= BOOLTOKEN
+                            IT shift-reduce 19     ex ::= IT
+                           NOW shift-reduce 20     ex ::= NOW
+                      NUMTOKEN shift-reduce 21     ex ::= NUMTOKEN
+                     NULLTOKEN shift-reduce 22     ex ::= NULLTOKEN
+                      STRTOKEN shift-reduce 23     ex ::= STRTOKEN
+                     TIMETOKEN shift-reduce 24     ex ::= TIMETOKEN
+                          THEY shift-reduce 25     ex ::= THEY
+                            ex shift        33     
 
 State 9:
           statement ::= TRACE TIME OF * ex SEMICOLON
@@ -380,43 +452,52 @@ State 9:
           ex ::= * IDENTIFIER
           ex ::= * LSPAR RSPAR
           ex ::= * LSPAR exlist RSPAR
-          ex ::= * NUMTOKEN
-          ex ::= * TIMETOKEN
-          ex ::= * STRTOKEN
           ex ::= * BOOLTOKEN
+          ex ::= * IT
           ex ::= * NOW
+          ex ::= * NUMTOKEN
           ex ::= * NULLTOKEN
-          ex ::= * NOT ex
+          ex ::= * STRTOKEN
+          ex ::= * TIMETOKEN
+          ex ::= * THEY
+          ex ::= * COUNT ex
+          ex ::= * COS ex
+          ex ::= * FIRST ex
           ex ::= * ex IS LIST
           ex ::= * ex IS NOT LIST
           ex ::= * ex IS NUMBER
-          ex ::= * COUNT ex
-          ex ::= * FIRST ex
+          ex ::= * NOT ex
           ex ::= * SIN ex
-          ex ::= * COS ex
           ex ::= * ex AMPERSAND ex
-          ex ::= * ex PLUS ex
-          ex ::= * ex MINUS ex
-          ex ::= * ex TIMES ex
           ex ::= * ex DIVIDE ex
+          ex ::= * ex GT ex
+          ex ::= * ex GTEQ ex
+          ex ::= * ex NEQ ex
+          ex ::= * ex MINUS ex
+          ex ::= * ex LT ex
+          ex ::= * ex LTEQ ex
+          ex ::= * ex PLUS ex
           ex ::= * ex POWER ex
+          ex ::= * ex TIMES ex
           ex ::= * ex WHERE ex
 
-                         COUNT shift        14     
-                         FIRST shift        13     
-                           SIN shift        12     
-                           COS shift        11     
-                           NOT shift        19     
+                         COUNT shift        24     
+                         FIRST shift        20     
+                           SIN shift        11     
+                           COS shift        22     
+                           NOT shift        12     
                     IDENTIFIER shift-reduce 13     ex ::= IDENTIFIER
-                          LPAR shift        23     
+                          LPAR shift        28     
                          LSPAR shift        1      
-                      NUMTOKEN shift-reduce 18     ex ::= NUMTOKEN
-                     TIMETOKEN shift-reduce 19     ex ::= TIMETOKEN
-                      STRTOKEN shift-reduce 20     ex ::= STRTOKEN
-                     BOOLTOKEN shift-reduce 21     ex ::= BOOLTOKEN
-                           NOW shift-reduce 22     ex ::= NOW
-                     NULLTOKEN shift-reduce 23     ex ::= NULLTOKEN
-                            ex shift        30     
+                     BOOLTOKEN shift-reduce 18     ex ::= BOOLTOKEN
+                            IT shift-reduce 19     ex ::= IT
+                           NOW shift-reduce 20     ex ::= NOW
+                      NUMTOKEN shift-reduce 21     ex ::= NUMTOKEN
+                     NULLTOKEN shift-reduce 22     ex ::= NULLTOKEN
+                      STRTOKEN shift-reduce 23     ex ::= STRTOKEN
+                     TIMETOKEN shift-reduce 24     ex ::= TIMETOKEN
+                          THEY shift-reduce 25     ex ::= THEY
+                            ex shift        35     
 
 State 10:
           statement ::= WRITE TIME OF * ex SEMICOLON
@@ -424,482 +505,581 @@ State 10:
           ex ::= * IDENTIFIER
           ex ::= * LSPAR RSPAR
           ex ::= * LSPAR exlist RSPAR
-          ex ::= * NUMTOKEN
-          ex ::= * TIMETOKEN
-          ex ::= * STRTOKEN
           ex ::= * BOOLTOKEN
+          ex ::= * IT
           ex ::= * NOW
+          ex ::= * NUMTOKEN
           ex ::= * NULLTOKEN
-          ex ::= * NOT ex
+          ex ::= * STRTOKEN
+          ex ::= * TIMETOKEN
+          ex ::= * THEY
+          ex ::= * COUNT ex
+          ex ::= * COS ex
+          ex ::= * FIRST ex
           ex ::= * ex IS LIST
           ex ::= * ex IS NOT LIST
           ex ::= * ex IS NUMBER
-          ex ::= * COUNT ex
-          ex ::= * FIRST ex
+          ex ::= * NOT ex
           ex ::= * SIN ex
-          ex ::= * COS ex
           ex ::= * ex AMPERSAND ex
-          ex ::= * ex PLUS ex
-          ex ::= * ex MINUS ex
-          ex ::= * ex TIMES ex
           ex ::= * ex DIVIDE ex
+          ex ::= * ex GT ex
+          ex ::= * ex GTEQ ex
+          ex ::= * ex NEQ ex
+          ex ::= * ex MINUS ex
+          ex ::= * ex LT ex
+          ex ::= * ex LTEQ ex
+          ex ::= * ex PLUS ex
           ex ::= * ex POWER ex
+          ex ::= * ex TIMES ex
           ex ::= * ex WHERE ex
 
-                         COUNT shift        14     
-                         FIRST shift        13     
-                           SIN shift        12     
-                           COS shift        11     
-                           NOT shift        19     
+                         COUNT shift        24     
+                         FIRST shift        20     
+                           SIN shift        11     
+                           COS shift        22     
+                           NOT shift        12     
                     IDENTIFIER shift-reduce 13     ex ::= IDENTIFIER
-                          LPAR shift        23     
+                          LPAR shift        28     
                          LSPAR shift        1      
-                      NUMTOKEN shift-reduce 18     ex ::= NUMTOKEN
-                     TIMETOKEN shift-reduce 19     ex ::= TIMETOKEN
-                      STRTOKEN shift-reduce 20     ex ::= STRTOKEN
-                     BOOLTOKEN shift-reduce 21     ex ::= BOOLTOKEN
-                           NOW shift-reduce 22     ex ::= NOW
-                     NULLTOKEN shift-reduce 23     ex ::= NULLTOKEN
-                            ex shift        33     
+                     BOOLTOKEN shift-reduce 18     ex ::= BOOLTOKEN
+                            IT shift-reduce 19     ex ::= IT
+                           NOW shift-reduce 20     ex ::= NOW
+                      NUMTOKEN shift-reduce 21     ex ::= NUMTOKEN
+                     NULLTOKEN shift-reduce 22     ex ::= NULLTOKEN
+                      STRTOKEN shift-reduce 23     ex ::= STRTOKEN
+                     TIMETOKEN shift-reduce 24     ex ::= TIMETOKEN
+                          THEY shift-reduce 25     ex ::= THEY
+                            ex shift        38     
 
 State 11:
           ex ::= * LPAR ex RPAR
           ex ::= * IDENTIFIER
           ex ::= * LSPAR RSPAR
           ex ::= * LSPAR exlist RSPAR
-          ex ::= * NUMTOKEN
-          ex ::= * TIMETOKEN
-          ex ::= * STRTOKEN
           ex ::= * BOOLTOKEN
+          ex ::= * IT
           ex ::= * NOW
+          ex ::= * NUMTOKEN
           ex ::= * NULLTOKEN
-          ex ::= * NOT ex
+          ex ::= * STRTOKEN
+          ex ::= * TIMETOKEN
+          ex ::= * THEY
+          ex ::= * COUNT ex
+          ex ::= * COS ex
+          ex ::= * FIRST ex
           ex ::= * ex IS LIST
           ex ::= * ex IS NOT LIST
           ex ::= * ex IS NUMBER
-          ex ::= * COUNT ex
-          ex ::= * FIRST ex
+          ex ::= * NOT ex
           ex ::= * SIN ex
-          ex ::= * COS ex
-          ex ::= COS * ex
+          ex ::= SIN * ex
           ex ::= * ex AMPERSAND ex
-          ex ::= * ex PLUS ex
-          ex ::= * ex MINUS ex
-          ex ::= * ex TIMES ex
           ex ::= * ex DIVIDE ex
+          ex ::= * ex GT ex
+          ex ::= * ex GTEQ ex
+          ex ::= * ex NEQ ex
+          ex ::= * ex MINUS ex
+          ex ::= * ex LT ex
+          ex ::= * ex LTEQ ex
+          ex ::= * ex PLUS ex
           ex ::= * ex POWER ex
+          ex ::= * ex TIMES ex
           ex ::= * ex WHERE ex
 
-                         COUNT shift        14     
-                         FIRST shift        13     
-                           SIN shift        12     
-                           COS shift        11     
-                           NOT shift        19     
+                         COUNT shift        24     
+                         FIRST shift        20     
+                           SIN shift        11     
+                           COS shift        22     
+                           NOT shift        12     
                     IDENTIFIER shift-reduce 13     ex ::= IDENTIFIER
-                          LPAR shift        23     
+                          LPAR shift        28     
                          LSPAR shift        1      
-                      NUMTOKEN shift-reduce 18     ex ::= NUMTOKEN
-                     TIMETOKEN shift-reduce 19     ex ::= TIMETOKEN
-                      STRTOKEN shift-reduce 20     ex ::= STRTOKEN
-                     BOOLTOKEN shift-reduce 21     ex ::= BOOLTOKEN
-                           NOW shift-reduce 22     ex ::= NOW
-                     NULLTOKEN shift-reduce 23     ex ::= NULLTOKEN
-                            ex shift        54     
+                     BOOLTOKEN shift-reduce 18     ex ::= BOOLTOKEN
+                            IT shift-reduce 19     ex ::= IT
+                           NOW shift-reduce 20     ex ::= NOW
+                      NUMTOKEN shift-reduce 21     ex ::= NUMTOKEN
+                     NULLTOKEN shift-reduce 22     ex ::= NULLTOKEN
+                      STRTOKEN shift-reduce 23     ex ::= STRTOKEN
+                     TIMETOKEN shift-reduce 24     ex ::= TIMETOKEN
+                          THEY shift-reduce 25     ex ::= THEY
+                            ex shift        64     
 
 State 12:
           ex ::= * LPAR ex RPAR
           ex ::= * IDENTIFIER
           ex ::= * LSPAR RSPAR
           ex ::= * LSPAR exlist RSPAR
-          ex ::= * NUMTOKEN
-          ex ::= * TIMETOKEN
-          ex ::= * STRTOKEN
           ex ::= * BOOLTOKEN
+          ex ::= * IT
           ex ::= * NOW
+          ex ::= * NUMTOKEN
           ex ::= * NULLTOKEN
-          ex ::= * NOT ex
+          ex ::= * STRTOKEN
+          ex ::= * TIMETOKEN
+          ex ::= * THEY
+          ex ::= * COUNT ex
+          ex ::= * COS ex
+          ex ::= * FIRST ex
           ex ::= * ex IS LIST
           ex ::= * ex IS NOT LIST
           ex ::= * ex IS NUMBER
-          ex ::= * COUNT ex
-          ex ::= * FIRST ex
+          ex ::= * NOT ex
+          ex ::= NOT * ex
           ex ::= * SIN ex
-          ex ::= SIN * ex
-          ex ::= * COS ex
           ex ::= * ex AMPERSAND ex
-          ex ::= * ex PLUS ex
-          ex ::= * ex MINUS ex
-          ex ::= * ex TIMES ex
           ex ::= * ex DIVIDE ex
+          ex ::= * ex GT ex
+          ex ::= * ex GTEQ ex
+          ex ::= * ex NEQ ex
+          ex ::= * ex MINUS ex
+          ex ::= * ex LT ex
+          ex ::= * ex LTEQ ex
+          ex ::= * ex PLUS ex
           ex ::= * ex POWER ex
+          ex ::= * ex TIMES ex
           ex ::= * ex WHERE ex
 
-                         COUNT shift        14     
-                         FIRST shift        13     
-                           SIN shift        12     
-                           COS shift        11     
-                           NOT shift        19     
+                         COUNT shift        24     
+                         FIRST shift        20     
+                           SIN shift        11     
+                           COS shift        22     
+                           NOT shift        12     
                     IDENTIFIER shift-reduce 13     ex ::= IDENTIFIER
-                          LPAR shift        23     
+                          LPAR shift        28     
                          LSPAR shift        1      
-                      NUMTOKEN shift-reduce 18     ex ::= NUMTOKEN
-                     TIMETOKEN shift-reduce 19     ex ::= TIMETOKEN
-                      STRTOKEN shift-reduce 20     ex ::= STRTOKEN
-                     BOOLTOKEN shift-reduce 21     ex ::= BOOLTOKEN
-                           NOW shift-reduce 22     ex ::= NOW
-                     NULLTOKEN shift-reduce 23     ex ::= NULLTOKEN
-                            ex shift        55     
+                     BOOLTOKEN shift-reduce 18     ex ::= BOOLTOKEN
+                            IT shift-reduce 19     ex ::= IT
+                           NOW shift-reduce 20     ex ::= NOW
+                      NUMTOKEN shift-reduce 21     ex ::= NUMTOKEN
+                     NULLTOKEN shift-reduce 22     ex ::= NULLTOKEN
+                      STRTOKEN shift-reduce 23     ex ::= STRTOKEN
+                     TIMETOKEN shift-reduce 24     ex ::= TIMETOKEN
+                          THEY shift-reduce 25     ex ::= THEY
+                            ex shift-reduce 32     ex ::= NOT ex
 
 State 13:
           ex ::= * LPAR ex RPAR
           ex ::= * IDENTIFIER
           ex ::= * LSPAR RSPAR
           ex ::= * LSPAR exlist RSPAR
-          ex ::= * NUMTOKEN
-          ex ::= * TIMETOKEN
-          ex ::= * STRTOKEN
           ex ::= * BOOLTOKEN
+          ex ::= * IT
           ex ::= * NOW
+          ex ::= * NUMTOKEN
           ex ::= * NULLTOKEN
-          ex ::= * NOT ex
+          ex ::= * STRTOKEN
+          ex ::= * TIMETOKEN
+          ex ::= * THEY
+          ex ::= * COUNT ex
+          ex ::= * COS ex
+          ex ::= * FIRST ex
           ex ::= * ex IS LIST
           ex ::= * ex IS NOT LIST
           ex ::= * ex IS NUMBER
-          ex ::= * COUNT ex
-          ex ::= * FIRST ex
-          ex ::= FIRST * ex
+          ex ::= * NOT ex
           ex ::= * SIN ex
-          ex ::= * COS ex
           ex ::= * ex AMPERSAND ex
-          ex ::= * ex PLUS ex
-          ex ::= * ex MINUS ex
-          ex ::= * ex TIMES ex
           ex ::= * ex DIVIDE ex
+          ex ::= * ex GT ex
+          ex ::= * ex GTEQ ex
+          ex ::= * ex NEQ ex
+          ex ::= * ex MINUS ex
+          ex ::= * ex LT ex
+          ex ::= * ex LTEQ ex
+          ex ::= * ex PLUS ex
           ex ::= * ex POWER ex
+          ex ::= * ex TIMES ex
           ex ::= * ex WHERE ex
+          ex ::= ex WHERE * ex
 
-                         COUNT shift        14     
-                         FIRST shift        13     
-                           SIN shift        12     
-                           COS shift        11     
-                           NOT shift        19     
+                         COUNT shift        24     
+                         FIRST shift        20     
+                           SIN shift        11     
+                           COS shift        22     
+                           NOT shift        12     
                     IDENTIFIER shift-reduce 13     ex ::= IDENTIFIER
-                          LPAR shift        23     
+                          LPAR shift        28     
                          LSPAR shift        1      
-                      NUMTOKEN shift-reduce 18     ex ::= NUMTOKEN
-                     TIMETOKEN shift-reduce 19     ex ::= TIMETOKEN
-                      STRTOKEN shift-reduce 20     ex ::= STRTOKEN
-                     BOOLTOKEN shift-reduce 21     ex ::= BOOLTOKEN
-                           NOW shift-reduce 22     ex ::= NOW
-                     NULLTOKEN shift-reduce 23     ex ::= NULLTOKEN
-                            ex shift        37     
+                     BOOLTOKEN shift-reduce 18     ex ::= BOOLTOKEN
+                            IT shift-reduce 19     ex ::= IT
+                           NOW shift-reduce 20     ex ::= NOW
+                      NUMTOKEN shift-reduce 21     ex ::= NUMTOKEN
+                     NULLTOKEN shift-reduce 22     ex ::= NULLTOKEN
+                      STRTOKEN shift-reduce 23     ex ::= STRTOKEN
+                     TIMETOKEN shift-reduce 24     ex ::= TIMETOKEN
+                          THEY shift-reduce 25     ex ::= THEY
+                            ex shift        42     
 
 State 14:
           ex ::= * LPAR ex RPAR
           ex ::= * IDENTIFIER
           ex ::= * LSPAR RSPAR
           ex ::= * LSPAR exlist RSPAR
-          ex ::= * NUMTOKEN
-          ex ::= * TIMETOKEN
-          ex ::= * STRTOKEN
           ex ::= * BOOLTOKEN
+          ex ::= * IT
           ex ::= * NOW
+          ex ::= * NUMTOKEN
           ex ::= * NULLTOKEN
-          ex ::= * NOT ex
+          ex ::= * STRTOKEN
+          ex ::= * TIMETOKEN
+          ex ::= * THEY
+          ex ::= * COUNT ex
+          ex ::= * COS ex
+          ex ::= * FIRST ex
           ex ::= * ex IS LIST
           ex ::= * ex IS NOT LIST
           ex ::= * ex IS NUMBER
-          ex ::= * COUNT ex
-          ex ::= COUNT * ex
-          ex ::= * FIRST ex
+          ex ::= * NOT ex
           ex ::= * SIN ex
-          ex ::= * COS ex
           ex ::= * ex AMPERSAND ex
-          ex ::= * ex PLUS ex
-          ex ::= * ex MINUS ex
-          ex ::= * ex TIMES ex
           ex ::= * ex DIVIDE ex
+          ex ::= * ex GT ex
+          ex ::= * ex GTEQ ex
+          ex ::= * ex NEQ ex
+          ex ::= * ex MINUS ex
+          ex ::= * ex LT ex
+          ex ::= * ex LTEQ ex
+          ex ::= * ex PLUS ex
           ex ::= * ex POWER ex
+          ex ::= * ex TIMES ex
+          ex ::= ex TIMES * ex
           ex ::= * ex WHERE ex
 
-                         COUNT shift        14     
-                         FIRST shift        13     
-                           SIN shift        12     
-                           COS shift        11     
-                           NOT shift        19     
+                         COUNT shift        24     
+                         FIRST shift        20     
+                           SIN shift        11     
+                           COS shift        22     
+                           NOT shift        12     
                     IDENTIFIER shift-reduce 13     ex ::= IDENTIFIER
-                          LPAR shift        23     
+                          LPAR shift        28     
                          LSPAR shift        1      
-                      NUMTOKEN shift-reduce 18     ex ::= NUMTOKEN
-                     TIMETOKEN shift-reduce 19     ex ::= TIMETOKEN
-                      STRTOKEN shift-reduce 20     ex ::= STRTOKEN
-                     BOOLTOKEN shift-reduce 21     ex ::= BOOLTOKEN
-                           NOW shift-reduce 22     ex ::= NOW
-                     NULLTOKEN shift-reduce 23     ex ::= NULLTOKEN
-                            ex shift        38     
+                     BOOLTOKEN shift-reduce 18     ex ::= BOOLTOKEN
+                            IT shift-reduce 19     ex ::= IT
+                           NOW shift-reduce 20     ex ::= NOW
+                      NUMTOKEN shift-reduce 21     ex ::= NUMTOKEN
+                     NULLTOKEN shift-reduce 22     ex ::= NULLTOKEN
+                      STRTOKEN shift-reduce 23     ex ::= STRTOKEN
+                     TIMETOKEN shift-reduce 24     ex ::= TIMETOKEN
+                          THEY shift-reduce 25     ex ::= THEY
+                            ex shift        53     
 
 State 15:
           ex ::= * LPAR ex RPAR
           ex ::= * IDENTIFIER
           ex ::= * LSPAR RSPAR
           ex ::= * LSPAR exlist RSPAR
-          ex ::= * NUMTOKEN
-          ex ::= * TIMETOKEN
-          ex ::= * STRTOKEN
           ex ::= * BOOLTOKEN
+          ex ::= * IT
           ex ::= * NOW
+          ex ::= * NUMTOKEN
           ex ::= * NULLTOKEN
-          ex ::= * NOT ex
+          ex ::= * STRTOKEN
+          ex ::= * TIMETOKEN
+          ex ::= * THEY
+          ex ::= * COUNT ex
+          ex ::= * COS ex
+          ex ::= * FIRST ex
           ex ::= * ex IS LIST
           ex ::= * ex IS NOT LIST
           ex ::= * ex IS NUMBER
-          ex ::= * COUNT ex
-          ex ::= * FIRST ex
+          ex ::= * NOT ex
           ex ::= * SIN ex
-          ex ::= * COS ex
           ex ::= * ex AMPERSAND ex
-          ex ::= * ex PLUS ex
-          ex ::= * ex MINUS ex
-          ex ::= * ex TIMES ex
           ex ::= * ex DIVIDE ex
+          ex ::= * ex GT ex
+          ex ::= * ex GTEQ ex
+          ex ::= * ex NEQ ex
+          ex ::= * ex MINUS ex
+          ex ::= * ex LT ex
+          ex ::= * ex LTEQ ex
+          ex ::= * ex PLUS ex
           ex ::= * ex POWER ex
+          ex ::= ex POWER * ex
+          ex ::= * ex TIMES ex
           ex ::= * ex WHERE ex
-          ex ::= ex WHERE * ex
 
-                         COUNT shift        14     
-                         FIRST shift        13     
-                           SIN shift        12     
-                           COS shift        11     
-                           NOT shift        19     
+                         COUNT shift        24     
+                         FIRST shift        20     
+                           SIN shift        11     
+                           COS shift        22     
+                           NOT shift        12     
                     IDENTIFIER shift-reduce 13     ex ::= IDENTIFIER
-                          LPAR shift        23     
+                          LPAR shift        28     
                          LSPAR shift        1      
-                      NUMTOKEN shift-reduce 18     ex ::= NUMTOKEN
-                     TIMETOKEN shift-reduce 19     ex ::= TIMETOKEN
-                      STRTOKEN shift-reduce 20     ex ::= STRTOKEN
-                     BOOLTOKEN shift-reduce 21     ex ::= BOOLTOKEN
-                           NOW shift-reduce 22     ex ::= NOW
-                     NULLTOKEN shift-reduce 23     ex ::= NULLTOKEN
-                            ex shift        39     
+                     BOOLTOKEN shift-reduce 18     ex ::= BOOLTOKEN
+                            IT shift-reduce 19     ex ::= IT
+                           NOW shift-reduce 20     ex ::= NOW
+                      NUMTOKEN shift-reduce 21     ex ::= NUMTOKEN
+                     NULLTOKEN shift-reduce 22     ex ::= NULLTOKEN
+                      STRTOKEN shift-reduce 23     ex ::= STRTOKEN
+                     TIMETOKEN shift-reduce 24     ex ::= TIMETOKEN
+                          THEY shift-reduce 25     ex ::= THEY
+                            ex shift        58     
 
 State 16:
           ex ::= * LPAR ex RPAR
           ex ::= * IDENTIFIER
           ex ::= * LSPAR RSPAR
           ex ::= * LSPAR exlist RSPAR
-          ex ::= * NUMTOKEN
-          ex ::= * TIMETOKEN
-          ex ::= * STRTOKEN
           ex ::= * BOOLTOKEN
+          ex ::= * IT
           ex ::= * NOW
+          ex ::= * NUMTOKEN
           ex ::= * NULLTOKEN
-          ex ::= * NOT ex
+          ex ::= * STRTOKEN
+          ex ::= * TIMETOKEN
+          ex ::= * THEY
+          ex ::= * COUNT ex
+          ex ::= * COS ex
+          ex ::= * FIRST ex
           ex ::= * ex IS LIST
           ex ::= * ex IS NOT LIST
           ex ::= * ex IS NUMBER
-          ex ::= * COUNT ex
-          ex ::= * FIRST ex
+          ex ::= * NOT ex
           ex ::= * SIN ex
-          ex ::= * COS ex
           ex ::= * ex AMPERSAND ex
-          ex ::= * ex PLUS ex
-          ex ::= * ex MINUS ex
-          ex ::= * ex TIMES ex
           ex ::= * ex DIVIDE ex
+          ex ::= * ex GT ex
+          ex ::= * ex GTEQ ex
+          ex ::= * ex NEQ ex
+          ex ::= * ex MINUS ex
+          ex ::= * ex LT ex
+          ex ::= * ex LTEQ ex
+          ex ::= * ex PLUS ex
+          ex ::= ex PLUS * ex
           ex ::= * ex POWER ex
-          ex ::= ex POWER * ex
+          ex ::= * ex TIMES ex
           ex ::= * ex WHERE ex
 
-                         COUNT shift        14     
-                         FIRST shift        13     
-                           SIN shift        12     
-                           COS shift        11     
-                           NOT shift        19     
+                         COUNT shift        24     
+                         FIRST shift        20     
+                           SIN shift        11     
+                           COS shift        22     
+                           NOT shift        12     
                     IDENTIFIER shift-reduce 13     ex ::= IDENTIFIER
-                          LPAR shift        23     
+                          LPAR shift        28     
                          LSPAR shift        1      
-                      NUMTOKEN shift-reduce 18     ex ::= NUMTOKEN
-                     TIMETOKEN shift-reduce 19     ex ::= TIMETOKEN
-                      STRTOKEN shift-reduce 20     ex ::= STRTOKEN
-                     BOOLTOKEN shift-reduce 21     ex ::= BOOLTOKEN
-                           NOW shift-reduce 22     ex ::= NOW
-                     NULLTOKEN shift-reduce 23     ex ::= NULLTOKEN
-                            ex shift        46     
+                     BOOLTOKEN shift-reduce 18     ex ::= BOOLTOKEN
+                            IT shift-reduce 19     ex ::= IT
+                           NOW shift-reduce 20     ex ::= NOW
+                      NUMTOKEN shift-reduce 21     ex ::= NUMTOKEN
+                     NULLTOKEN shift-reduce 22     ex ::= NULLTOKEN
+                      STRTOKEN shift-reduce 23     ex ::= STRTOKEN
+                     TIMETOKEN shift-reduce 24     ex ::= TIMETOKEN
+                          THEY shift-reduce 25     ex ::= THEY
+                            ex shift        47     
 
 State 17:
           ex ::= * LPAR ex RPAR
           ex ::= * IDENTIFIER
           ex ::= * LSPAR RSPAR
           ex ::= * LSPAR exlist RSPAR
-          ex ::= * NUMTOKEN
-          ex ::= * TIMETOKEN
-          ex ::= * STRTOKEN
           ex ::= * BOOLTOKEN
+          ex ::= * IT
           ex ::= * NOW
+          ex ::= * NUMTOKEN
           ex ::= * NULLTOKEN
-          ex ::= * NOT ex
+          ex ::= * STRTOKEN
+          ex ::= * TIMETOKEN
+          ex ::= * THEY
+          ex ::= * COUNT ex
+          ex ::= * COS ex
+          ex ::= * FIRST ex
           ex ::= * ex IS LIST
           ex ::= * ex IS NOT LIST
           ex ::= * ex IS NUMBER
-          ex ::= * COUNT ex
-          ex ::= * FIRST ex
+          ex ::= * NOT ex
           ex ::= * SIN ex
-          ex ::= * COS ex
           ex ::= * ex AMPERSAND ex
-          ex ::= * ex PLUS ex
-          ex ::= * ex MINUS ex
-          ex ::= * ex TIMES ex
           ex ::= * ex DIVIDE ex
-          ex ::= ex DIVIDE * ex
+          ex ::= * ex GT ex
+          ex ::= * ex GTEQ ex
+          ex ::= * ex NEQ ex
+          ex ::= * ex MINUS ex
+          ex ::= * ex LT ex
+          ex ::= * ex LTEQ ex
+          ex ::= ex LTEQ * ex
+          ex ::= * ex PLUS ex
           ex ::= * ex POWER ex
+          ex ::= * ex TIMES ex
           ex ::= * ex WHERE ex
 
-                         COUNT shift        14     
-                         FIRST shift        13     
-                           SIN shift        12     
-                           COS shift        11     
-                           NOT shift        19     
+                         COUNT shift        24     
+                         FIRST shift        20     
+                           SIN shift        11     
+                           COS shift        22     
+                           NOT shift        12     
                     IDENTIFIER shift-reduce 13     ex ::= IDENTIFIER
-                          LPAR shift        23     
+                          LPAR shift        28     
                          LSPAR shift        1      
-                      NUMTOKEN shift-reduce 18     ex ::= NUMTOKEN
-                     TIMETOKEN shift-reduce 19     ex ::= TIMETOKEN
-                      STRTOKEN shift-reduce 20     ex ::= STRTOKEN
-                     BOOLTOKEN shift-reduce 21     ex ::= BOOLTOKEN
-                           NOW shift-reduce 22     ex ::= NOW
-                     NULLTOKEN shift-reduce 23     ex ::= NULLTOKEN
-                            ex shift        47     
+                     BOOLTOKEN shift-reduce 18     ex ::= BOOLTOKEN
+                            IT shift-reduce 19     ex ::= IT
+                           NOW shift-reduce 20     ex ::= NOW
+                      NUMTOKEN shift-reduce 21     ex ::= NUMTOKEN
+                     NULLTOKEN shift-reduce 22     ex ::= NULLTOKEN
+                      STRTOKEN shift-reduce 23     ex ::= STRTOKEN
+                     TIMETOKEN shift-reduce 24     ex ::= TIMETOKEN
+                          THEY shift-reduce 25     ex ::= THEY
+                            ex shift        54     
 
 State 18:
           ex ::= * LPAR ex RPAR
           ex ::= * IDENTIFIER
           ex ::= * LSPAR RSPAR
           ex ::= * LSPAR exlist RSPAR
-          ex ::= * NUMTOKEN
-          ex ::= * TIMETOKEN
-          ex ::= * STRTOKEN
           ex ::= * BOOLTOKEN
+          ex ::= * IT
           ex ::= * NOW
+          ex ::= * NUMTOKEN
           ex ::= * NULLTOKEN
-          ex ::= * NOT ex
+          ex ::= * STRTOKEN
+          ex ::= * TIMETOKEN
+          ex ::= * THEY
+          ex ::= * COUNT ex
+          ex ::= * COS ex
+          ex ::= * FIRST ex
           ex ::= * ex IS LIST
           ex ::= * ex IS NOT LIST
           ex ::= * ex IS NUMBER
-          ex ::= * COUNT ex
-          ex ::= * FIRST ex
+          ex ::= * NOT ex
           ex ::= * SIN ex
-          ex ::= * COS ex
           ex ::= * ex AMPERSAND ex
-          ex ::= * ex PLUS ex
-          ex ::= * ex MINUS ex
-          ex ::= * ex TIMES ex
-          ex ::= ex TIMES * ex
           ex ::= * ex DIVIDE ex
+          ex ::= * ex GT ex
+          ex ::= * ex GTEQ ex
+          ex ::= * ex NEQ ex
+          ex ::= * ex MINUS ex
+          ex ::= * ex LT ex
+          ex ::= ex LT * ex
+          ex ::= * ex LTEQ ex
+          ex ::= * ex PLUS ex
           ex ::= * ex POWER ex
+          ex ::= * ex TIMES ex
           ex ::= * ex WHERE ex
 
-                         COUNT shift        14     
-                         FIRST shift        13     
-                           SIN shift        12     
-                           COS shift        11     
-                           NOT shift        19     
+                         COUNT shift        24     
+                         FIRST shift        20     
+                           SIN shift        11     
+                           COS shift        22     
+                           NOT shift        12     
                     IDENTIFIER shift-reduce 13     ex ::= IDENTIFIER
-                          LPAR shift        23     
+                          LPAR shift        28     
                          LSPAR shift        1      
-                      NUMTOKEN shift-reduce 18     ex ::= NUMTOKEN
-                     TIMETOKEN shift-reduce 19     ex ::= TIMETOKEN
-                      STRTOKEN shift-reduce 20     ex ::= STRTOKEN
-                     BOOLTOKEN shift-reduce 21     ex ::= BOOLTOKEN
-                           NOW shift-reduce 22     ex ::= NOW
-                     NULLTOKEN shift-reduce 23     ex ::= NULLTOKEN
-                            ex shift        48     
+                     BOOLTOKEN shift-reduce 18     ex ::= BOOLTOKEN
+                            IT shift-reduce 19     ex ::= IT
+                           NOW shift-reduce 20     ex ::= NOW
+                      NUMTOKEN shift-reduce 21     ex ::= NUMTOKEN
+                     NULLTOKEN shift-reduce 22     ex ::= NULLTOKEN
+                      STRTOKEN shift-reduce 23     ex ::= STRTOKEN
+                     TIMETOKEN shift-reduce 24     ex ::= TIMETOKEN
+                          THEY shift-reduce 25     ex ::= THEY
+                            ex shift        55     
 
 State 19:
           ex ::= * LPAR ex RPAR
           ex ::= * IDENTIFIER
           ex ::= * LSPAR RSPAR
           ex ::= * LSPAR exlist RSPAR
-          ex ::= * NUMTOKEN
-          ex ::= * TIMETOKEN
-          ex ::= * STRTOKEN
           ex ::= * BOOLTOKEN
+          ex ::= * IT
           ex ::= * NOW
+          ex ::= * NUMTOKEN
           ex ::= * NULLTOKEN
-          ex ::= * NOT ex
-          ex ::= NOT * ex
+          ex ::= * STRTOKEN
+          ex ::= * TIMETOKEN
+          ex ::= * THEY
+          ex ::= * COUNT ex
+          ex ::= * COS ex
+          ex ::= * FIRST ex
           ex ::= * ex IS LIST
           ex ::= * ex IS NOT LIST
           ex ::= * ex IS NUMBER
-          ex ::= * COUNT ex
-          ex ::= * FIRST ex
+          ex ::= * NOT ex
           ex ::= * SIN ex
-          ex ::= * COS ex
           ex ::= * ex AMPERSAND ex
-          ex ::= * ex PLUS ex
-          ex ::= * ex MINUS ex
-          ex ::= * ex TIMES ex
           ex ::= * ex DIVIDE ex
+          ex ::= * ex GT ex
+          ex ::= * ex GTEQ ex
+          ex ::= * ex NEQ ex
+          ex ::= * ex MINUS ex
+          ex ::= ex MINUS * ex
+          ex ::= * ex LT ex
+          ex ::= * ex LTEQ ex
+          ex ::= * ex PLUS ex
           ex ::= * ex POWER ex
+          ex ::= * ex TIMES ex
           ex ::= * ex WHERE ex
 
-                         COUNT shift        14     
-                         FIRST shift        13     
-                           SIN shift        12     
-                           COS shift        11     
-                           NOT shift        19     
+                         COUNT shift        24     
+                         FIRST shift        20     
+                           SIN shift        11     
+                           COS shift        22     
+                           NOT shift        12     
                     IDENTIFIER shift-reduce 13     ex ::= IDENTIFIER
-                          LPAR shift        23     
+                          LPAR shift        28     
                          LSPAR shift        1      
-                      NUMTOKEN shift-reduce 18     ex ::= NUMTOKEN
-                     TIMETOKEN shift-reduce 19     ex ::= TIMETOKEN
-                      STRTOKEN shift-reduce 20     ex ::= STRTOKEN
-                     BOOLTOKEN shift-reduce 21     ex ::= BOOLTOKEN
-                           NOW shift-reduce 22     ex ::= NOW
-                     NULLTOKEN shift-reduce 23     ex ::= NULLTOKEN
-                            ex shift-reduce 24     ex ::= NOT ex
+                     BOOLTOKEN shift-reduce 18     ex ::= BOOLTOKEN
+                            IT shift-reduce 19     ex ::= IT
+                           NOW shift-reduce 20     ex ::= NOW
+                      NUMTOKEN shift-reduce 21     ex ::= NUMTOKEN
+                     NULLTOKEN shift-reduce 22     ex ::= NULLTOKEN
+                      STRTOKEN shift-reduce 23     ex ::= STRTOKEN
+                     TIMETOKEN shift-reduce 24     ex ::= TIMETOKEN
+                          THEY shift-reduce 25     ex ::= THEY
+                            ex shift        48     
 
 State 20:
           ex ::= * LPAR ex RPAR
           ex ::= * IDENTIFIER
           ex ::= * LSPAR RSPAR
           ex ::= * LSPAR exlist RSPAR
-          ex ::= * NUMTOKEN
-          ex ::= * TIMETOKEN
-          ex ::= * STRTOKEN
           ex ::= * BOOLTOKEN
+          ex ::= * IT
           ex ::= * NOW
+          ex ::= * NUMTOKEN
           ex ::= * NULLTOKEN
-          ex ::= * NOT ex
+          ex ::= * STRTOKEN
+          ex ::= * TIMETOKEN
+          ex ::= * THEY
+          ex ::= * COUNT ex
+          ex ::= * COS ex
+          ex ::= * FIRST ex
+          ex ::= FIRST * ex
           ex ::= * ex IS LIST
           ex ::= * ex IS NOT LIST
           ex ::= * ex IS NUMBER
-          ex ::= * COUNT ex
-          ex ::= * FIRST ex
+          ex ::= * NOT ex
           ex ::= * SIN ex
-          ex ::= * COS ex
           ex ::= * ex AMPERSAND ex
-          ex ::= * ex PLUS ex
-          ex ::= * ex MINUS ex
-          ex ::= ex MINUS * ex
-          ex ::= * ex TIMES ex
           ex ::= * ex DIVIDE ex
+          ex ::= * ex GT ex
+          ex ::= * ex GTEQ ex
+          ex ::= * ex NEQ ex
+          ex ::= * ex MINUS ex
+          ex ::= * ex LT ex
+          ex ::= * ex LTEQ ex
+          ex ::= * ex PLUS ex
           ex ::= * ex POWER ex
+          ex ::= * ex TIMES ex
           ex ::= * ex WHERE ex
 
-                         COUNT shift        14     
-                         FIRST shift        13     
-                           SIN shift        12     
-                           COS shift        11     
-                           NOT shift        19     
+                         COUNT shift        24     
+                         FIRST shift        20     
+                           SIN shift        11     
+                           COS shift        22     
+                           NOT shift        12     
                     IDENTIFIER shift-reduce 13     ex ::= IDENTIFIER
-                          LPAR shift        23     
+                          LPAR shift        28     
                          LSPAR shift        1      
-                      NUMTOKEN shift-reduce 18     ex ::= NUMTOKEN
-                     TIMETOKEN shift-reduce 19     ex ::= TIMETOKEN
-                      STRTOKEN shift-reduce 20     ex ::= STRTOKEN
-                     BOOLTOKEN shift-reduce 21     ex ::= BOOLTOKEN
-                           NOW shift-reduce 22     ex ::= NOW
-                     NULLTOKEN shift-reduce 23     ex ::= NULLTOKEN
+                     BOOLTOKEN shift-reduce 18     ex ::= BOOLTOKEN
+                            IT shift-reduce 19     ex ::= IT
+                           NOW shift-reduce 20     ex ::= NOW
+                      NUMTOKEN shift-reduce 21     ex ::= NUMTOKEN
+                     NULLTOKEN shift-reduce 22     ex ::= NULLTOKEN
+                      STRTOKEN shift-reduce 23     ex ::= STRTOKEN
+                     TIMETOKEN shift-reduce 24     ex ::= TIMETOKEN
+                          THEY shift-reduce 25     ex ::= THEY
                             ex shift        43     
 
 State 21:
@@ -907,178 +1087,479 @@ State 21:
           ex ::= * IDENTIFIER
           ex ::= * LSPAR RSPAR
           ex ::= * LSPAR exlist RSPAR
-          exlist ::= exlist COMMA * ex
-          ex ::= * NUMTOKEN
-          ex ::= * TIMETOKEN
-          ex ::= * STRTOKEN
           ex ::= * BOOLTOKEN
+          ex ::= * IT
           ex ::= * NOW
+          ex ::= * NUMTOKEN
           ex ::= * NULLTOKEN
-          ex ::= * NOT ex
+          ex ::= * STRTOKEN
+          ex ::= * TIMETOKEN
+          ex ::= * THEY
+          ex ::= * COUNT ex
+          ex ::= * COS ex
+          ex ::= * FIRST ex
           ex ::= * ex IS LIST
           ex ::= * ex IS NOT LIST
           ex ::= * ex IS NUMBER
-          ex ::= * COUNT ex
-          ex ::= * FIRST ex
+          ex ::= * NOT ex
           ex ::= * SIN ex
-          ex ::= * COS ex
           ex ::= * ex AMPERSAND ex
-          ex ::= * ex PLUS ex
-          ex ::= * ex MINUS ex
-          ex ::= * ex TIMES ex
           ex ::= * ex DIVIDE ex
+          ex ::= * ex GT ex
+          ex ::= * ex GTEQ ex
+          ex ::= * ex NEQ ex
+          ex ::= ex NEQ * ex
+          ex ::= * ex MINUS ex
+          ex ::= * ex LT ex
+          ex ::= * ex LTEQ ex
+          ex ::= * ex PLUS ex
           ex ::= * ex POWER ex
+          ex ::= * ex TIMES ex
           ex ::= * ex WHERE ex
 
-                         COUNT shift        14     
-                         FIRST shift        13     
-                           SIN shift        12     
-                           COS shift        11     
-                           NOT shift        19     
+                         COUNT shift        24     
+                         FIRST shift        20     
+                           SIN shift        11     
+                           COS shift        22     
+                           NOT shift        12     
                     IDENTIFIER shift-reduce 13     ex ::= IDENTIFIER
-                          LPAR shift        23     
+                          LPAR shift        28     
                          LSPAR shift        1      
-                      NUMTOKEN shift-reduce 18     ex ::= NUMTOKEN
-                     TIMETOKEN shift-reduce 19     ex ::= TIMETOKEN
-                      STRTOKEN shift-reduce 20     ex ::= STRTOKEN
-                     BOOLTOKEN shift-reduce 21     ex ::= BOOLTOKEN
-                           NOW shift-reduce 22     ex ::= NOW
-                     NULLTOKEN shift-reduce 23     ex ::= NULLTOKEN
-                            ex shift        40     
+                     BOOLTOKEN shift-reduce 18     ex ::= BOOLTOKEN
+                            IT shift-reduce 19     ex ::= IT
+                           NOW shift-reduce 20     ex ::= NOW
+                      NUMTOKEN shift-reduce 21     ex ::= NUMTOKEN
+                     NULLTOKEN shift-reduce 22     ex ::= NULLTOKEN
+                      STRTOKEN shift-reduce 23     ex ::= STRTOKEN
+                     TIMETOKEN shift-reduce 24     ex ::= TIMETOKEN
+                          THEY shift-reduce 25     ex ::= THEY
+                            ex shift        52     
 
 State 22:
           ex ::= * LPAR ex RPAR
           ex ::= * IDENTIFIER
           ex ::= * LSPAR RSPAR
           ex ::= * LSPAR exlist RSPAR
-          ex ::= * NUMTOKEN
-          ex ::= * TIMETOKEN
-          ex ::= * STRTOKEN
           ex ::= * BOOLTOKEN
+          ex ::= * IT
           ex ::= * NOW
+          ex ::= * NUMTOKEN
           ex ::= * NULLTOKEN
-          ex ::= * NOT ex
+          ex ::= * STRTOKEN
+          ex ::= * TIMETOKEN
+          ex ::= * THEY
+          ex ::= * COUNT ex
+          ex ::= * COS ex
+          ex ::= COS * ex
+          ex ::= * FIRST ex
           ex ::= * ex IS LIST
           ex ::= * ex IS NOT LIST
           ex ::= * ex IS NUMBER
-          ex ::= * COUNT ex
-          ex ::= * FIRST ex
+          ex ::= * NOT ex
           ex ::= * SIN ex
-          ex ::= * COS ex
           ex ::= * ex AMPERSAND ex
-          ex ::= * ex PLUS ex
-          ex ::= ex PLUS * ex
-          ex ::= * ex MINUS ex
-          ex ::= * ex TIMES ex
           ex ::= * ex DIVIDE ex
+          ex ::= * ex GT ex
+          ex ::= * ex GTEQ ex
+          ex ::= * ex NEQ ex
+          ex ::= * ex MINUS ex
+          ex ::= * ex LT ex
+          ex ::= * ex LTEQ ex
+          ex ::= * ex PLUS ex
           ex ::= * ex POWER ex
+          ex ::= * ex TIMES ex
           ex ::= * ex WHERE ex
 
-                         COUNT shift        14     
-                         FIRST shift        13     
-                           SIN shift        12     
-                           COS shift        11     
-                           NOT shift        19     
+                         COUNT shift        24     
+                         FIRST shift        20     
+                           SIN shift        11     
+                           COS shift        22     
+                           NOT shift        12     
                     IDENTIFIER shift-reduce 13     ex ::= IDENTIFIER
-                          LPAR shift        23     
+                          LPAR shift        28     
                          LSPAR shift        1      
-                      NUMTOKEN shift-reduce 18     ex ::= NUMTOKEN
-                     TIMETOKEN shift-reduce 19     ex ::= TIMETOKEN
-                      STRTOKEN shift-reduce 20     ex ::= STRTOKEN
-                     BOOLTOKEN shift-reduce 21     ex ::= BOOLTOKEN
-                           NOW shift-reduce 22     ex ::= NOW
-                     NULLTOKEN shift-reduce 23     ex ::= NULLTOKEN
-                            ex shift        42     
+                     BOOLTOKEN shift-reduce 18     ex ::= BOOLTOKEN
+                            IT shift-reduce 19     ex ::= IT
+                           NOW shift-reduce 20     ex ::= NOW
+                      NUMTOKEN shift-reduce 21     ex ::= NUMTOKEN
+                     NULLTOKEN shift-reduce 22     ex ::= NULLTOKEN
+                      STRTOKEN shift-reduce 23     ex ::= STRTOKEN
+                     TIMETOKEN shift-reduce 24     ex ::= TIMETOKEN
+                          THEY shift-reduce 25     ex ::= THEY
+                            ex shift        66     
 
 State 23:
           ex ::= * LPAR ex RPAR
-          ex ::= LPAR * ex RPAR
           ex ::= * IDENTIFIER
           ex ::= * LSPAR RSPAR
           ex ::= * LSPAR exlist RSPAR
-          ex ::= * NUMTOKEN
-          ex ::= * TIMETOKEN
-          ex ::= * STRTOKEN
           ex ::= * BOOLTOKEN
+          ex ::= * IT
           ex ::= * NOW
+          ex ::= * NUMTOKEN
           ex ::= * NULLTOKEN
-          ex ::= * NOT ex
+          ex ::= * STRTOKEN
+          ex ::= * TIMETOKEN
+          ex ::= * THEY
+          ex ::= * COUNT ex
+          ex ::= * COS ex
+          ex ::= * FIRST ex
           ex ::= * ex IS LIST
           ex ::= * ex IS NOT LIST
           ex ::= * ex IS NUMBER
-          ex ::= * COUNT ex
-          ex ::= * FIRST ex
+          ex ::= * NOT ex
           ex ::= * SIN ex
-          ex ::= * COS ex
           ex ::= * ex AMPERSAND ex
-          ex ::= * ex PLUS ex
-          ex ::= * ex MINUS ex
-          ex ::= * ex TIMES ex
           ex ::= * ex DIVIDE ex
+          ex ::= * ex GT ex
+          ex ::= * ex GTEQ ex
+          ex ::= ex GTEQ * ex
+          ex ::= * ex NEQ ex
+          ex ::= * ex MINUS ex
+          ex ::= * ex LT ex
+          ex ::= * ex LTEQ ex
+          ex ::= * ex PLUS ex
           ex ::= * ex POWER ex
+          ex ::= * ex TIMES ex
           ex ::= * ex WHERE ex
 
-                         COUNT shift        14     
-                         FIRST shift        13     
-                           SIN shift        12     
-                           COS shift        11     
-                           NOT shift        19     
+                         COUNT shift        24     
+                         FIRST shift        20     
+                           SIN shift        11     
+                           COS shift        22     
+                           NOT shift        12     
                     IDENTIFIER shift-reduce 13     ex ::= IDENTIFIER
-                          LPAR shift        23     
+                          LPAR shift        28     
                          LSPAR shift        1      
-                      NUMTOKEN shift-reduce 18     ex ::= NUMTOKEN
-                     TIMETOKEN shift-reduce 19     ex ::= TIMETOKEN
-                      STRTOKEN shift-reduce 20     ex ::= STRTOKEN
-                     BOOLTOKEN shift-reduce 21     ex ::= BOOLTOKEN
-                           NOW shift-reduce 22     ex ::= NOW
-                     NULLTOKEN shift-reduce 23     ex ::= NULLTOKEN
-                            ex shift        34     
+                     BOOLTOKEN shift-reduce 18     ex ::= BOOLTOKEN
+                            IT shift-reduce 19     ex ::= IT
+                           NOW shift-reduce 20     ex ::= NOW
+                      NUMTOKEN shift-reduce 21     ex ::= NUMTOKEN
+                     NULLTOKEN shift-reduce 22     ex ::= NULLTOKEN
+                      STRTOKEN shift-reduce 23     ex ::= STRTOKEN
+                     TIMETOKEN shift-reduce 24     ex ::= TIMETOKEN
+                          THEY shift-reduce 25     ex ::= THEY
+                            ex shift        51     
 
 State 24:
           ex ::= * LPAR ex RPAR
           ex ::= * IDENTIFIER
           ex ::= * LSPAR RSPAR
           ex ::= * LSPAR exlist RSPAR
-          ex ::= * NUMTOKEN
-          ex ::= * TIMETOKEN
-          ex ::= * STRTOKEN
           ex ::= * BOOLTOKEN
+          ex ::= * IT
           ex ::= * NOW
+          ex ::= * NUMTOKEN
           ex ::= * NULLTOKEN
-          ex ::= * NOT ex
+          ex ::= * STRTOKEN
+          ex ::= * TIMETOKEN
+          ex ::= * THEY
+          ex ::= * COUNT ex
+          ex ::= COUNT * ex
+          ex ::= * COS ex
+          ex ::= * FIRST ex
           ex ::= * ex IS LIST
           ex ::= * ex IS NOT LIST
           ex ::= * ex IS NUMBER
-          ex ::= * COUNT ex
-          ex ::= * FIRST ex
+          ex ::= * NOT ex
           ex ::= * SIN ex
-          ex ::= * COS ex
           ex ::= * ex AMPERSAND ex
-          ex ::= ex AMPERSAND * ex
-          ex ::= * ex PLUS ex
-          ex ::= * ex MINUS ex
-          ex ::= * ex TIMES ex
           ex ::= * ex DIVIDE ex
+          ex ::= * ex GT ex
+          ex ::= * ex GTEQ ex
+          ex ::= * ex NEQ ex
+          ex ::= * ex MINUS ex
+          ex ::= * ex LT ex
+          ex ::= * ex LTEQ ex
+          ex ::= * ex PLUS ex
           ex ::= * ex POWER ex
+          ex ::= * ex TIMES ex
           ex ::= * ex WHERE ex
 
-                         COUNT shift        14     
-                         FIRST shift        13     
-                           SIN shift        12     
-                           COS shift        11     
-                           NOT shift        19     
+                         COUNT shift        24     
+                         FIRST shift        20     
+                           SIN shift        11     
+                           COS shift        22     
+                           NOT shift        12     
                     IDENTIFIER shift-reduce 13     ex ::= IDENTIFIER
-                          LPAR shift        23     
+                          LPAR shift        28     
                          LSPAR shift        1      
-                      NUMTOKEN shift-reduce 18     ex ::= NUMTOKEN
-                     TIMETOKEN shift-reduce 19     ex ::= TIMETOKEN
-                      STRTOKEN shift-reduce 20     ex ::= STRTOKEN
-                     BOOLTOKEN shift-reduce 21     ex ::= BOOLTOKEN
-                           NOW shift-reduce 22     ex ::= NOW
-                     NULLTOKEN shift-reduce 23     ex ::= NULLTOKEN
-                            ex shift        41     
+                     BOOLTOKEN shift-reduce 18     ex ::= BOOLTOKEN
+                            IT shift-reduce 19     ex ::= IT
+                           NOW shift-reduce 20     ex ::= NOW
+                      NUMTOKEN shift-reduce 21     ex ::= NUMTOKEN
+                     NULLTOKEN shift-reduce 22     ex ::= NULLTOKEN
+                      STRTOKEN shift-reduce 23     ex ::= STRTOKEN
+                     TIMETOKEN shift-reduce 24     ex ::= TIMETOKEN
+                          THEY shift-reduce 25     ex ::= THEY
+                            ex shift        44     
 
 State 25:
+          ex ::= * LPAR ex RPAR
+          ex ::= * IDENTIFIER
+          ex ::= * LSPAR RSPAR
+          ex ::= * LSPAR exlist RSPAR
+          ex ::= * BOOLTOKEN
+          ex ::= * IT
+          ex ::= * NOW
+          ex ::= * NUMTOKEN
+          ex ::= * NULLTOKEN
+          ex ::= * STRTOKEN
+          ex ::= * TIMETOKEN
+          ex ::= * THEY
+          ex ::= * COUNT ex
+          ex ::= * COS ex
+          ex ::= * FIRST ex
+          ex ::= * ex IS LIST
+          ex ::= * ex IS NOT LIST
+          ex ::= * ex IS NUMBER
+          ex ::= * NOT ex
+          ex ::= * SIN ex
+          ex ::= * ex AMPERSAND ex
+          ex ::= * ex DIVIDE ex
+          ex ::= * ex GT ex
+          ex ::= ex GT * ex
+          ex ::= * ex GTEQ ex
+          ex ::= * ex NEQ ex
+          ex ::= * ex MINUS ex
+          ex ::= * ex LT ex
+          ex ::= * ex LTEQ ex
+          ex ::= * ex PLUS ex
+          ex ::= * ex POWER ex
+          ex ::= * ex TIMES ex
+          ex ::= * ex WHERE ex
+
+                         COUNT shift        24     
+                         FIRST shift        20     
+                           SIN shift        11     
+                           COS shift        22     
+                           NOT shift        12     
+                    IDENTIFIER shift-reduce 13     ex ::= IDENTIFIER
+                          LPAR shift        28     
+                         LSPAR shift        1      
+                     BOOLTOKEN shift-reduce 18     ex ::= BOOLTOKEN
+                            IT shift-reduce 19     ex ::= IT
+                           NOW shift-reduce 20     ex ::= NOW
+                      NUMTOKEN shift-reduce 21     ex ::= NUMTOKEN
+                     NULLTOKEN shift-reduce 22     ex ::= NULLTOKEN
+                      STRTOKEN shift-reduce 23     ex ::= STRTOKEN
+                     TIMETOKEN shift-reduce 24     ex ::= TIMETOKEN
+                          THEY shift-reduce 25     ex ::= THEY
+                            ex shift        50     
+
+State 26:
+          ex ::= * LPAR ex RPAR
+          ex ::= * IDENTIFIER
+          ex ::= * LSPAR RSPAR
+          ex ::= * LSPAR exlist RSPAR
+          exlist ::= exlist COMMA * ex
+          ex ::= * BOOLTOKEN
+          ex ::= * IT
+          ex ::= * NOW
+          ex ::= * NUMTOKEN
+          ex ::= * NULLTOKEN
+          ex ::= * STRTOKEN
+          ex ::= * TIMETOKEN
+          ex ::= * THEY
+          ex ::= * COUNT ex
+          ex ::= * COS ex
+          ex ::= * FIRST ex
+          ex ::= * ex IS LIST
+          ex ::= * ex IS NOT LIST
+          ex ::= * ex IS NUMBER
+          ex ::= * NOT ex
+          ex ::= * SIN ex
+          ex ::= * ex AMPERSAND ex
+          ex ::= * ex DIVIDE ex
+          ex ::= * ex GT ex
+          ex ::= * ex GTEQ ex
+          ex ::= * ex NEQ ex
+          ex ::= * ex MINUS ex
+          ex ::= * ex LT ex
+          ex ::= * ex LTEQ ex
+          ex ::= * ex PLUS ex
+          ex ::= * ex POWER ex
+          ex ::= * ex TIMES ex
+          ex ::= * ex WHERE ex
+
+                         COUNT shift        24     
+                         FIRST shift        20     
+                           SIN shift        11     
+                           COS shift        22     
+                           NOT shift        12     
+                    IDENTIFIER shift-reduce 13     ex ::= IDENTIFIER
+                          LPAR shift        28     
+                         LSPAR shift        1      
+                     BOOLTOKEN shift-reduce 18     ex ::= BOOLTOKEN
+                            IT shift-reduce 19     ex ::= IT
+                           NOW shift-reduce 20     ex ::= NOW
+                      NUMTOKEN shift-reduce 21     ex ::= NUMTOKEN
+                     NULLTOKEN shift-reduce 22     ex ::= NULLTOKEN
+                      STRTOKEN shift-reduce 23     ex ::= STRTOKEN
+                     TIMETOKEN shift-reduce 24     ex ::= TIMETOKEN
+                          THEY shift-reduce 25     ex ::= THEY
+                            ex shift        45     
+
+State 27:
+          ex ::= * LPAR ex RPAR
+          ex ::= * IDENTIFIER
+          ex ::= * LSPAR RSPAR
+          ex ::= * LSPAR exlist RSPAR
+          ex ::= * BOOLTOKEN
+          ex ::= * IT
+          ex ::= * NOW
+          ex ::= * NUMTOKEN
+          ex ::= * NULLTOKEN
+          ex ::= * STRTOKEN
+          ex ::= * TIMETOKEN
+          ex ::= * THEY
+          ex ::= * COUNT ex
+          ex ::= * COS ex
+          ex ::= * FIRST ex
+          ex ::= * ex IS LIST
+          ex ::= * ex IS NOT LIST
+          ex ::= * ex IS NUMBER
+          ex ::= * NOT ex
+          ex ::= * SIN ex
+          ex ::= * ex AMPERSAND ex
+          ex ::= * ex DIVIDE ex
+          ex ::= ex DIVIDE * ex
+          ex ::= * ex GT ex
+          ex ::= * ex GTEQ ex
+          ex ::= * ex NEQ ex
+          ex ::= * ex MINUS ex
+          ex ::= * ex LT ex
+          ex ::= * ex LTEQ ex
+          ex ::= * ex PLUS ex
+          ex ::= * ex POWER ex
+          ex ::= * ex TIMES ex
+          ex ::= * ex WHERE ex
+
+                         COUNT shift        24     
+                         FIRST shift        20     
+                           SIN shift        11     
+                           COS shift        22     
+                           NOT shift        12     
+                    IDENTIFIER shift-reduce 13     ex ::= IDENTIFIER
+                          LPAR shift        28     
+                         LSPAR shift        1      
+                     BOOLTOKEN shift-reduce 18     ex ::= BOOLTOKEN
+                            IT shift-reduce 19     ex ::= IT
+                           NOW shift-reduce 20     ex ::= NOW
+                      NUMTOKEN shift-reduce 21     ex ::= NUMTOKEN
+                     NULLTOKEN shift-reduce 22     ex ::= NULLTOKEN
+                      STRTOKEN shift-reduce 23     ex ::= STRTOKEN
+                     TIMETOKEN shift-reduce 24     ex ::= TIMETOKEN
+                          THEY shift-reduce 25     ex ::= THEY
+                            ex shift        49     
+
+State 28:
+          ex ::= * LPAR ex RPAR
+          ex ::= LPAR * ex RPAR
+          ex ::= * IDENTIFIER
+          ex ::= * LSPAR RSPAR
+          ex ::= * LSPAR exlist RSPAR
+          ex ::= * BOOLTOKEN
+          ex ::= * IT
+          ex ::= * NOW
+          ex ::= * NUMTOKEN
+          ex ::= * NULLTOKEN
+          ex ::= * STRTOKEN
+          ex ::= * TIMETOKEN
+          ex ::= * THEY
+          ex ::= * COUNT ex
+          ex ::= * COS ex
+          ex ::= * FIRST ex
+          ex ::= * ex IS LIST
+          ex ::= * ex IS NOT LIST
+          ex ::= * ex IS NUMBER
+          ex ::= * NOT ex
+          ex ::= * SIN ex
+          ex ::= * ex AMPERSAND ex
+          ex ::= * ex DIVIDE ex
+          ex ::= * ex GT ex
+          ex ::= * ex GTEQ ex
+          ex ::= * ex NEQ ex
+          ex ::= * ex MINUS ex
+          ex ::= * ex LT ex
+          ex ::= * ex LTEQ ex
+          ex ::= * ex PLUS ex
+          ex ::= * ex POWER ex
+          ex ::= * ex TIMES ex
+          ex ::= * ex WHERE ex
+
+                         COUNT shift        24     
+                         FIRST shift        20     
+                           SIN shift        11     
+                           COS shift        22     
+                           NOT shift        12     
+                    IDENTIFIER shift-reduce 13     ex ::= IDENTIFIER
+                          LPAR shift        28     
+                         LSPAR shift        1      
+                     BOOLTOKEN shift-reduce 18     ex ::= BOOLTOKEN
+                            IT shift-reduce 19     ex ::= IT
+                           NOW shift-reduce 20     ex ::= NOW
+                      NUMTOKEN shift-reduce 21     ex ::= NUMTOKEN
+                     NULLTOKEN shift-reduce 22     ex ::= NULLTOKEN
+                      STRTOKEN shift-reduce 23     ex ::= STRTOKEN
+                     TIMETOKEN shift-reduce 24     ex ::= TIMETOKEN
+                          THEY shift-reduce 25     ex ::= THEY
+                            ex shift        39     
+
+State 29:
+          ex ::= * LPAR ex RPAR
+          ex ::= * IDENTIFIER
+          ex ::= * LSPAR RSPAR
+          ex ::= * LSPAR exlist RSPAR
+          ex ::= * BOOLTOKEN
+          ex ::= * IT
+          ex ::= * NOW
+          ex ::= * NUMTOKEN
+          ex ::= * NULLTOKEN
+          ex ::= * STRTOKEN
+          ex ::= * TIMETOKEN
+          ex ::= * THEY
+          ex ::= * COUNT ex
+          ex ::= * COS ex
+          ex ::= * FIRST ex
+          ex ::= * ex IS LIST
+          ex ::= * ex IS NOT LIST
+          ex ::= * ex IS NUMBER
+          ex ::= * NOT ex
+          ex ::= * SIN ex
+          ex ::= * ex AMPERSAND ex
+          ex ::= ex AMPERSAND * ex
+          ex ::= * ex DIVIDE ex
+          ex ::= * ex GT ex
+          ex ::= * ex GTEQ ex
+          ex ::= * ex NEQ ex
+          ex ::= * ex MINUS ex
+          ex ::= * ex LT ex
+          ex ::= * ex LTEQ ex
+          ex ::= * ex PLUS ex
+          ex ::= * ex POWER ex
+          ex ::= * ex TIMES ex
+          ex ::= * ex WHERE ex
+
+                         COUNT shift        24     
+                         FIRST shift        20     
+                           SIN shift        11     
+                           COS shift        22     
+                           NOT shift        12     
+                    IDENTIFIER shift-reduce 13     ex ::= IDENTIFIER
+                          LPAR shift        28     
+                         LSPAR shift        1      
+                     BOOLTOKEN shift-reduce 18     ex ::= BOOLTOKEN
+                            IT shift-reduce 19     ex ::= IT
+                           NOW shift-reduce 20     ex ::= NOW
+                      NUMTOKEN shift-reduce 21     ex ::= NUMTOKEN
+                     NULLTOKEN shift-reduce 22     ex ::= NULLTOKEN
+                      STRTOKEN shift-reduce 23     ex ::= STRTOKEN
+                     TIMETOKEN shift-reduce 24     ex ::= TIMETOKEN
+                          THEY shift-reduce 25     ex ::= THEY
+                            ex shift        46     
+
+State 30:
       (0) code ::= statementblock *
           statementblock ::= statementblock * statement
           statement ::= * WRITE ex SEMICOLON
@@ -1093,559 +1574,914 @@ State 25:
 
                              $ reduce       0      code ::= statementblock
                          WRITE shift        5      
-                          TIME shift        45     
+                          TIME shift        57     
                          TRACE shift        3      
-                    IDENTIFIER shift        53     
+                    IDENTIFIER shift        63     
                      statement shift-reduce 2      statementblock ::= statementblock statement
 
-State 26:
+State 31:
           statement ::= TIME IDENTIFIER ASSIGN ex * SEMICOLON
           ex ::= ex * IS LIST
           ex ::= ex * IS NOT LIST
           ex ::= ex * IS NUMBER
           ex ::= ex * AMPERSAND ex
-          ex ::= ex * PLUS ex
-          ex ::= ex * MINUS ex
-          ex ::= ex * TIMES ex
           ex ::= ex * DIVIDE ex
+          ex ::= ex * GT ex
+          ex ::= ex * GTEQ ex
+          ex ::= ex * NEQ ex
+          ex ::= ex * MINUS ex
+          ex ::= ex * LT ex
+          ex ::= ex * LTEQ ex
+          ex ::= ex * PLUS ex
           ex ::= ex * POWER ex
+          ex ::= ex * TIMES ex
           ex ::= ex * WHERE ex
 
-                         WHERE shift        15     
-                          PLUS shift        22     
-                         MINUS shift        20     
-                     AMPERSAND shift        24     
-                         TIMES shift        18     
-                        DIVIDE shift        17     
-                         POWER shift        16     
-                            IS shift        44     
+                         WHERE shift        13     
+                          PLUS shift        16     
+                         MINUS shift        19     
+                     AMPERSAND shift        29     
+                         TIMES shift        14     
+                        DIVIDE shift        27     
+                            GT shift        25     
+                          GTEQ shift        23     
+                            LT shift        18     
+                          LTEQ shift        17     
+                           NEQ shift        21     
+                         POWER shift        15     
+                            IS shift        56     
                      SEMICOLON shift-reduce 11     statement ::= TIME IDENTIFIER ASSIGN ex SEMICOLON
 
-State 27:
+State 32:
           statement ::= TIME OF IDENTIFIER ASSIGN ex * SEMICOLON
           ex ::= ex * IS LIST
           ex ::= ex * IS NOT LIST
           ex ::= ex * IS NUMBER
           ex ::= ex * AMPERSAND ex
-          ex ::= ex * PLUS ex
-          ex ::= ex * MINUS ex
-          ex ::= ex * TIMES ex
           ex ::= ex * DIVIDE ex
+          ex ::= ex * GT ex
+          ex ::= ex * GTEQ ex
+          ex ::= ex * NEQ ex
+          ex ::= ex * MINUS ex
+          ex ::= ex * LT ex
+          ex ::= ex * LTEQ ex
+          ex ::= ex * PLUS ex
           ex ::= ex * POWER ex
+          ex ::= ex * TIMES ex
           ex ::= ex * WHERE ex
 
-                         WHERE shift        15     
-                          PLUS shift        22     
-                         MINUS shift        20     
-                     AMPERSAND shift        24     
-                         TIMES shift        18     
-                        DIVIDE shift        17     
-                         POWER shift        16     
-                            IS shift        44     
+                         WHERE shift        13     
+                          PLUS shift        16     
+                         MINUS shift        19     
+                     AMPERSAND shift        29     
+                         TIMES shift        14     
+                        DIVIDE shift        27     
+                            GT shift        25     
+                          GTEQ shift        23     
+                            LT shift        18     
+                          LTEQ shift        17     
+                           NEQ shift        21     
+                         POWER shift        15     
+                            IS shift        56     
                      SEMICOLON shift-reduce 10     statement ::= TIME OF IDENTIFIER ASSIGN ex SEMICOLON
 
-State 28:
+State 33:
           statement ::= IDENTIFIER ASSIGN ex * SEMICOLON
           ex ::= ex * IS LIST
           ex ::= ex * IS NOT LIST
           ex ::= ex * IS NUMBER
           ex ::= ex * AMPERSAND ex
-          ex ::= ex * PLUS ex
-          ex ::= ex * MINUS ex
-          ex ::= ex * TIMES ex
           ex ::= ex * DIVIDE ex
+          ex ::= ex * GT ex
+          ex ::= ex * GTEQ ex
+          ex ::= ex * NEQ ex
+          ex ::= ex * MINUS ex
+          ex ::= ex * LT ex
+          ex ::= ex * LTEQ ex
+          ex ::= ex * PLUS ex
           ex ::= ex * POWER ex
+          ex ::= ex * TIMES ex
           ex ::= ex * WHERE ex
 
-                         WHERE shift        15     
-                          PLUS shift        22     
-                         MINUS shift        20     
-                     AMPERSAND shift        24     
-                         TIMES shift        18     
-                        DIVIDE shift        17     
-                         POWER shift        16     
-                            IS shift        44     
+                         WHERE shift        13     
+                          PLUS shift        16     
+                         MINUS shift        19     
+                     AMPERSAND shift        29     
+                         TIMES shift        14     
+                        DIVIDE shift        27     
+                            GT shift        25     
+                          GTEQ shift        23     
+                            LT shift        18     
+                          LTEQ shift        17     
+                           NEQ shift        21     
+                         POWER shift        15     
+                            IS shift        56     
                      SEMICOLON shift-reduce 9      statement ::= IDENTIFIER ASSIGN ex SEMICOLON
 
-State 29:
+State 34:
           statement ::= TRACE TIME ex * SEMICOLON
           ex ::= ex * IS LIST
           ex ::= ex * IS NOT LIST
           ex ::= ex * IS NUMBER
           ex ::= ex * AMPERSAND ex
-          ex ::= ex * PLUS ex
-          ex ::= ex * MINUS ex
-          ex ::= ex * TIMES ex
           ex ::= ex * DIVIDE ex
+          ex ::= ex * GT ex
+          ex ::= ex * GTEQ ex
+          ex ::= ex * NEQ ex
+          ex ::= ex * MINUS ex
+          ex ::= ex * LT ex
+          ex ::= ex * LTEQ ex
+          ex ::= ex * PLUS ex
           ex ::= ex * POWER ex
+          ex ::= ex * TIMES ex
           ex ::= ex * WHERE ex
 
-                         WHERE shift        15     
-                          PLUS shift        22     
-                         MINUS shift        20     
-                     AMPERSAND shift        24     
-                         TIMES shift        18     
-                        DIVIDE shift        17     
-                         POWER shift        16     
-                            IS shift        44     
+                         WHERE shift        13     
+                          PLUS shift        16     
+                         MINUS shift        19     
+                     AMPERSAND shift        29     
+                         TIMES shift        14     
+                        DIVIDE shift        27     
+                            GT shift        25     
+                          GTEQ shift        23     
+                            LT shift        18     
+                          LTEQ shift        17     
+                           NEQ shift        21     
+                         POWER shift        15     
+                            IS shift        56     
                      SEMICOLON shift-reduce 8      statement ::= TRACE TIME ex SEMICOLON
 
-State 30:
+State 35:
           statement ::= TRACE TIME OF ex * SEMICOLON
           ex ::= ex * IS LIST
           ex ::= ex * IS NOT LIST
           ex ::= ex * IS NUMBER
           ex ::= ex * AMPERSAND ex
-          ex ::= ex * PLUS ex
-          ex ::= ex * MINUS ex
-          ex ::= ex * TIMES ex
           ex ::= ex * DIVIDE ex
+          ex ::= ex * GT ex
+          ex ::= ex * GTEQ ex
+          ex ::= ex * NEQ ex
+          ex ::= ex * MINUS ex
+          ex ::= ex * LT ex
+          ex ::= ex * LTEQ ex
+          ex ::= ex * PLUS ex
           ex ::= ex * POWER ex
+          ex ::= ex * TIMES ex
           ex ::= ex * WHERE ex
 
-                         WHERE shift        15     
-                          PLUS shift        22     
-                         MINUS shift        20     
-                     AMPERSAND shift        24     
-                         TIMES shift        18     
-                        DIVIDE shift        17     
-                         POWER shift        16     
-                            IS shift        44     
+                         WHERE shift        13     
+                          PLUS shift        16     
+                         MINUS shift        19     
+                     AMPERSAND shift        29     
+                         TIMES shift        14     
+                        DIVIDE shift        27     
+                            GT shift        25     
+                          GTEQ shift        23     
+                            LT shift        18     
+                          LTEQ shift        17     
+                           NEQ shift        21     
+                         POWER shift        15     
+                            IS shift        56     
                      SEMICOLON shift-reduce 7      statement ::= TRACE TIME OF ex SEMICOLON
 
-State 31:
+State 36:
           statement ::= TRACE ex * SEMICOLON
           ex ::= ex * IS LIST
           ex ::= ex * IS NOT LIST
           ex ::= ex * IS NUMBER
           ex ::= ex * AMPERSAND ex
-          ex ::= ex * PLUS ex
-          ex ::= ex * MINUS ex
-          ex ::= ex * TIMES ex
           ex ::= ex * DIVIDE ex
+          ex ::= ex * GT ex
+          ex ::= ex * GTEQ ex
+          ex ::= ex * NEQ ex
+          ex ::= ex * MINUS ex
+          ex ::= ex * LT ex
+          ex ::= ex * LTEQ ex
+          ex ::= ex * PLUS ex
           ex ::= ex * POWER ex
+          ex ::= ex * TIMES ex
           ex ::= ex * WHERE ex
 
-                         WHERE shift        15     
-                          PLUS shift        22     
-                         MINUS shift        20     
-                     AMPERSAND shift        24     
-                         TIMES shift        18     
-                        DIVIDE shift        17     
-                         POWER shift        16     
-                            IS shift        44     
+                         WHERE shift        13     
+                          PLUS shift        16     
+                         MINUS shift        19     
+                     AMPERSAND shift        29     
+                         TIMES shift        14     
+                        DIVIDE shift        27     
+                            GT shift        25     
+                          GTEQ shift        23     
+                            LT shift        18     
+                          LTEQ shift        17     
+                           NEQ shift        21     
+                         POWER shift        15     
+                            IS shift        56     
                      SEMICOLON shift-reduce 6      statement ::= TRACE ex SEMICOLON
 
-State 32:
+State 37:
           statement ::= WRITE TIME ex * SEMICOLON
           ex ::= ex * IS LIST
           ex ::= ex * IS NOT LIST
           ex ::= ex * IS NUMBER
           ex ::= ex * AMPERSAND ex
-          ex ::= ex * PLUS ex
-          ex ::= ex * MINUS ex
-          ex ::= ex * TIMES ex
           ex ::= ex * DIVIDE ex
+          ex ::= ex * GT ex
+          ex ::= ex * GTEQ ex
+          ex ::= ex * NEQ ex
+          ex ::= ex * MINUS ex
+          ex ::= ex * LT ex
+          ex ::= ex * LTEQ ex
+          ex ::= ex * PLUS ex
           ex ::= ex * POWER ex
+          ex ::= ex * TIMES ex
           ex ::= ex * WHERE ex
 
-                         WHERE shift        15     
-                          PLUS shift        22     
-                         MINUS shift        20     
-                     AMPERSAND shift        24     
-                         TIMES shift        18     
-                        DIVIDE shift        17     
-                         POWER shift        16     
-                            IS shift        44     
+                         WHERE shift        13     
+                          PLUS shift        16     
+                         MINUS shift        19     
+                     AMPERSAND shift        29     
+                         TIMES shift        14     
+                        DIVIDE shift        27     
+                            GT shift        25     
+                          GTEQ shift        23     
+                            LT shift        18     
+                          LTEQ shift        17     
+                           NEQ shift        21     
+                         POWER shift        15     
+                            IS shift        56     
                      SEMICOLON shift-reduce 5      statement ::= WRITE TIME ex SEMICOLON
 
-State 33:
+State 38:
           statement ::= WRITE TIME OF ex * SEMICOLON
           ex ::= ex * IS LIST
           ex ::= ex * IS NOT LIST
           ex ::= ex * IS NUMBER
           ex ::= ex * AMPERSAND ex
-          ex ::= ex * PLUS ex
-          ex ::= ex * MINUS ex
-          ex ::= ex * TIMES ex
           ex ::= ex * DIVIDE ex
+          ex ::= ex * GT ex
+          ex ::= ex * GTEQ ex
+          ex ::= ex * NEQ ex
+          ex ::= ex * MINUS ex
+          ex ::= ex * LT ex
+          ex ::= ex * LTEQ ex
+          ex ::= ex * PLUS ex
           ex ::= ex * POWER ex
+          ex ::= ex * TIMES ex
           ex ::= ex * WHERE ex
 
-                         WHERE shift        15     
-                          PLUS shift        22     
-                         MINUS shift        20     
-                     AMPERSAND shift        24     
-                         TIMES shift        18     
-                        DIVIDE shift        17     
-                         POWER shift        16     
-                            IS shift        44     
+                         WHERE shift        13     
+                          PLUS shift        16     
+                         MINUS shift        19     
+                     AMPERSAND shift        29     
+                         TIMES shift        14     
+                        DIVIDE shift        27     
+                            GT shift        25     
+                          GTEQ shift        23     
+                            LT shift        18     
+                          LTEQ shift        17     
+                           NEQ shift        21     
+                         POWER shift        15     
+                            IS shift        56     
                      SEMICOLON shift-reduce 4      statement ::= WRITE TIME OF ex SEMICOLON
 
-State 34:
+State 39:
           ex ::= LPAR ex * RPAR
           ex ::= ex * IS LIST
           ex ::= ex * IS NOT LIST
           ex ::= ex * IS NUMBER
           ex ::= ex * AMPERSAND ex
-          ex ::= ex * PLUS ex
-          ex ::= ex * MINUS ex
-          ex ::= ex * TIMES ex
           ex ::= ex * DIVIDE ex
+          ex ::= ex * GT ex
+          ex ::= ex * GTEQ ex
+          ex ::= ex * NEQ ex
+          ex ::= ex * MINUS ex
+          ex ::= ex * LT ex
+          ex ::= ex * LTEQ ex
+          ex ::= ex * PLUS ex
           ex ::= ex * POWER ex
+          ex ::= ex * TIMES ex
           ex ::= ex * WHERE ex
 
-                         WHERE shift        15     
-                          PLUS shift        22     
-                         MINUS shift        20     
-                     AMPERSAND shift        24     
-                         TIMES shift        18     
-                        DIVIDE shift        17     
-                         POWER shift        16     
-                            IS shift        44     
+                         WHERE shift        13     
+                          PLUS shift        16     
+                         MINUS shift        19     
+                     AMPERSAND shift        29     
+                         TIMES shift        14     
+                        DIVIDE shift        27     
+                            GT shift        25     
+                          GTEQ shift        23     
+                            LT shift        18     
+                          LTEQ shift        17     
+                           NEQ shift        21     
+                         POWER shift        15     
+                            IS shift        56     
                           RPAR shift-reduce 12     ex ::= LPAR ex RPAR
 
-State 35:
+State 40:
           statement ::= WRITE ex * SEMICOLON
           ex ::= ex * IS LIST
           ex ::= ex * IS NOT LIST
           ex ::= ex * IS NUMBER
           ex ::= ex * AMPERSAND ex
-          ex ::= ex * PLUS ex
-          ex ::= ex * MINUS ex
-          ex ::= ex * TIMES ex
           ex ::= ex * DIVIDE ex
+          ex ::= ex * GT ex
+          ex ::= ex * GTEQ ex
+          ex ::= ex * NEQ ex
+          ex ::= ex * MINUS ex
+          ex ::= ex * LT ex
+          ex ::= ex * LTEQ ex
+          ex ::= ex * PLUS ex
           ex ::= ex * POWER ex
+          ex ::= ex * TIMES ex
           ex ::= ex * WHERE ex
 
-                         WHERE shift        15     
-                          PLUS shift        22     
-                         MINUS shift        20     
-                     AMPERSAND shift        24     
-                         TIMES shift        18     
-                        DIVIDE shift        17     
-                         POWER shift        16     
-                            IS shift        44     
+                         WHERE shift        13     
+                          PLUS shift        16     
+                         MINUS shift        19     
+                     AMPERSAND shift        29     
+                         TIMES shift        14     
+                        DIVIDE shift        27     
+                            GT shift        25     
+                          GTEQ shift        23     
+                            LT shift        18     
+                          LTEQ shift        17     
+                           NEQ shift        21     
+                         POWER shift        15     
+                            IS shift        56     
                      SEMICOLON shift-reduce 3      statement ::= WRITE ex SEMICOLON
 
-State 36:
+State 41:
      (16) exlist ::= ex *
           ex ::= ex * IS LIST
           ex ::= ex * IS NOT LIST
           ex ::= ex * IS NUMBER
           ex ::= ex * AMPERSAND ex
-          ex ::= ex * PLUS ex
-          ex ::= ex * MINUS ex
-          ex ::= ex * TIMES ex
           ex ::= ex * DIVIDE ex
+          ex ::= ex * GT ex
+          ex ::= ex * GTEQ ex
+          ex ::= ex * NEQ ex
+          ex ::= ex * MINUS ex
+          ex ::= ex * LT ex
+          ex ::= ex * LTEQ ex
+          ex ::= ex * PLUS ex
           ex ::= ex * POWER ex
+          ex ::= ex * TIMES ex
           ex ::= ex * WHERE ex
 
-                         WHERE shift        15     
-                          PLUS shift        22     
-                         MINUS shift        20     
-                     AMPERSAND shift        24     
-                         TIMES shift        18     
-                        DIVIDE shift        17     
-                         POWER shift        16     
-                            IS shift        44     
+                         WHERE shift        13     
+                          PLUS shift        16     
+                         MINUS shift        19     
+                     AMPERSAND shift        29     
+                         TIMES shift        14     
+                        DIVIDE shift        27     
+                            GT shift        25     
+                          GTEQ shift        23     
+                            LT shift        18     
+                          LTEQ shift        17     
+                           NEQ shift        21     
+                         POWER shift        15     
+                            IS shift        56     
                      {default} reduce       16     exlist ::= ex
-
-State 37:
-          ex ::= ex * IS LIST
-          ex ::= ex * IS NOT LIST
-          ex ::= ex * IS NUMBER
-     (29) ex ::= FIRST ex *
-          ex ::= ex * AMPERSAND ex
-          ex ::= ex * PLUS ex
-          ex ::= ex * MINUS ex
-          ex ::= ex * TIMES ex
-          ex ::= ex * DIVIDE ex
-          ex ::= ex * POWER ex
-          ex ::= ex * WHERE ex
-
-                         WHERE shift        15     
-                          PLUS shift        22     
-                         MINUS shift        20     
-                     AMPERSAND shift        24     
-                         TIMES shift        18     
-                        DIVIDE shift        17     
-                         POWER shift        16     
-                            IS shift        44     
-                     {default} reduce       29     ex ::= FIRST ex
-
-State 38:
-          ex ::= ex * IS LIST
-          ex ::= ex * IS NOT LIST
-          ex ::= ex * IS NUMBER
-     (28) ex ::= COUNT ex *
-          ex ::= ex * AMPERSAND ex
-          ex ::= ex * PLUS ex
-          ex ::= ex * MINUS ex
-          ex ::= ex * TIMES ex
-          ex ::= ex * DIVIDE ex
-          ex ::= ex * POWER ex
-          ex ::= ex * WHERE ex
-
-                         WHERE shift        15     
-                          PLUS shift        22     
-                         MINUS shift        20     
-                     AMPERSAND shift        24     
-                         TIMES shift        18     
-                        DIVIDE shift        17     
-                         POWER shift        16     
-                            IS shift        44     
-                     {default} reduce       28     ex ::= COUNT ex
-
-State 39:
-          ex ::= ex * IS LIST
-          ex ::= ex * IS NOT LIST
-          ex ::= ex * IS NUMBER
-          ex ::= ex * AMPERSAND ex
-          ex ::= ex * PLUS ex
-          ex ::= ex * MINUS ex
-          ex ::= ex * TIMES ex
-          ex ::= ex * DIVIDE ex
-          ex ::= ex * POWER ex
-          ex ::= ex * WHERE ex
-     (38) ex ::= ex WHERE ex *
-
-                         WHERE shift        15     
-                          PLUS shift        22     
-                         MINUS shift        20     
-                     AMPERSAND shift        24     
-                         TIMES shift        18     
-                        DIVIDE shift        17     
-                         POWER shift        16     
-                            IS shift        44     
-                     {default} reduce       38     ex ::= ex WHERE ex
-
-State 40:
-     (17) exlist ::= exlist COMMA ex *
-          ex ::= ex * IS LIST
-          ex ::= ex * IS NOT LIST
-          ex ::= ex * IS NUMBER
-          ex ::= ex * AMPERSAND ex
-          ex ::= ex * PLUS ex
-          ex ::= ex * MINUS ex
-          ex ::= ex * TIMES ex
-          ex ::= ex * DIVIDE ex
-          ex ::= ex * POWER ex
-          ex ::= ex * WHERE ex
-
-                         WHERE shift        15     
-                          PLUS shift        22     
-                         MINUS shift        20     
-                     AMPERSAND shift        24     
-                         TIMES shift        18     
-                        DIVIDE shift        17     
-                         POWER shift        16     
-                            IS shift        44     
-                     {default} reduce       17     exlist ::= exlist COMMA ex
-
-State 41:
-          ex ::= ex * IS LIST
-          ex ::= ex * IS NOT LIST
-          ex ::= ex * IS NUMBER
-          ex ::= ex * AMPERSAND ex
-     (32) ex ::= ex AMPERSAND ex *
-          ex ::= ex * PLUS ex
-          ex ::= ex * MINUS ex
-          ex ::= ex * TIMES ex
-          ex ::= ex * DIVIDE ex
-          ex ::= ex * POWER ex
-          ex ::= ex * WHERE ex
-
-                         TIMES shift        18     
-                        DIVIDE shift        17     
-                         POWER shift        16     
-                            IS shift        44     
-                     {default} reduce       32     ex ::= ex AMPERSAND ex
 
 State 42:
           ex ::= ex * IS LIST
           ex ::= ex * IS NOT LIST
           ex ::= ex * IS NUMBER
           ex ::= ex * AMPERSAND ex
-          ex ::= ex * PLUS ex
-     (33) ex ::= ex PLUS ex *
-          ex ::= ex * MINUS ex
-          ex ::= ex * TIMES ex
           ex ::= ex * DIVIDE ex
+          ex ::= ex * GT ex
+          ex ::= ex * GTEQ ex
+          ex ::= ex * NEQ ex
+          ex ::= ex * MINUS ex
+          ex ::= ex * LT ex
+          ex ::= ex * LTEQ ex
+          ex ::= ex * PLUS ex
           ex ::= ex * POWER ex
+          ex ::= ex * TIMES ex
           ex ::= ex * WHERE ex
+     (45) ex ::= ex WHERE ex *
 
-                         TIMES shift        18     
-                        DIVIDE shift        17     
-                         POWER shift        16     
-                            IS shift        44     
-                     {default} reduce       33     ex ::= ex PLUS ex
+                         WHERE shift        13     
+                          PLUS shift        16     
+                         MINUS shift        19     
+                     AMPERSAND shift        29     
+                         TIMES shift        14     
+                        DIVIDE shift        27     
+                            GT shift        25     
+                          GTEQ shift        23     
+                            LT shift        18     
+                          LTEQ shift        17     
+                           NEQ shift        21     
+                         POWER shift        15     
+                            IS shift        56     
+                     {default} reduce       45     ex ::= ex WHERE ex
 
 State 43:
+     (28) ex ::= FIRST ex *
           ex ::= ex * IS LIST
           ex ::= ex * IS NOT LIST
           ex ::= ex * IS NUMBER
           ex ::= ex * AMPERSAND ex
-          ex ::= ex * PLUS ex
-          ex ::= ex * MINUS ex
-     (34) ex ::= ex MINUS ex *
-          ex ::= ex * TIMES ex
           ex ::= ex * DIVIDE ex
+          ex ::= ex * GT ex
+          ex ::= ex * GTEQ ex
+          ex ::= ex * NEQ ex
+          ex ::= ex * MINUS ex
+          ex ::= ex * LT ex
+          ex ::= ex * LTEQ ex
+          ex ::= ex * PLUS ex
           ex ::= ex * POWER ex
+          ex ::= ex * TIMES ex
           ex ::= ex * WHERE ex
 
-                         TIMES shift        18     
-                        DIVIDE shift        17     
-                         POWER shift        16     
-                            IS shift        44     
-                     {default} reduce       34     ex ::= ex MINUS ex
+                         WHERE shift        13     
+                          PLUS shift        16     
+                         MINUS shift        19     
+                     AMPERSAND shift        29     
+                         TIMES shift        14     
+                        DIVIDE shift        27     
+                            GT shift        25     
+                          GTEQ shift        23     
+                            LT shift        18     
+                          LTEQ shift        17     
+                           NEQ shift        21     
+                         POWER shift        15     
+                            IS shift        56     
+                     {default} reduce       28     ex ::= FIRST ex
 
 State 44:
-          ex ::= ex IS * LIST
-          ex ::= ex IS * NOT LIST
-          ex ::= ex IS * NUMBER
+     (26) ex ::= COUNT ex *
+          ex ::= ex * IS LIST
+          ex ::= ex * IS NOT LIST
+          ex ::= ex * IS NUMBER
+          ex ::= ex * AMPERSAND ex
+          ex ::= ex * DIVIDE ex
+          ex ::= ex * GT ex
+          ex ::= ex * GTEQ ex
+          ex ::= ex * NEQ ex
+          ex ::= ex * MINUS ex
+          ex ::= ex * LT ex
+          ex ::= ex * LTEQ ex
+          ex ::= ex * PLUS ex
+          ex ::= ex * POWER ex
+          ex ::= ex * TIMES ex
+          ex ::= ex * WHERE ex
 
-                           NOT shift        57     
-                          LIST shift-reduce 25     ex ::= ex IS LIST
-                        NUMBER shift-reduce 27     ex ::= ex IS NUMBER
+                         WHERE shift        13     
+                          PLUS shift        16     
+                         MINUS shift        19     
+                     AMPERSAND shift        29     
+                         TIMES shift        14     
+                        DIVIDE shift        27     
+                            GT shift        25     
+                          GTEQ shift        23     
+                            LT shift        18     
+                          LTEQ shift        17     
+                           NEQ shift        21     
+                         POWER shift        15     
+                            IS shift        56     
+                     {default} reduce       26     ex ::= COUNT ex
 
 State 45:
-          statement ::= TIME * OF IDENTIFIER ASSIGN ex SEMICOLON
-          statement ::= TIME * IDENTIFIER ASSIGN ex SEMICOLON
+     (17) exlist ::= exlist COMMA ex *
+          ex ::= ex * IS LIST
+          ex ::= ex * IS NOT LIST
+          ex ::= ex * IS NUMBER
+          ex ::= ex * AMPERSAND ex
+          ex ::= ex * DIVIDE ex
+          ex ::= ex * GT ex
+          ex ::= ex * GTEQ ex
+          ex ::= ex * NEQ ex
+          ex ::= ex * MINUS ex
+          ex ::= ex * LT ex
+          ex ::= ex * LTEQ ex
+          ex ::= ex * PLUS ex
+          ex ::= ex * POWER ex
+          ex ::= ex * TIMES ex
+          ex ::= ex * WHERE ex
 
-                            OF shift        52     
-                    IDENTIFIER shift        50     
+                         WHERE shift        13     
+                          PLUS shift        16     
+                         MINUS shift        19     
+                     AMPERSAND shift        29     
+                         TIMES shift        14     
+                        DIVIDE shift        27     
+                            GT shift        25     
+                          GTEQ shift        23     
+                            LT shift        18     
+                          LTEQ shift        17     
+                           NEQ shift        21     
+                         POWER shift        15     
+                            IS shift        56     
+                     {default} reduce       17     exlist ::= exlist COMMA ex
 
 State 46:
           ex ::= ex * IS LIST
           ex ::= ex * IS NOT LIST
           ex ::= ex * IS NUMBER
           ex ::= ex * AMPERSAND ex
-          ex ::= ex * PLUS ex
-          ex ::= ex * MINUS ex
-          ex ::= ex * TIMES ex
+     (34) ex ::= ex AMPERSAND ex *
           ex ::= ex * DIVIDE ex
+          ex ::= ex * GT ex
+          ex ::= ex * GTEQ ex
+          ex ::= ex * NEQ ex
+          ex ::= ex * MINUS ex
+          ex ::= ex * LT ex
+          ex ::= ex * LTEQ ex
+          ex ::= ex * PLUS ex
           ex ::= ex * POWER ex
-     (37) ex ::= ex POWER ex *
+          ex ::= ex * TIMES ex
           ex ::= ex * WHERE ex
 
-                         POWER shift        16     
-                            IS shift        44     
-                     {default} reduce       37     ex ::= ex POWER ex
+                         TIMES shift        14     
+                        DIVIDE shift        27     
+                            GT shift        25     
+                          GTEQ shift        23     
+                            LT shift        18     
+                          LTEQ shift        17     
+                           NEQ shift        21     
+                         POWER shift        15     
+                            IS shift        56     
+                     {default} reduce       34     ex ::= ex AMPERSAND ex
 
 State 47:
           ex ::= ex * IS LIST
           ex ::= ex * IS NOT LIST
           ex ::= ex * IS NUMBER
           ex ::= ex * AMPERSAND ex
-          ex ::= ex * PLUS ex
-          ex ::= ex * MINUS ex
-          ex ::= ex * TIMES ex
           ex ::= ex * DIVIDE ex
-     (36) ex ::= ex DIVIDE ex *
+          ex ::= ex * GT ex
+          ex ::= ex * GTEQ ex
+          ex ::= ex * NEQ ex
+          ex ::= ex * MINUS ex
+          ex ::= ex * LT ex
+          ex ::= ex * LTEQ ex
+          ex ::= ex * PLUS ex
+     (42) ex ::= ex PLUS ex *
           ex ::= ex * POWER ex
+          ex ::= ex * TIMES ex
           ex ::= ex * WHERE ex
 
-                         POWER shift        16     
-                            IS shift        44     
-                     {default} reduce       36     ex ::= ex DIVIDE ex
+                         TIMES shift        14     
+                        DIVIDE shift        27     
+                            GT shift        25     
+                          GTEQ shift        23     
+                            LT shift        18     
+                          LTEQ shift        17     
+                           NEQ shift        21     
+                         POWER shift        15     
+                            IS shift        56     
+                     {default} reduce       42     ex ::= ex PLUS ex
 
 State 48:
           ex ::= ex * IS LIST
           ex ::= ex * IS NOT LIST
           ex ::= ex * IS NUMBER
           ex ::= ex * AMPERSAND ex
-          ex ::= ex * PLUS ex
-          ex ::= ex * MINUS ex
-          ex ::= ex * TIMES ex
-     (35) ex ::= ex TIMES ex *
           ex ::= ex * DIVIDE ex
+          ex ::= ex * GT ex
+          ex ::= ex * GTEQ ex
+          ex ::= ex * NEQ ex
+          ex ::= ex * MINUS ex
+     (39) ex ::= ex MINUS ex *
+          ex ::= ex * LT ex
+          ex ::= ex * LTEQ ex
+          ex ::= ex * PLUS ex
           ex ::= ex * POWER ex
+          ex ::= ex * TIMES ex
           ex ::= ex * WHERE ex
 
-                         POWER shift        16     
-                            IS shift        44     
-                     {default} reduce       35     ex ::= ex TIMES ex
+                         TIMES shift        14     
+                        DIVIDE shift        27     
+                            GT shift        25     
+                          GTEQ shift        23     
+                            LT shift        18     
+                          LTEQ shift        17     
+                           NEQ shift        21     
+                         POWER shift        15     
+                            IS shift        56     
+                     {default} reduce       39     ex ::= ex MINUS ex
 
 State 49:
-          ex ::= LSPAR exlist * RSPAR
-          exlist ::= exlist * COMMA ex
+          ex ::= ex * IS LIST
+          ex ::= ex * IS NOT LIST
+          ex ::= ex * IS NUMBER
+          ex ::= ex * AMPERSAND ex
+          ex ::= ex * DIVIDE ex
+     (35) ex ::= ex DIVIDE ex *
+          ex ::= ex * GT ex
+          ex ::= ex * GTEQ ex
+          ex ::= ex * NEQ ex
+          ex ::= ex * MINUS ex
+          ex ::= ex * LT ex
+          ex ::= ex * LTEQ ex
+          ex ::= ex * PLUS ex
+          ex ::= ex * POWER ex
+          ex ::= ex * TIMES ex
+          ex ::= ex * WHERE ex
 
-                         COMMA shift        21     
-                         RSPAR shift-reduce 15     ex ::= LSPAR exlist RSPAR
+                            GT shift        25     
+                          GTEQ shift        23     
+                            LT shift        18     
+                          LTEQ shift        17     
+                           NEQ shift        21     
+                         POWER shift        15     
+                            IS shift        56     
+                     {default} reduce       35     ex ::= ex DIVIDE ex
 
 State 50:
-          statement ::= TIME IDENTIFIER * ASSIGN ex SEMICOLON
+          ex ::= ex * IS LIST
+          ex ::= ex * IS NOT LIST
+          ex ::= ex * IS NUMBER
+          ex ::= ex * AMPERSAND ex
+          ex ::= ex * DIVIDE ex
+          ex ::= ex * GT ex
+     (36) ex ::= ex GT ex *
+          ex ::= ex * GTEQ ex
+          ex ::= ex * NEQ ex
+          ex ::= ex * MINUS ex
+          ex ::= ex * LT ex
+          ex ::= ex * LTEQ ex
+          ex ::= ex * PLUS ex
+          ex ::= ex * POWER ex
+          ex ::= ex * TIMES ex
+          ex ::= ex * WHERE ex
 
-                        ASSIGN shift        6      
+                            GT shift        25     
+                          GTEQ shift        23     
+                            LT shift        18     
+                          LTEQ shift        17     
+                           NEQ shift        21     
+                         POWER shift        15     
+                            IS shift        56     
+                     {default} reduce       36     ex ::= ex GT ex
 
 State 51:
-          statement ::= TIME OF IDENTIFIER * ASSIGN ex SEMICOLON
+          ex ::= ex * IS LIST
+          ex ::= ex * IS NOT LIST
+          ex ::= ex * IS NUMBER
+          ex ::= ex * AMPERSAND ex
+          ex ::= ex * DIVIDE ex
+          ex ::= ex * GT ex
+          ex ::= ex * GTEQ ex
+     (37) ex ::= ex GTEQ ex *
+          ex ::= ex * NEQ ex
+          ex ::= ex * MINUS ex
+          ex ::= ex * LT ex
+          ex ::= ex * LTEQ ex
+          ex ::= ex * PLUS ex
+          ex ::= ex * POWER ex
+          ex ::= ex * TIMES ex
+          ex ::= ex * WHERE ex
 
-                        ASSIGN shift        7      
+                            GT shift        25     
+                          GTEQ shift        23     
+                            LT shift        18     
+                          LTEQ shift        17     
+                           NEQ shift        21     
+                         POWER shift        15     
+                            IS shift        56     
+                     {default} reduce       37     ex ::= ex GTEQ ex
 
 State 52:
-          statement ::= TIME OF * IDENTIFIER ASSIGN ex SEMICOLON
+          ex ::= ex * IS LIST
+          ex ::= ex * IS NOT LIST
+          ex ::= ex * IS NUMBER
+          ex ::= ex * AMPERSAND ex
+          ex ::= ex * DIVIDE ex
+          ex ::= ex * GT ex
+          ex ::= ex * GTEQ ex
+          ex ::= ex * NEQ ex
+     (38) ex ::= ex NEQ ex *
+          ex ::= ex * MINUS ex
+          ex ::= ex * LT ex
+          ex ::= ex * LTEQ ex
+          ex ::= ex * PLUS ex
+          ex ::= ex * POWER ex
+          ex ::= ex * TIMES ex
+          ex ::= ex * WHERE ex
 
-                    IDENTIFIER shift        51     
+                            GT shift        25     
+                          GTEQ shift        23     
+                            LT shift        18     
+                          LTEQ shift        17     
+                           NEQ shift        21     
+                         POWER shift        15     
+                            IS shift        56     
+                     {default} reduce       38     ex ::= ex NEQ ex
 
 State 53:
-          statement ::= IDENTIFIER * ASSIGN ex SEMICOLON
+          ex ::= ex * IS LIST
+          ex ::= ex * IS NOT LIST
+          ex ::= ex * IS NUMBER
+          ex ::= ex * AMPERSAND ex
+          ex ::= ex * DIVIDE ex
+          ex ::= ex * GT ex
+          ex ::= ex * GTEQ ex
+          ex ::= ex * NEQ ex
+          ex ::= ex * MINUS ex
+          ex ::= ex * LT ex
+          ex ::= ex * LTEQ ex
+          ex ::= ex * PLUS ex
+          ex ::= ex * POWER ex
+          ex ::= ex * TIMES ex
+     (44) ex ::= ex TIMES ex *
+          ex ::= ex * WHERE ex
 
-                        ASSIGN shift        8      
+                            GT shift        25     
+                          GTEQ shift        23     
+                            LT shift        18     
+                          LTEQ shift        17     
+                           NEQ shift        21     
+                         POWER shift        15     
+                            IS shift        56     
+                     {default} reduce       44     ex ::= ex TIMES ex
 
 State 54:
           ex ::= ex * IS LIST
           ex ::= ex * IS NOT LIST
           ex ::= ex * IS NUMBER
-     (31) ex ::= COS ex *
           ex ::= ex * AMPERSAND ex
-          ex ::= ex * PLUS ex
-          ex ::= ex * MINUS ex
-          ex ::= ex * TIMES ex
           ex ::= ex * DIVIDE ex
+          ex ::= ex * GT ex
+          ex ::= ex * GTEQ ex
+          ex ::= ex * NEQ ex
+          ex ::= ex * MINUS ex
+          ex ::= ex * LT ex
+          ex ::= ex * LTEQ ex
+     (41) ex ::= ex LTEQ ex *
+          ex ::= ex * PLUS ex
           ex ::= ex * POWER ex
+          ex ::= ex * TIMES ex
           ex ::= ex * WHERE ex
 
-                            IS shift        44     
-                     {default} reduce       31     ex ::= COS ex
+                            GT shift        25     
+                          GTEQ shift        23     
+                            LT shift        18     
+                          LTEQ shift        17     
+                           NEQ shift        21     
+                         POWER shift        15     
+                            IS shift        56     
+                     {default} reduce       41     ex ::= ex LTEQ ex
 
 State 55:
           ex ::= ex * IS LIST
           ex ::= ex * IS NOT LIST
           ex ::= ex * IS NUMBER
-     (30) ex ::= SIN ex *
           ex ::= ex * AMPERSAND ex
-          ex ::= ex * PLUS ex
-          ex ::= ex * MINUS ex
-          ex ::= ex * TIMES ex
           ex ::= ex * DIVIDE ex
+          ex ::= ex * GT ex
+          ex ::= ex * GTEQ ex
+          ex ::= ex * NEQ ex
+          ex ::= ex * MINUS ex
+          ex ::= ex * LT ex
+     (40) ex ::= ex LT ex *
+          ex ::= ex * LTEQ ex
+          ex ::= ex * PLUS ex
           ex ::= ex * POWER ex
+          ex ::= ex * TIMES ex
           ex ::= ex * WHERE ex
 
-                            IS shift        44     
-                     {default} reduce       30     ex ::= SIN ex
+                            GT shift        25     
+                          GTEQ shift        23     
+                            LT shift        18     
+                          LTEQ shift        17     
+                           NEQ shift        21     
+                         POWER shift        15     
+                            IS shift        56     
+                     {default} reduce       40     ex ::= ex LT ex
 
 State 56:
-     (24) ex ::= NOT ex *
+          ex ::= ex IS * LIST
+          ex ::= ex IS * NOT LIST
+          ex ::= ex IS * NUMBER
+
+                           NOT shift        67     
+                          LIST shift-reduce 29     ex ::= ex IS LIST
+                        NUMBER shift-reduce 31     ex ::= ex IS NUMBER
+
+State 57:
+          statement ::= TIME * OF IDENTIFIER ASSIGN ex SEMICOLON
+          statement ::= TIME * IDENTIFIER ASSIGN ex SEMICOLON
+
+                            OF shift        62     
+                    IDENTIFIER shift        60     
+
+State 58:
           ex ::= ex * IS LIST
           ex ::= ex * IS NOT LIST
           ex ::= ex * IS NUMBER
           ex ::= ex * AMPERSAND ex
-          ex ::= ex * PLUS ex
-          ex ::= ex * MINUS ex
-          ex ::= ex * TIMES ex
           ex ::= ex * DIVIDE ex
+          ex ::= ex * GT ex
+          ex ::= ex * GTEQ ex
+          ex ::= ex * NEQ ex
+          ex ::= ex * MINUS ex
+          ex ::= ex * LT ex
+          ex ::= ex * LTEQ ex
+          ex ::= ex * PLUS ex
           ex ::= ex * POWER ex
+     (43) ex ::= ex POWER ex *
+          ex ::= ex * TIMES ex
+          ex ::= ex * WHERE ex
+
+                         POWER shift        15     
+                            IS shift        56     
+                     {default} reduce       43     ex ::= ex POWER ex
+
+State 59:
+          ex ::= LSPAR exlist * RSPAR
+          exlist ::= exlist * COMMA ex
+
+                         COMMA shift        26     
+                         RSPAR shift-reduce 15     ex ::= LSPAR exlist RSPAR
+
+State 60:
+          statement ::= TIME IDENTIFIER * ASSIGN ex SEMICOLON
+
+                        ASSIGN shift        6      
+
+State 61:
+          statement ::= TIME OF IDENTIFIER * ASSIGN ex SEMICOLON
+
+                        ASSIGN shift        7      
+
+State 62:
+          statement ::= TIME OF * IDENTIFIER ASSIGN ex SEMICOLON
+
+                    IDENTIFIER shift        61     
+
+State 63:
+          statement ::= IDENTIFIER * ASSIGN ex SEMICOLON
+
+                        ASSIGN shift        8      
+
+State 64:
+          ex ::= ex * IS LIST
+          ex ::= ex * IS NOT LIST
+          ex ::= ex * IS NUMBER
+     (33) ex ::= SIN ex *
+          ex ::= ex * AMPERSAND ex
+          ex ::= ex * DIVIDE ex
+          ex ::= ex * GT ex
+          ex ::= ex * GTEQ ex
+          ex ::= ex * NEQ ex
+          ex ::= ex * MINUS ex
+          ex ::= ex * LT ex
+          ex ::= ex * LTEQ ex
+          ex ::= ex * PLUS ex
+          ex ::= ex * POWER ex
+          ex ::= ex * TIMES ex
+          ex ::= ex * WHERE ex
+
+                            IS shift        56     
+                     {default} reduce       33     ex ::= SIN ex
+
+State 65:
+          ex ::= ex * IS LIST
+          ex ::= ex * IS NOT LIST
+          ex ::= ex * IS NUMBER
+     (32) ex ::= NOT ex *
+          ex ::= ex * AMPERSAND ex
+          ex ::= ex * DIVIDE ex
+          ex ::= ex * GT ex
+          ex ::= ex * GTEQ ex
+          ex ::= ex * NEQ ex
+          ex ::= ex * MINUS ex
+          ex ::= ex * LT ex
+          ex ::= ex * LTEQ ex
+          ex ::= ex * PLUS ex
+          ex ::= ex * POWER ex
+          ex ::= ex * TIMES ex
           ex ::= ex * WHERE ex
 
                             IS error
-                     {default} reduce       24     ex ::= NOT ex
+                     {default} reduce       32     ex ::= NOT ex
 
-State 57:
+State 66:
+     (27) ex ::= COS ex *
+          ex ::= ex * IS LIST
+          ex ::= ex * IS NOT LIST
+          ex ::= ex * IS NUMBER
+          ex ::= ex * AMPERSAND ex
+          ex ::= ex * DIVIDE ex
+          ex ::= ex * GT ex
+          ex ::= ex * GTEQ ex
+          ex ::= ex * NEQ ex
+          ex ::= ex * MINUS ex
+          ex ::= ex * LT ex
+          ex ::= ex * LTEQ ex
+          ex ::= ex * PLUS ex
+          ex ::= ex * POWER ex
+          ex ::= ex * TIMES ex
+          ex ::= ex * WHERE ex
+
+                            IS shift        56     
+                     {default} reduce       27     ex ::= COS ex
+
+State 67:
           ex ::= ex IS NOT * LIST
 
-                          LIST shift-reduce 26     ex ::= ex IS NOT LIST
+                          LIST shift-reduce 30     ex ::= ex IS NOT LIST
 
 ----------------------------------------------------
 Symbols:
@@ -1659,33 +2495,40 @@ Symbols:
     7: AMPERSAND
     8: TIMES
     9: DIVIDE
-   10: POWER
-   11: SIN
-   12: COS
-   13: NOT
-   14: IS
-   15: WRITE
-   16: SEMICOLON
-   17: TIME
-   18: OF
-   19: TRACE
-   20: IDENTIFIER
-   21: ASSIGN
-   22: LPAR
-   23: RPAR
-   24: LSPAR
-   25: RSPAR
-   26: NUMTOKEN
-   27: TIMETOKEN
-   28: STRTOKEN
-   29: BOOLTOKEN
-   30: NOW
-   31: NULLTOKEN
-   32: LIST
-   33: NUMBER
-   34: error:
-   35: code: <lambda> WRITE TIME TRACE IDENTIFIER
-   36: statementblock: <lambda> WRITE TIME TRACE IDENTIFIER
-   37: statement: WRITE TIME TRACE IDENTIFIER
-   38: ex: COUNT FIRST SIN COS NOT IDENTIFIER LPAR LSPAR NUMTOKEN TIMETOKEN STRTOKEN BOOLTOKEN NOW NULLTOKEN
-   39: exlist: COUNT FIRST SIN COS NOT IDENTIFIER LPAR LSPAR NUMTOKEN TIMETOKEN STRTOKEN BOOLTOKEN NOW NULLTOKEN
+   10: GT
+   11: GTEQ
+   12: LT
+   13: LTEQ
+   14: NEQ
+   15: POWER
+   16: SIN
+   17: COS
+   18: NOT
+   19: IS
+   20: WRITE
+   21: SEMICOLON
+   22: TIME
+   23: OF
+   24: TRACE
+   25: IDENTIFIER
+   26: ASSIGN
+   27: LPAR
+   28: RPAR
+   29: LSPAR
+   30: RSPAR
+   31: BOOLTOKEN
+   32: IT
+   33: NOW
+   34: NUMTOKEN
+   35: NULLTOKEN
+   36: STRTOKEN
+   37: TIMETOKEN
+   38: THEY
+   39: LIST
+   40: NUMBER
+   41: error:
+   42: code: <lambda> WRITE TIME TRACE IDENTIFIER
+   43: statementblock: <lambda> WRITE TIME TRACE IDENTIFIER
+   44: statement: WRITE TIME TRACE IDENTIFIER
+   45: ex: COUNT FIRST SIN COS NOT IDENTIFIER LPAR LSPAR BOOLTOKEN IT NOW NUMTOKEN NULLTOKEN STRTOKEN TIMETOKEN THEY
+   46: exlist: COUNT FIRST SIN COS NOT IDENTIFIER LPAR LSPAR BOOLTOKEN IT NOW NUMTOKEN NULLTOKEN STRTOKEN TIMETOKEN THEY

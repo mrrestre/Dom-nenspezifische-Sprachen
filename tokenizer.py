@@ -8,8 +8,8 @@ class Tokenizer:
         self.tokens = []
 
         self.reserved_words = [ 'AVERAGE', 'COS', 'COUNT', 'CURRENTTIME', 'DO', 'EARLIEST', 'ELSE', 'ELSEIF', 'ENDDO', 'ENDIF', 
-                                'FIRST', 'FOR', 'IF', 'IN', 'IS', 'LAST', 'LATEST', 'LIST', 'MAXIMUM', 'MINIMUM', 'NOT', 'NOW', 
-                                'NUMBER', 'OF', 'READ', 'SIN', 'SUM', 'THEN', 'TIME', 'TRACE', 'WHERE', 'WRITE']
+                                'FIRST', 'FOR', 'IF', 'IN', 'IS', 'IT', 'LAST', 'LATEST', 'LIST', 'MAXIMUM', 'MINIMUM', 'NOT', 'NOW', 
+                                'NUMBER', 'OF', 'READ', 'SIN', 'SUM', 'THEN', 'THEY', 'TIME', 'TRACE', 'WHERE', 'WRITE']
         self.symbols = {
             ':=':   'ASSIGN',
             '**':   'POWER',

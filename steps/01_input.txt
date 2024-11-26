@@ -1,5 +1,6 @@
-trace 1 WHERE true;
-trace [1,2,3] WHERE true;
-trace 1 WHERE [true,false,true];
-trace 1 WHERE NOT[true,false,true];
-trace [1,2,3,4] WHERE [true,false,true];
+TRACE 1 WHERE true;
+TRACE [1,2,3] WHERE true;
+TRACE [1,2,3] WHERE IT < 3;
+TRACE 1 WHERE [true,false,true];
+TRACE 1 WHERE NOT[true,false,true];
+TRACE [1,2,3,4] WHERE [true,false,true];

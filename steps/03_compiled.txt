@@ -55,6 +55,44 @@
                 "type": "WHERE",
                 "arg": [
                     {
+                        "type": "LIST",
+                        "elements": [
+                            {
+                                "type": "NUMTOKEN",
+                                "value": "1"
+                            },
+                            {
+                                "type": "NUMTOKEN",
+                                "value": "2"
+                            },
+                            {
+                                "type": "NUMTOKEN",
+                                "value": "3"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "LT",
+                        "arg": [
+                            {
+                                "type": "IT"
+                            },
+                            {
+                                "type": "NUMTOKEN",
+                                "value": "3"
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "type": "TRACE",
+            "line": "4",
+            "arg": {
+                "type": "WHERE",
+                "arg": [
+                    {
                         "type": "NUMTOKEN",
                         "value": "1"
                     },
@@ -80,7 +118,7 @@
         },
         {
             "type": "TRACE",
-            "line": "4",
+            "line": "5",
             "arg": {
                 "type": "WHERE",
                 "arg": [
@@ -115,7 +153,7 @@
         },
         {
             "type": "TRACE",
-            "line": "5",
+            "line": "6",
             "arg": {
                 "type": "WHERE",
                 "arg": [
