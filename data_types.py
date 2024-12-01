@@ -38,6 +38,12 @@ class BaseType(ABC):
     
     def __sub__(self, other):
         return NullType(None)
+    
+    def __lt__(self, other):
+        return NullType(None)
+    
+    def __gt__(self, other):
+        return NullType(None)
             
 
 class NullType(BaseType):
@@ -63,7 +69,17 @@ class NumType(BaseType):
             return NumType(self.value - other.value)
         else:
             return NullType(None)
-
+        
+    def __lt__(self, other):
+        if isinstance(other, NumType):
+            return BoolType(self.value < other.value)
+        return NullType(None)
+    
+    def __gt__(self, other):
+        if isinstance(other, NumType):
+            return BoolType(self.value > other.value)
+        return NullType(None)
+        
 class DateType(BaseType):
     def parse_value(self, input):
         try:
@@ -76,7 +92,15 @@ class DateType(BaseType):
 
 class BoolType(BaseType):
     def parse_value(self, input):
-        if input.strip().lower() == "true":
+        if input == "true" or input == True:
+            return "true"
+        elif input == "false" or input == False:
+            return "false"
+        elif isinstance(input, BoolType):
+            return input.value
+        elif isinstance(input, NullType):
+            return "false"
+        elif input.strip().lower() == "true":
             return 'true'
         else:
             return 'false'

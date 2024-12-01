@@ -11,6 +11,7 @@ class Interpreter:
         self.debug = False
         self.symbol_table = SymbolTable()
         self.ast = {}
+        self.it_value = None
 
         with open(path, 'r') as file:
             self.ast = json.load(file)
@@ -45,6 +46,7 @@ class Interpreter:
             "AMPERSAND": self.handle_string_concat,
             "MINUS": self.handle_minus,
             "LT": self.handle_less_than,
+            "GT": self.handle_greater_than,
             "PLUS": self.handle_plus,
             "WHERE": self.handle_where,
         }
@@ -62,6 +64,37 @@ class Interpreter:
         if self.is_terminal_node(node):
             return TerminalNode(node).get_value()
         elif self.is_operator_node(node):
+            # Handle where operation with the presence of "it" in the right operator
+            if node["type"] == "WHERE" and self.is_it_present_in_opt(node["arg"][1]):
+                # Evaluate left argument
+                where_left = self.eval_node(node["arg"][0])
+
+                # Find out which kind of opearator is used on the right
+                oper_kind = self.operation_handlers.get(node["arg"][1]["type"])
+                
+                match len(node["arg"][1]["arg"]):
+                    case 1:
+                        if self.is_list(where_left):
+                            result = ListType(None)
+                            for element in where_left:
+                                op_result = oper_kind(element)
+                                result.append(self.handle_where(element, op_result))
+                            return result
+                        else:
+                            return self.handle_where(where_left, operation_handler(argument))
+                    case 2:
+                        # Evaluate the right argument of the right operator
+                        oper_right = self.eval_node(node["arg"][1]["arg"][1])
+                        
+                        if self.is_list(where_left):
+                            result = ListType(None)
+                            for element in where_left:
+                                op_result = oper_kind(element, oper_right)
+                                result.append(self.handle_where(element, op_result))
+                            return result
+                        else:
+                            return self.handle_where(where_left, operation_handler(where_left, oper_kind))
+                    
             evaluated_params = self.evaluate_params(node)
             operation_handler = self.operation_handlers.get(node["type"])
 
@@ -71,49 +104,49 @@ class Interpreter:
                     argument = evaluated_params[0]
 
                     if node["type"] in self.unary_operations_member_hdl:
-                        if isinstance(argument, ListType):
+                        if self.is_list(argument):
                             result = ListType(None)
                             for list_member in argument:
                                 result.append(operation_handler(list_member))
                             return result
                         else:
                             return operation_handler(argument)
+                        
                     elif node["type"] in self.unary_operations_default_hdl:
                         return operation_handler(argument)
 
                 # Binary operation
                 case 2:
-                    left = evaluated_params[0]
+                    where_left = evaluated_params[0]
                     right = evaluated_params[1]
 
-
                     # Both are lists
-                    if isinstance(left, ListType) and isinstance(right, ListType):
-                        if len(left) == len(right):
+                    if self.is_list(where_left) and self.is_list(right):
+                        if len(where_left) == len(right):
                             # Perform the operation position based: result[i] = left[i] <operation> right[i]
                             result = ListType(None)
-                            for i in range(len(left)):
-                                result.append(operation_handler(left[i], right[i]))
+                            for i in range(len(where_left)):
+                                result.append(operation_handler(where_left[i], right[i]))
                             return result
                         else:
                             return NullType(None)
                     # Only right is a list
-                    elif not isinstance(left, ListType) and isinstance(right, ListType):
+                    elif not self.is_list(where_left) and self.is_list(right):
                         # Perform the operation on left with all elements of right: result[i] = left <operation> right[i]
                         result = ListType(None)
                         for i in range(len(right)):
-                            result.append(operation_handler(left, right[i]))
+                            result.append(operation_handler(where_left, right[i]))
                         return result
                     # Only left is a list
-                    elif isinstance(left, ListType) and not isinstance(right, ListType):
+                    elif self.is_list(where_left) and not self.is_list(right):
                         # Perform the operation on left with all elements of right: result[i] = left[i] <operation> right
                         result = ListType(None)
-                        for i in range(len(left)):
-                            result.append(operation_handler(left[i], right))
+                        for i in range(len(where_left)):
+                            result.append(operation_handler(where_left[i], right))
                         return result
                     # Neither arg is a list
-                    elif not isinstance(left, ListType) and not isinstance(right, ListType):
-                        return operation_handler(left, right)
+                    elif not self.is_list(where_left) and not self.is_list(right):
+                        return operation_handler(where_left, right)
                 
                 # Ternary operation
                 case 3:
@@ -188,19 +221,19 @@ class Interpreter:
             return BoolType('false')
     
     def handle_count(self, arg):
-        if isinstance(arg, ListType):
+        if self.is_list(arg):
             return NumType(len(arg))
         else:
             return NullType(None)
     
     def handle_first(self, arg):
-        if isinstance(arg, ListType):
+        if self.is_list(arg):
             return NumType(arg[0])
         else:
             return NullType(None)
         
     def handle_is_list(self, arg):
-        if isinstance(arg, ListType):
+        if self.is_list(arg):
             return BoolType('true')
         else:
             return BoolType('false')
@@ -211,7 +244,10 @@ class Interpreter:
     # Binary
     def handle_less_than(self, left, right):
         return BoolType(left < right)
-
+    
+    def handle_greater_than(self, left, right):
+        return BoolType(left > right)
+    
     def handle_minus(self, left, right):
         return left - right
     
@@ -249,3 +285,13 @@ class Interpreter:
             return True
         else:
             return False
+        
+    def is_list(self, datatype):
+        return True if isinstance(datatype, ListType) else False
+    
+    def is_it_present_in_opt(self, operator_node):
+        if 'arg' in operator_node:
+            return True if operator_node["arg"][0]["type"] == "IT" else False
+        else:
+            return False
+        

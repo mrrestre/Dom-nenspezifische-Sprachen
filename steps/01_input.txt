@@ -1,6 +1,8 @@
 TRACE 1 WHERE true;
 TRACE [1,2,3] WHERE true;
-TRACE [1,2,3] WHERE IT < 3;
 TRACE 1 WHERE [true,false,true];
 TRACE 1 WHERE NOT[true,false,true];
 TRACE [1,2,3,4] WHERE [true,false,true];
+
+TRACE ["hallo",1,2,3, true, null] WHERE IT IS NUMBER;
+TRACE [1,2,3,4,'hello',5] WHERE THEY > 3;

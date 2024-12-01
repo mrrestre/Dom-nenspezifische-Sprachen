@@ -55,44 +55,6 @@
                 "type": "WHERE",
                 "arg": [
                     {
-                        "type": "LIST",
-                        "elements": [
-                            {
-                                "type": "NUMTOKEN",
-                                "value": "1"
-                            },
-                            {
-                                "type": "NUMTOKEN",
-                                "value": "2"
-                            },
-                            {
-                                "type": "NUMTOKEN",
-                                "value": "3"
-                            }
-                        ]
-                    },
-                    {
-                        "type": "LT",
-                        "arg": [
-                            {
-                                "type": "IT"
-                            },
-                            {
-                                "type": "NUMTOKEN",
-                                "value": "3"
-                            }
-                        ]
-                    }
-                ]
-            }
-        },
-        {
-            "type": "TRACE",
-            "line": "4",
-            "arg": {
-                "type": "WHERE",
-                "arg": [
-                    {
                         "type": "NUMTOKEN",
                         "value": "1"
                     },
@@ -118,7 +80,7 @@
         },
         {
             "type": "TRACE",
-            "line": "5",
+            "line": "4",
             "arg": {
                 "type": "WHERE",
                 "arg": [
@@ -153,7 +115,7 @@
         },
         {
             "type": "TRACE",
-            "line": "6",
+            "line": "5",
             "arg": {
                 "type": "WHERE",
                 "arg": [
@@ -192,6 +154,101 @@
                             {
                                 "type": "BOOLTOKEN",
                                 "value": "true"
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "type": "TRACE",
+            "line": "7",
+            "arg": {
+                "type": "WHERE",
+                "arg": [
+                    {
+                        "type": "LIST",
+                        "elements": [
+                            {
+                                "type": "STRTOKEN",
+                                "value": "hallo"
+                            },
+                            {
+                                "type": "NUMTOKEN",
+                                "value": "1"
+                            },
+                            {
+                                "type": "NUMTOKEN",
+                                "value": "2"
+                            },
+                            {
+                                "type": "NUMTOKEN",
+                                "value": "3"
+                            },
+                            {
+                                "type": "BOOLTOKEN",
+                                "value": "true"
+                            },
+                            {
+                                "type": "NULLTOKEN"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "IS_NUMBER",
+                        "arg": [
+                            {
+                                "type": "IT"
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "type": "TRACE",
+            "line": "8",
+            "arg": {
+                "type": "WHERE",
+                "arg": [
+                    {
+                        "type": "LIST",
+                        "elements": [
+                            {
+                                "type": "NUMTOKEN",
+                                "value": "1"
+                            },
+                            {
+                                "type": "NUMTOKEN",
+                                "value": "2"
+                            },
+                            {
+                                "type": "NUMTOKEN",
+                                "value": "3"
+                            },
+                            {
+                                "type": "NUMTOKEN",
+                                "value": "4"
+                            },
+                            {
+                                "type": "STRTOKEN",
+                                "value": "hello"
+                            },
+                            {
+                                "type": "NUMTOKEN",
+                                "value": "5"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "GT",
+                        "arg": [
+                            {
+                                "type": "IT"
+                            },
+                            {
+                                "type": "NUMTOKEN",
+                                "value": "3"
                             }
                         ]
                     }
