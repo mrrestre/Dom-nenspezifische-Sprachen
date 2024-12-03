@@ -105,14 +105,18 @@ int main(int argc, char* argv[]) {
 /////////////////////// 
 
 int get_token_id (char *token) {
+	if (strcmp(token, "AFTER") == 0) return AFTER;
 	if (strcmp(token, "AMPERSAND") == 0) return AMPERSAND;
 	if (strcmp(token, "ASSIGN") == 0) return ASSIGN;
+	if (strcmp(token, "BEFORE") == 0) return BEFORE;
 	if (strcmp(token, "BOOLTOKEN") == 0) return BOOLTOKEN;
 	if (strcmp(token, "COMMA") == 0) return COMMA;
 	if (strcmp(token, "COS") == 0) return COS;
 	if (strcmp(token, "COUNT") == 0) return COUNT;
 	if (strcmp(token, "DIVIDE") == 0) return DIVIDE;
+	if (strcmp(token, "EQUAL") == 0) return EQUAL;
 	if (strcmp(token, "FIRST") == 0) return FIRST;
+	if (strcmp(token, "GREATER") == 0) return GREATER;
 	if (strcmp(token, "GT") == 0) return GT;
 	if (strcmp(token, "GTEQ") == 0) return GTEQ;
 	if (strcmp(token, "IDENTIFIER") == 0) return IDENTIFIER;
@@ -122,6 +126,7 @@ int get_token_id (char *token) {
 	if (strcmp(token, "RPAR") == 0) return RPAR;
 	if (strcmp(token, "LSPAR") == 0) return LSPAR;
 	if (strcmp(token, "RSPAR") == 0) return RSPAR;
+	if (strcmp(token, "LESS") == 0) return LESS;
 	if (strcmp(token, "LIST") == 0) return LIST;
 	if (strcmp(token, "LT") == 0) return LT;
 	if (strcmp(token, "LTEQ") == 0) return LTEQ;
@@ -133,6 +138,9 @@ int get_token_id (char *token) {
 	if (strcmp(token, "NUMTOKEN") == 0) return NUMTOKEN;
 	if (strcmp(token, "NULLTOKEN") == 0) return NULLTOKEN;
 	if (strcmp(token, "OF") == 0) return OF;
+	if (strcmp(token, "OR") == 0) return OR;
+	if (strcmp(token, "OCCURS") == 0) return OCCUR;
+	if (strcmp(token, "OCCURRED") == 0) return OCCUR;
 	if (strcmp(token, "PLUS") == 0) return PLUS;
 	if (strcmp(token, "POWER") == 0) return POWER;
 	if (strcmp(token, "SEMICOLON") == 0) return SEMICOLON;
@@ -141,9 +149,12 @@ int get_token_id (char *token) {
 	if (strcmp(token, "TIME") == 0) return TIME;
 	if (strcmp(token, "TIMES") == 0) return TIMES;
 	if (strcmp(token, "TIMETOKEN") == 0) return TIMETOKEN;
-	if (strcmp(token, "THEY") == 0) return THEY;
+	if (strcmp(token, "THAN") == 0) return THAN;
+	if (strcmp(token, "THEY") == 0) return IT;
+	if (strcmp(token, "TO") == 0) return TO;
 	if (strcmp(token, "TRACE") == 0) return TRACE;
 	if (strcmp(token, "WHERE") == 0) return WHERE;
+	if (strcmp(token, "WITHIN") == 0) return WITHIN;
 	if (strcmp(token, "WRITE") == 0) return WRITE;
 	
 	printf ("{\"error\" : true, \"message\": \"UNKNOWN TOKEN TYPE %s\"}\n", token);
@@ -202,15 +213,15 @@ cJSON* ternary (char *fname, cJSON *a, cJSON *b, cJSON *c)
 /////////////////////// 
 // je weiter unten, desto bindet der Operator stärker
 
+%right     WHERE .
+%nonassoc  NOT IS OCCUR .
+%nonassoc  GT GTEQ LT LTEQ NEQ .
 %right	   COUNT FIRST .
-%right 	   WHERE .
 %left 	   COMMA .
 %left 	   PLUS MINUS AMPERSAND .
 %left 	   TIMES DIVIDE .
-%right 	   GT GTEQ LT LTEQ NEQ .
 %right     POWER .
 %right	   SIN COS .
-%nonassoc  NOT IS .
 
 /////////////////////// 
 // CODE
@@ -242,6 +253,13 @@ statementblock(sb) ::= statementblock(a) statement(b) .
 }
 
 ///////////////////////////
+// Optional
+///////////////////////////
+
+of ::= .
+of ::= OF .
+
+///////////////////////////
 // WRITE
 ///////////////////////////
 
@@ -257,15 +275,7 @@ statement(r) ::= WRITE ex(e) SEMICOLON .
 // WRITE TIME
 ///////////////////////////
 
-statement(r) ::= WRITE TIME OF ex(e) SEMICOLON .
-{
-	cJSON *res = cJSON_CreateObject(); 
-	cJSON_AddStringToObject(res, "type", "WRITE_TIME"); 
-	cJSON_AddItemToObject(res, "arg", e); 
-	r = res; 
-}
-
-statement(r) ::= WRITE TIME ex(e) SEMICOLON .
+statement(r) ::= WRITE TIME of ex(e) SEMICOLON .
 {
 	cJSON *res = cJSON_CreateObject(); 
 	cJSON_AddStringToObject(res, "type", "WRITE_TIME"); 
@@ -290,19 +300,10 @@ statement(r) ::= TRACE(l) ex(e) SEMICOLON .
 // TRACE TIME
 ///////////////////////////
 
-statement(r) ::= TRACE(l) TIME OF ex(e) SEMICOLON .
+statement(r) ::= TRACE(l) TIME of ex(e) SEMICOLON .
 {
 	cJSON *res = cJSON_CreateObject(); 
 	cJSON_AddStringToObject(res, "type", "TRACE_TIME"); 
-	cJSON_AddStringToObject(res, "line", getLine(l));
-	cJSON_AddItemToObject(res, "arg", e); 
-	r = res; 
-}
-
-statement(r) ::= TRACE(l) TIME ex(e) SEMICOLON .
-{
-	cJSON *res = cJSON_CreateObject(); 
-	cJSON_AddStringToObject(res, "type", "TRACE_TIME");
 	cJSON_AddStringToObject(res, "line", getLine(l));
 	cJSON_AddItemToObject(res, "arg", e); 
 	r = res; 
@@ -322,19 +323,26 @@ statement(r) ::= IDENTIFIER(i) ASSIGN ex(e) SEMICOLON .
 }
 
 ///////////////////////////
-// ASSIGN TIME
+// LIST ASSIGN
 ///////////////////////////
 
-statement(r) ::= TIME OF IDENTIFIER(i) ASSIGN ex(t) SEMICOLON .
+statement(r) ::= IDENTIFIER(i) LSPAR NUMTOKEN(n) RSPAR ASSIGN ex(e) SEMICOLON .
 {
 	cJSON *res = cJSON_CreateObject(); 
-	cJSON_AddStringToObject(res, "type", "ASSIGN_TIME");
-	cJSON_AddStringToObject(res, "varname", getValue(i)); 
-	cJSON_AddItemToObject(res, "arg", t); 
+	cJSON *arg = cJSON_CreateArray();
+	cJSON_AddItemToArray(arg, e);
+	cJSON_AddStringToObject(res, "type", "LIST_ASSIGN");
+	cJSON_AddStringToObject(res, "listname", getValue(i)); 
+	cJSON_AddStringToObject(res, "index", getValue(n)); 
+	cJSON_AddItemToObject(res, "arg", arg); 
 	r = res; 
 }
 
-statement(r) ::= TIME IDENTIFIER(i) ASSIGN ex(t) SEMICOLON .
+///////////////////////////
+// ASSIGN TIME
+///////////////////////////
+
+statement(r) ::= TIME of IDENTIFIER(i) ASSIGN ex(t) SEMICOLON .
 {
 	cJSON *res = cJSON_CreateObject(); 
 	cJSON_AddStringToObject(res, "type", "ASSIGN_TIME");
@@ -359,6 +367,17 @@ ex(r) ::= IDENTIFIER(a) .
 	cJSON *res = cJSON_CreateObject(); 
 	cJSON_AddStringToObject(res, "type", "IDENTIFIER"); 
 	cJSON_AddStringToObject(res, "name", getValue(a)); 
+	cJSON_AddStringToObject(res, "line", getLine(a)); 
+	r = res; 
+}
+
+// List access
+ex(r) ::= IDENTIFIER(a) LSPAR NUMTOKEN(n) RSPAR .      
+{ 
+	cJSON *res = cJSON_CreateObject(); 
+	cJSON_AddStringToObject(res, "type", "LIST_ACCESS"); 
+	cJSON_AddStringToObject(res, "name", getValue(a)); 
+	cJSON_AddStringToObject(res, "index", getValue(n));
 	cJSON_AddStringToObject(res, "line", getLine(a)); 
 	r = res; 
 }
@@ -457,13 +476,6 @@ ex(r) ::= TIMETOKEN (a).
 	r = res; 
 } 
 
-ex(r) ::= THEY .      
-{ 
-	cJSON *res = cJSON_CreateObject(); 
-	cJSON_AddStringToObject(res, "type", "IT"); 
-	r = res; 
-}
-
 ///////////////////////////
 // Operations
 ///////////////////////////
@@ -472,73 +484,42 @@ ex(r) ::= THEY .
 // Unary
 /////////////////
 
-ex(r) ::= COUNT ex(a) .                               
-{r = unary ("COUNT", a); }
-
-ex(r) ::= COS ex(a) .                               
-{r = unary ("COS", a); }
-
-ex(r) ::= FIRST ex(a) .                               
-{r = unary ("FIRST", a); }
-
-ex(r) ::= ex(a) IS LIST .                               
-{r = unary ("IS_LIST", a); }
-
-ex(r) ::= ex(a) IS NOT LIST .                               
-{r = unary ("IS_NOT_LIST", a); }
-
-ex(r) ::= ex(a) IS NUMBER .                               
-{r = unary ("IS_NUMBER", a); }
-
-ex(r) ::= NOT ex(a) .                               
-{r = unary ("NOT", a); }
-
-ex(r) ::= SIN ex(a) .                               
-{r = unary ("SIN", a); }
+ex(r) ::= COUNT ex(a) .         {r = unary ("COUNT", a); }
+ex(r) ::= COS ex(a) .           {r = unary ("COS", a); }
+ex(r) ::= FIRST ex(a) .         {r = unary ("FIRST", a); }
+ex(r) ::= ex(a) IS LIST .    	{r = unary ("IS_LIST", a); }
+ex(r) ::= ex(a) IS NOT LIST . 	{r = unary ("IS_NOT_LIST", a); }
+ex(r) ::= ex(a) IS NUMBER .     {r = unary ("IS_NUMBER", a); }
+ex(r) ::= NOT ex(a) .           {r = unary ("NOT", a); }
+ex(r) ::= SIN ex(a) .           {r = unary ("SIN", a); }
 
 /////////////////
 // Binary
 /////////////////
 
-ex(r) ::= ex(a) AMPERSAND ex(b) .                                
-{r = binary ("AMPERSAND", a, b); }
-
-ex(r) ::= ex(a) DIVIDE ex(b) .                              
-{r = binary ("DIVIDE", a, b); }
-
-ex(r) ::= ex(a) GT ex(b) .                                
-{r = binary ("GT", a, b); }
-
-ex(r) ::= ex(a) GTEQ ex(b) .                                
-{r = binary ("GTEQ", a, b); }
-
-ex(r) ::= ex(a) NEQ ex(b) .                                
-{r = binary ("NEQ", a, b); }
-
-ex(r) ::= ex(a) MINUS ex(b) .                               
-{r = binary ("MINUS", a, b); }
-
-ex(r) ::= ex(a) LT ex(b) .                                
-{r = binary ("LT", a, b); }
-
-ex(r) ::= ex(a) LTEQ ex(b) .                                
-{r = binary ("LTEQ", a, b); }
-
-ex(r) ::= ex(a) PLUS ex(b) .                                
-{r = binary ("PLUS", a, b); }
-
-ex(r) ::= ex(a) POWER ex(b) .                               
-{r = binary ("POWER", a, b); }
-
-ex(r) ::= ex(a) TIMES ex(b) .                               
-{r = binary ("TIMES", a, b); }
-
-ex(r) ::= ex(a) WHERE ex(b) .                               
-{r = binary ("WHERE", a, b); }
+ex(r) ::= ex(a) AMPERSAND ex(b) . 					{r = binary ("AMPERSAND", a, b); }
+ex(r) ::= ex(a) DIVIDE ex(b) .    					{r = binary ("DIVIDE", a, b); }
+ex(r) ::= ex(a) GT ex(b) .        					{r = binary ("GT", a, b); }
+ex(r) ::= ex(a) IS GREATER THAN ex(b) . 			{r = binary ("GT", a, b); }
+ex(r) ::= ex(a) GTEQ ex(b) .            			{r = binary ("GTEQ", a, b); }
+ex(r) ::= ex(a) IS GREATER THAN OR EQUAL ex(b) . 	{r = binary ("GTEQ", a, b); }
+ex(r) ::= ex(a) NEQ ex(b) .                         {r = binary ("NEQ", a, b); }
+ex(r) ::= ex(a) MINUS ex(b) .                       {r = binary ("MINUS", a, b); }
+ex(r) ::= ex(a) LT ex(b) .                          {r = binary ("LT", a, b); }
+ex(r) ::= ex(a) IS LESS THAN ex(b) .                {r = binary ("LT", a, b); }
+ex(r) ::= ex(a) LTEQ ex(b) .						{r = binary ("LTEQ", a, b); }
+ex(r) ::= ex(a) IS LESS THAN OR EQUAL ex(b) .       {r = binary ("LTEQ", a, b); }
+ex(r) ::= ex(a) OCCUR AFTER TIME of ex(b) .         {r = binary ("OCCUR_AFTER", a, b); }
+ex(r) ::= ex(a) OCCUR BEFORE TIME of ex(b) .        {r = binary ("OCCUR_BEFORE", a, b); }
+ex(r) ::= ex(a) PLUS ex(b) .                        {r = binary ("PLUS", a, b); }
+ex(r) ::= ex(a) POWER ex(b) .                       {r = binary ("POWER", a, b); }
+ex(r) ::= ex(a) TIMES ex(b) .                       {r = binary ("TIMES", a, b); }
+ex(r) ::= ex(a) WHERE ex(b) .                       {r = binary ("WHERE", a, b); }
 
 /////////////////
 // Ternary
 /////////////////
 
+ex(r) ::= ex(a) IS WITHIN ex(b) TO ex(c) . {r = ternary ("IS_WITHIN", a, b, c); }
 
                                            

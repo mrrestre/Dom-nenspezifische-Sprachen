@@ -2,48 +2,34 @@
     "type": "STATEMENTBLOCK",
     "statements": [
         {
-            "type": "TRACE",
-            "line": "1",
+            "type": "ASSIGN",
+            "varname": "testlist",
             "arg": {
-                "type": "WHERE",
-                "arg": [
+                "type": "LIST",
+                "elements": [
                     {
                         "type": "NUMTOKEN",
-                        "value": "1"
+                        "value": "100"
                     },
                     {
-                        "type": "BOOLTOKEN",
-                        "value": "true"
-                    }
-                ]
-            }
-        },
-        {
-            "type": "TRACE",
-            "line": "2",
-            "arg": {
-                "type": "WHERE",
-                "arg": [
-                    {
-                        "type": "LIST",
-                        "elements": [
-                            {
-                                "type": "NUMTOKEN",
-                                "value": "1"
-                            },
-                            {
-                                "type": "NUMTOKEN",
-                                "value": "2"
-                            },
-                            {
-                                "type": "NUMTOKEN",
-                                "value": "3"
-                            }
-                        ]
+                        "type": "NUMTOKEN",
+                        "value": "200"
                     },
                     {
-                        "type": "BOOLTOKEN",
-                        "value": "true"
+                        "type": "NUMTOKEN",
+                        "value": "50"
+                    },
+                    {
+                        "type": "NUMTOKEN",
+                        "value": "120"
+                    },
+                    {
+                        "type": "NUMTOKEN",
+                        "value": "150"
+                    },
+                    {
+                        "type": "NUMTOKEN",
+                        "value": "90"
                     }
                 ]
             }
@@ -55,8 +41,9 @@
                 "type": "WHERE",
                 "arg": [
                     {
-                        "type": "NUMTOKEN",
-                        "value": "1"
+                        "type": "IDENTIFIER",
+                        "name": "testlist",
+                        "line": "3"
                     },
                     {
                         "type": "LIST",
@@ -71,7 +58,19 @@
                             },
                             {
                                 "type": "BOOLTOKEN",
+                                "value": "false"
+                            },
+                            {
+                                "type": "BOOLTOKEN",
                                 "value": "true"
+                            },
+                            {
+                                "type": "BOOLTOKEN",
+                                "value": "true"
+                            },
+                            {
+                                "type": "BOOLTOKEN",
+                                "value": "false"
                             }
                         ]
                     }
@@ -85,28 +84,19 @@
                 "type": "WHERE",
                 "arg": [
                     {
-                        "type": "NUMTOKEN",
-                        "value": "1"
+                        "type": "IDENTIFIER",
+                        "name": "testlist",
+                        "line": "4"
                     },
                     {
-                        "type": "NOT",
+                        "type": "LTEQ",
                         "arg": [
                             {
-                                "type": "LIST",
-                                "elements": [
-                                    {
-                                        "type": "BOOLTOKEN",
-                                        "value": "true"
-                                    },
-                                    {
-                                        "type": "BOOLTOKEN",
-                                        "value": "false"
-                                    },
-                                    {
-                                        "type": "BOOLTOKEN",
-                                        "value": "true"
-                                    }
-                                ]
+                                "type": "IT"
+                            },
+                            {
+                                "type": "NUMTOKEN",
+                                "value": "100"
                             }
                         ]
                     }
@@ -120,40 +110,23 @@
                 "type": "WHERE",
                 "arg": [
                     {
-                        "type": "LIST",
-                        "elements": [
-                            {
-                                "type": "NUMTOKEN",
-                                "value": "1"
-                            },
-                            {
-                                "type": "NUMTOKEN",
-                                "value": "2"
-                            },
-                            {
-                                "type": "NUMTOKEN",
-                                "value": "3"
-                            },
-                            {
-                                "type": "NUMTOKEN",
-                                "value": "4"
-                            }
-                        ]
+                        "type": "IDENTIFIER",
+                        "name": "testlist",
+                        "line": "5"
                     },
                     {
-                        "type": "LIST",
-                        "elements": [
+                        "type": "IS_WITHIN",
+                        "arg": [
                             {
-                                "type": "BOOLTOKEN",
-                                "value": "true"
+                                "type": "IT"
                             },
                             {
-                                "type": "BOOLTOKEN",
-                                "value": "false"
+                                "type": "NUMTOKEN",
+                                "value": "80"
                             },
                             {
-                                "type": "BOOLTOKEN",
-                                "value": "true"
+                                "type": "NUMTOKEN",
+                                "value": "120"
                             }
                         ]
                     }
@@ -162,43 +135,53 @@
         },
         {
             "type": "TRACE",
-            "line": "7",
+            "line": "6",
             "arg": {
                 "type": "WHERE",
                 "arg": [
                     {
-                        "type": "LIST",
-                        "elements": [
-                            {
-                                "type": "STRTOKEN",
-                                "value": "hallo"
-                            },
-                            {
-                                "type": "NUMTOKEN",
-                                "value": "1"
-                            },
-                            {
-                                "type": "NUMTOKEN",
-                                "value": "2"
-                            },
-                            {
-                                "type": "NUMTOKEN",
-                                "value": "3"
-                            },
-                            {
-                                "type": "BOOLTOKEN",
-                                "value": "true"
-                            },
-                            {
-                                "type": "NULLTOKEN"
-                            }
-                        ]
+                        "type": "IDENTIFIER",
+                        "name": "testlist",
+                        "line": "6"
                     },
                     {
-                        "type": "IS_NUMBER",
+                        "type": "IS_WITHIN",
                         "arg": [
                             {
                                 "type": "IT"
+                            },
+                            {
+                                "type": "NUMTOKEN",
+                                "value": "100"
+                            },
+                            {
+                                "type": "LIST",
+                                "elements": [
+                                    {
+                                        "type": "NUMTOKEN",
+                                        "value": "100"
+                                    },
+                                    {
+                                        "type": "NUMTOKEN",
+                                        "value": "110"
+                                    },
+                                    {
+                                        "type": "NUMTOKEN",
+                                        "value": "120"
+                                    },
+                                    {
+                                        "type": "NUMTOKEN",
+                                        "value": "130"
+                                    },
+                                    {
+                                        "type": "NUMTOKEN",
+                                        "value": "140"
+                                    },
+                                    {
+                                        "type": "NUMTOKEN",
+                                        "value": "150"
+                                    }
+                                ]
                             }
                         ]
                     }
@@ -212,43 +195,187 @@
                 "type": "WHERE",
                 "arg": [
                     {
-                        "type": "LIST",
-                        "elements": [
-                            {
-                                "type": "NUMTOKEN",
-                                "value": "1"
-                            },
-                            {
-                                "type": "NUMTOKEN",
-                                "value": "2"
-                            },
-                            {
-                                "type": "NUMTOKEN",
-                                "value": "3"
-                            },
-                            {
-                                "type": "NUMTOKEN",
-                                "value": "4"
-                            },
-                            {
-                                "type": "STRTOKEN",
-                                "value": "hello"
-                            },
-                            {
-                                "type": "NUMTOKEN",
-                                "value": "5"
-                            }
-                        ]
+                        "type": "IDENTIFIER",
+                        "name": "testlist",
+                        "line": "8"
                     },
                     {
-                        "type": "GT",
+                        "type": "IS_WITHIN",
+                        "arg": [
+                            {
+                                "type": "DIVIDE",
+                                "arg": [
+                                    {
+                                        "type": "TIMES",
+                                        "arg": [
+                                            {
+                                                "type": "NUMTOKEN",
+                                                "value": "2"
+                                            },
+                                            {
+                                                "type": "IT"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "type": "NUMTOKEN",
+                                        "value": "3"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "NUMTOKEN",
+                                "value": "80"
+                            },
+                            {
+                                "type": "NUMTOKEN",
+                                "value": "120"
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "type": "LIST_ASSIGN",
+            "listname": "testlist",
+            "index": "2",
+            "arg": [
+                {
+                    "type": "NUMTOKEN",
+                    "value": "199"
+                }
+            ]
+        },
+        {
+            "type": "TRACE",
+            "line": "11",
+            "arg": {
+                "type": "IDENTIFIER",
+                "name": "testlist",
+                "line": "11"
+            }
+        },
+        {
+            "type": "ASSIGN",
+            "varname": "x",
+            "arg": {
+                "type": "NUMTOKEN",
+                "value": "100"
+            }
+        },
+        {
+            "type": "ASSIGN",
+            "varname": "y",
+            "arg": {
+                "type": "NUMTOKEN",
+                "value": "200"
+            }
+        },
+        {
+            "type": "ASSIGN",
+            "varname": "z",
+            "arg": {
+                "type": "NUMTOKEN",
+                "value": "300"
+            }
+        },
+        {
+            "type": "ASSIGN_TIME",
+            "varname": "x",
+            "arg": {
+                "type": "TIMETOKEN",
+                "value": "2020-06-08T15:15:15"
+            }
+        },
+        {
+            "type": "ASSIGN_TIME",
+            "varname": "y",
+            "arg": {
+                "type": "TIMETOKEN",
+                "value": "2020-06-09T11:11:00"
+            }
+        },
+        {
+            "type": "ASSIGN_TIME",
+            "varname": "z",
+            "arg": {
+                "type": "TIMETOKEN",
+                "value": "2020-06-10T12:00:00"
+            }
+        },
+        {
+            "type": "ASSIGN",
+            "varname": "xyz",
+            "arg": {
+                "type": "LIST",
+                "elements": [
+                    {
+                        "type": "IDENTIFIER",
+                        "name": "x",
+                        "line": "20"
+                    },
+                    {
+                        "type": "IDENTIFIER",
+                        "name": "y",
+                        "line": "20"
+                    },
+                    {
+                        "type": "IDENTIFIER",
+                        "name": "z",
+                        "line": "20"
+                    }
+                ]
+            }
+        },
+        {
+            "type": "TRACE",
+            "line": "22",
+            "arg": {
+                "type": "WHERE",
+                "arg": [
+                    {
+                        "type": "IDENTIFIER",
+                        "name": "xyz",
+                        "line": "22"
+                    },
+                    {
+                        "type": "OCCUR_BEFORE",
                         "arg": [
                             {
                                 "type": "IT"
                             },
                             {
-                                "type": "NUMTOKEN",
-                                "value": "3"
+                                "type": "IDENTIFIER",
+                                "name": "z",
+                                "line": "22"
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "type": "TRACE",
+            "line": "23",
+            "arg": {
+                "type": "WHERE",
+                "arg": [
+                    {
+                        "type": "IDENTIFIER",
+                        "name": "xyz",
+                        "line": "23"
+                    },
+                    {
+                        "type": "OCCUR_AFTER",
+                        "arg": [
+                            {
+                                "type": "IT"
+                            },
+                            {
+                                "type": "IDENTIFIER",
+                                "name": "x",
+                                "line": "23"
                             }
                         ]
                     }

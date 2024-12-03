@@ -1,8 +1,23 @@
-TRACE 1 WHERE true;
-TRACE [1,2,3] WHERE true;
-TRACE 1 WHERE [true,false,true];
-TRACE 1 WHERE NOT[true,false,true];
-TRACE [1,2,3,4] WHERE [true,false,true];
+testlist := [100, 200, 50, 120, 150, 90] ;
 
-TRACE ["hallo",1,2,3, true, null] WHERE IT IS NUMBER;
-TRACE [1,2,3,4,'hello',5] WHERE THEY > 3;
+trace testlist where [true, false, false, true, true, false];
+trace testlist where it is less than or equal 100;
+trace testlist where it is within 80 to 120;
+trace testlist where it is within 100 to [100,110,120,130,140,150];
+
+trace testlist where 2 * it / 3 is within 80 to 120;
+
+testlist[2] := 199;
+trace testlist;
+x := 100;
+y := 200;
+z := 300;
+
+time of x := 2020-06-08T15:15:15;
+time of y := 2020-06-09T11:11:00;
+time of z := 2020-06-10T12:00:00;
+
+xyz := [x,y,z];
+
+trace xyz where it occurs before time of z;
+trace xyz where they occurred after time of x;

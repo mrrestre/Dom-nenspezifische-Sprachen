@@ -39,10 +39,25 @@ class BaseType(ABC):
     def __sub__(self, other):
         return NullType(None)
     
+    def __mul__(self, other):
+        return NullType(None)
+    
+    def __floordiv__(self, other):
+        return NullType(None)
+    
+    def __truediv__(self, other):
+        return NullType(None)
+    
     def __lt__(self, other):
         return NullType(None)
     
+    def __le__(self, other):
+        return NullType(None)
+    
     def __gt__(self, other):
+        return NullType(None)
+    
+    def __ge__(self, other):
         return NullType(None)
             
 
@@ -70,16 +85,44 @@ class NumType(BaseType):
         else:
             return NullType(None)
         
+    def __mul__(self, other):
+        if isinstance(other, NumType):
+            return NumType(self.value * other.value)
+        else:
+            return NullType(None)
+        
+    def __floordiv__(self, other):
+        if isinstance(other, NumType) and other.value != 0:
+            return NumType(self.value // other.value)
+        else:
+            return NullType(None)
+    
+    def __truediv__(self, other):
+        if isinstance(other, NumType) and other.value != 0:
+            return NumType(self.value / other.value)
+        else:
+            return NullType(None)
+        
     def __lt__(self, other):
         if isinstance(other, NumType):
             return BoolType(self.value < other.value)
         return NullType(None)
     
+    def __le__(self, other):
+        if isinstance(other, NumType):
+            return BoolType(self.value <= other.value)
+        return NullType(None)
+
     def __gt__(self, other):
         if isinstance(other, NumType):
             return BoolType(self.value > other.value)
         return NullType(None)
         
+    def __ge__(self, other):
+        if isinstance(other, NumType):
+            return BoolType(self.value >= other.value)
+        return NullType(None)
+    
 class DateType(BaseType):
     def parse_value(self, input):
         try:
@@ -116,10 +159,14 @@ class BoolType(BaseType):
             return True
         else:
             return False
-        
+
+class Identifier():
+    def __init__(self, variable_name):
+        self.variable_name = variable_name
+        self.timestamp = None
 
 class ListType(BaseType):
-    allowed_types = (StrType, NumType, DateType, BoolType, NullType)
+    allowed_types = (StrType, NumType, DateType, BoolType, NullType, Identifier)
     
     def parse_value(self, input):
         self.value = []
@@ -136,6 +183,8 @@ class ListType(BaseType):
                         self.value.append(BoolType(element.get('value')))
                     if element.get('type') == 'NULLTOKEN':
                         self.value.append(NullType(None))
+                    if element.get('type') == 'IDENTIFIER':
+                        self.value.append(Identifier(element.get('name')))
                 else:
                     self.value.append(element)
     

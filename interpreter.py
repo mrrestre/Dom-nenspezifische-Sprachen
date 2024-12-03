@@ -11,7 +11,7 @@ class Interpreter:
         self.debug = False
         self.symbol_table = SymbolTable()
         self.ast = {}
-        self.it_value = None
+        self.it = None
 
         with open(path, 'r') as file:
             self.ast = json.load(file)
@@ -20,6 +20,7 @@ class Interpreter:
             "ASSIGN": self.handle_assign,
             "ASSIGN_TIME": self.handle_assign_time,
             "IDENTIFIER": self.handle_identifier,
+            "LIST_ASSIGN": self.handle_list_index_assign,
             "STATEMENTBLOCK": self.handle_statement_block,
             "TRACE": self.handle_trace,
             "TRACE_TIME": self.handle_trace_time,
@@ -44,14 +45,22 @@ class Interpreter:
 
         self.binary_operations = {
             "AMPERSAND": self.handle_string_concat,
+            "DIVIDE": self.handle_divide,
             "MINUS": self.handle_minus,
             "LT": self.handle_less_than,
+            "LTEQ": self.handle_less_equal_than,
             "GT": self.handle_greater_than,
+            "GTEQ": self.handle_greater_equal_than,
+            "OCCUR_AFTER": self.handle_occur_after,
+            "OCCUR_BEFORE": self.handle_occur_before,
             "PLUS": self.handle_plus,
+            "TIMES": self.handle_times,
             "WHERE": self.handle_where,
         }
 
-        self.ternary_operations = { }
+        self.ternary_operations = { 
+            "IS_WITHIN": self.handle_is_within,
+        }
 
         self.operation_handlers = self.unary_operations | self.binary_operations | self.ternary_operations
 
@@ -64,36 +73,12 @@ class Interpreter:
         if self.is_terminal_node(node):
             return TerminalNode(node).get_value()
         elif self.is_operator_node(node):
-            # Handle where operation with the presence of "it" in the right operator
-            if node["type"] == "WHERE" and self.is_it_present_in_opt(node["arg"][1]):
-                # Evaluate left argument
-                where_left = self.eval_node(node["arg"][0])
-
-                # Find out which kind of opearator is used on the right
-                oper_kind = self.operation_handlers.get(node["arg"][1]["type"])
-                
-                match len(node["arg"][1]["arg"]):
-                    case 1:
-                        if self.is_list(where_left):
-                            result = ListType(None)
-                            for element in where_left:
-                                op_result = oper_kind(element)
-                                result.append(self.handle_where(element, op_result))
-                            return result
-                        else:
-                            return self.handle_where(where_left, operation_handler(argument))
-                    case 2:
-                        # Evaluate the right argument of the right operator
-                        oper_right = self.eval_node(node["arg"][1]["arg"][1])
+            if not self.operation_handlers.get(node["type"]):
+                raise ValueError(f"Handler not found for node type: {node["type"]}")
+            
+            if node["type"] == "WHERE":
+                self.it = self.eval_node(node["arg"][0])
                         
-                        if self.is_list(where_left):
-                            result = ListType(None)
-                            for element in where_left:
-                                op_result = oper_kind(element, oper_right)
-                                result.append(self.handle_where(element, op_result))
-                            return result
-                        else:
-                            return self.handle_where(where_left, operation_handler(where_left, oper_kind))
                     
             evaluated_params = self.evaluate_params(node)
             operation_handler = self.operation_handlers.get(node["type"])
@@ -117,58 +102,81 @@ class Interpreter:
 
                 # Binary operation
                 case 2:
-                    where_left = evaluated_params[0]
+                    left = evaluated_params[0]
                     right = evaluated_params[1]
 
                     # Both are lists
-                    if self.is_list(where_left) and self.is_list(right):
-                        if len(where_left) == len(right):
-                            # Perform the operation position based: result[i] = left[i] <operation> right[i]
-                            result = ListType(None)
-                            for i in range(len(where_left)):
-                                result.append(operation_handler(where_left[i], right[i]))
-                            return result
-                        else:
+                    if self.is_list(left) and self.is_list(right):
+                        if len(left) != len(right):
                             return NullType(None)
+                        
+                        # Perform the operation position based: result[i] = left[i] <operation> right[i]
+                        result = ListType(None)
+                        for i in range(len(left)):
+                            result.append(operation_handler(left[i], right[i]))
+                        return result
                     # Only right is a list
-                    elif not self.is_list(where_left) and self.is_list(right):
+                    elif not self.is_list(left) and self.is_list(right):
                         # Perform the operation on left with all elements of right: result[i] = left <operation> right[i]
                         result = ListType(None)
                         for i in range(len(right)):
-                            result.append(operation_handler(where_left, right[i]))
+                            result.append(operation_handler(left, right[i]))
                         return result
                     # Only left is a list
-                    elif self.is_list(where_left) and not self.is_list(right):
+                    elif self.is_list(left) and not self.is_list(right):
                         # Perform the operation on left with all elements of right: result[i] = left[i] <operation> right
                         result = ListType(None)
-                        for i in range(len(where_left)):
-                            result.append(operation_handler(where_left[i], right))
+                        for i in range(len(left)):
+                            result.append(operation_handler(left[i], right))
                         return result
                     # Neither arg is a list
-                    elif not self.is_list(where_left) and not self.is_list(right):
-                        return operation_handler(where_left, right)
+                    elif not self.is_list(left) and not self.is_list(right):
+                        return operation_handler(left, right)
                 
                 # Ternary operation
                 case 3:
-                    return operation_handler(evaluated_params)
+                    left = evaluated_params[0]
+                    mid = evaluated_params[1]
+                    right = evaluated_params[2]
+
+                    # Left and right are lists
+                    if self.is_list(left) and self.is_list(right):
+                        if len(left) != len(right):
+                            return NullType(None)
+                        
+                        result = ListType(None)
+                        for i in range(len(left)):
+                            result.append(operation_handler(left[i], mid, right[i]))
+                        return result
+                    # Only left is list
+                    elif self.is_list(left) and not self.is_list(right):
+                        result = ListType(None)
+                        for element in left:
+                            result.append(operation_handler(element, mid, right))
+                        return result
+                    # Neither is a list
+                    elif not self.is_list(left) and not self.is_list(right):
+                        return operation_handler(left, mid, right)
+                    
         else:
-            handler = self.statement_handlers.get(node["type"])
-            if not handler:
+            if not self.statement_handlers.get(node["type"]):
                 raise ValueError(f"Handler not found for node type: {node["type"]}")
-            return handler(node)
+            
+            return self.statement_handlers.get(node["type"])(node)
 
     # Statement Block
     def handle_statement_block(self, node):
         for statement in node["statements"]:
             self.eval_node(statement)
+            self.it = None
 
     # Statements
     def handle_assign(self, node):
-        variable = self.eval_node(node["arg"])
+        input = self.eval_node(node["arg"])
         if self.symbol_table.isKeyPresent(node['varname']):
-            self.symbol_table[node['varname']].value = variable.value
+            self.symbol_table[node['varname']].value = input.value
         else:
-            self.symbol_table.update({node['varname']: variable.copy()})
+            self.symbol_table.update({node['varname']: input.copy()})
         self.debug_symbol_list()
             
     def handle_assign_time(self, node):
@@ -178,9 +186,38 @@ class Interpreter:
     
     def handle_identifier(self, node):
         if self.symbol_table.isKeyPresent(node['name']):
-            return self.symbol_table[node['name']]
+            dict_value = self.symbol_table[node['name']]
+            if self.is_list(dict_value):
+                result = ListType(None)
+                for value in dict_value:
+                    if isinstance(value, Identifier):
+                        if self.symbol_table.isKeyPresent(value.variable_name):
+                            result.append(self.symbol_table[value.variable_name])
+                        else:
+                            return NullType(None)
+                    else:
+                        result.append(value)
+                return result
+            else:
+                if isinstance(dict_value, Identifier):
+                    if self.symbol_table.isKeyPresent(dict_value.variable_name):
+                        return self.symbol_table[value.variable_name]
+                    else:
+                        return NullType(None)
+                else:
+                    return dict_value
+
+            #return self.symbol_table[node['name']]
         else:
             return 'Variable ' + node['name'] + ' in line ' + node['line'] + ' not defined in scope'
+
+    def handle_list_index_assign(self, node):
+        new_value = self.evaluate_params(node)[0]
+        if self.symbol_table.isKeyPresent(node['listname']):
+            symbol_table_list = self.symbol_table[node['listname']]
+            index = int(node['index'])
+            symbol_table_list[index] = new_value
+        self.debug_symbol_list()
 
     def handle_write(self, node):
         result = self.eval_node(node["arg"])
@@ -245,8 +282,20 @@ class Interpreter:
     def handle_less_than(self, left, right):
         return BoolType(left < right)
     
+    def handle_less_equal_than(self, left, right):
+        return BoolType(left <= right)
+    
     def handle_greater_than(self, left, right):
         return BoolType(left > right)
+    
+    def handle_greater_equal_than(self, left, right):
+        return BoolType(left >= right)
+
+    def handle_occur_after(self, left, right):
+        return BoolType(left.timestamp > right.timestamp)
+            
+    def handle_occur_before(self, left, right):
+        return BoolType(left.timestamp < right.timestamp)
     
     def handle_minus(self, left, right):
         return left - right
@@ -254,6 +303,12 @@ class Interpreter:
     def handle_plus(self, left, right):
         return left + right
     
+    def handle_times(self, left, right):
+        return left * right
+    
+    def handle_divide(self, left, right):
+        return left / right
+        
     def handle_string_concat(self, left, right):
         if isinstance(left, StrType) or isinstance(right, StrType):
             return StrType(left) + StrType(right)
@@ -264,12 +319,20 @@ class Interpreter:
         if isinstance(right, BoolType):
             if right.bool_value() == True:
                 return left
+
+    # Ternary     
+    def handle_is_within(self, value, min, max):
+        return BoolType((value >= min).bool_value() and (value <= max).bool_value())   
+    
     
     # Helper functions   
     def evaluate_params(self, node):
         evaluated_params = []
         for operation_node in node['arg']:
-            evaluated_params.append(self.eval_node(operation_node))
+            if operation_node["type"] == "IT":
+                evaluated_params.append(self.it)
+            else:
+                evaluated_params.append(self.eval_node(operation_node))
         return evaluated_params
 
     def debug_symbol_list(self):
@@ -288,10 +351,4 @@ class Interpreter:
         
     def is_list(self, datatype):
         return True if isinstance(datatype, ListType) else False
-    
-    def is_it_present_in_opt(self, operator_node):
-        if 'arg' in operator_node:
-            return True if operator_node["arg"][0]["type"] == "IT" else False
-        else:
-            return False
         
