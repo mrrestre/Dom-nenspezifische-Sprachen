@@ -8,12 +8,13 @@ class Tokenizer:
         self.tokens = []
 
         self.reserved_words = [ 'AFTER', 'AVERAGE', 'BEFORE', 'COS', 'COUNT', 'CURRENTTIME', 'DO', 'EARLIEST', 
-                                'EQUAL', 'ELSE', 'ELSEIF', 'ENDDO', 'ENDIF', 
+                                'EQUAL', 'ELSEIF', 'ELSE', 'ENDDO', 'ENDIF', 
                                 'FIRST', 'FOR', 'GREATER', 'IF', 'IN', 'IS', 'IT', 'LAST', 
                                 'LATEST', 'LESS', 'LIST', 'MAXIMUM', 'MINIMUM', 'NOT', 'NOW', 
                                 'NUMBER', 'OCCURS', 'OCCURRED', 'OF', 'OR', 'READ', 'SIN', 'SUM', 
                                 'THAN', 'THEN', 'THEY', 'TIME', 'TRACE', 'TO', 'WITHIN', 'WHERE', 'WRITE']
         self.symbols = {
+            '...':  'LIST_SHORTHAND',
             ':=':   'ASSIGN',
             '**':   'POWER',
             '<=':   'LTEQ', 

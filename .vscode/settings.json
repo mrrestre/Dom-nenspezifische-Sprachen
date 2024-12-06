@@ -11,6 +11,7 @@
         "xutility": "cpp",
         "*.y": "cpp",
         "ios": "cpp",
-        "xiosbase": "cpp"
+        "xiosbase": "cpp",
+        "cmath": "cpp"
     }
 }

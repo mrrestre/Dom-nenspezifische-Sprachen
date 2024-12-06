@@ -76,18 +76,24 @@ class NumType(BaseType):
     def __add__(self, other):
         if isinstance(other, NumType):
             return NumType(self.value + other.value)
+        elif isinstance(other, int) or isinstance(other, float):
+            return NumType(self.value + other)
         else:
             return NullType(None)
         
     def __sub__(self, other):
         if isinstance(other, NumType):
             return NumType(self.value - other.value)
+        elif isinstance(other, int) or isinstance(other, float):
+            return NumType(self.value - other)
         else:
             return NullType(None)
         
     def __mul__(self, other):
         if isinstance(other, NumType):
             return NumType(self.value * other.value)
+        elif isinstance(other, int) or isinstance(other, float):
+            return NumType(self.value * other)
         else:
             return NullType(None)
         

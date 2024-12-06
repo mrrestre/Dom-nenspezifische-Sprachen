@@ -20,6 +20,8 @@ class Interpreter:
             "ASSIGN": self.handle_assign,
             "ASSIGN_TIME": self.handle_assign_time,
             "IDENTIFIER": self.handle_identifier,
+            "IF": self.handle_if,
+            "FOR": self.handle_for,
             "LIST_ASSIGN": self.handle_list_index_assign,
             "STATEMENTBLOCK": self.handle_statement_block,
             "TRACE": self.handle_trace,
@@ -51,6 +53,7 @@ class Interpreter:
             "LTEQ": self.handle_less_equal_than,
             "GT": self.handle_greater_than,
             "GTEQ": self.handle_greater_equal_than,
+            "LIST_SHORTHAND": self.handle_list_shorthand,
             "OCCUR_AFTER": self.handle_occur_after,
             "OCCUR_BEFORE": self.handle_occur_before,
             "PLUS": self.handle_plus,
@@ -211,6 +214,21 @@ class Interpreter:
         else:
             return 'Variable ' + node['name'] + ' in line ' + node['line'] + ' not defined in scope'
 
+    def handle_for(self, node):
+        variable_name = node['variable']['value']
+        self.symbol_table.set_item(variable_name, NullType(None))
+        for_range = self.eval_node(node['list'][0])
+        for i in for_range:
+            self.symbol_table.update({variable_name: NumType(i.value)})
+            self.eval_node(node['do'])
+
+    def handle_if(self, node):
+        conditional_result = self.eval_node(node['condition'])
+        if isinstance(conditional_result, BoolType) and conditional_result.bool_value() == True:
+            self.eval_node(node['thenbranch'])
+        elif 'elsebranch' in node:
+            self.eval_node(node['elsebranch'])
+
     def handle_list_index_assign(self, node):
         new_value = self.evaluate_params(node)[0]
         if self.symbol_table.isKeyPresent(node['listname']):
@@ -308,7 +326,17 @@ class Interpreter:
     
     def handle_divide(self, left, right):
         return left / right
-        
+    
+    def handle_list_shorthand(self, left, right):
+        if isinstance(left, NumType) and isinstance(right,NumType) and left < right:
+            list = ListType(None)
+            for i in range (int(left.value), int(right.value) + 1):
+                list.append(NumType(i))
+            return list
+        else:
+            return NullType(None)
+
+
     def handle_string_concat(self, left, right):
         if isinstance(left, StrType) or isinstance(right, StrType):
             return StrType(left) + StrType(right)

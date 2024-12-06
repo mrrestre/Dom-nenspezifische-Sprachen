@@ -2,382 +2,149 @@
     "type": "STATEMENTBLOCK",
     "statements": [
         {
-            "type": "ASSIGN",
-            "varname": "testlist",
-            "arg": {
-                "type": "LIST",
-                "elements": [
+            "type": "FOR",
+            "variable": {
+                "value": "x",
+                "line": "1"
+            },
+            "list": [
+                {
+                    "type": "LIST_SHORTHAND",
+                    "arg": [
+                        {
+                            "type": "NUMTOKEN",
+                            "value": "12"
+                        },
+                        {
+                            "type": "NUMTOKEN",
+                            "value": "18"
+                        }
+                    ]
+                }
+            ],
+            "do": {
+                "type": "STATEMENTBLOCK",
+                "statements": [
                     {
-                        "type": "NUMTOKEN",
-                        "value": "100"
+                        "type": "ASSIGN",
+                        "varname": "bmi",
+                        "arg": {
+                            "type": "TIMES",
+                            "arg": [
+                                {
+                                    "type": "IDENTIFIER",
+                                    "name": "x",
+                                    "line": "3"
+                                },
+                                {
+                                    "type": "NUMTOKEN",
+                                    "value": "2.3"
+                                }
+                            ]
+                        }
                     },
                     {
-                        "type": "NUMTOKEN",
-                        "value": "200"
-                    },
-                    {
-                        "type": "NUMTOKEN",
-                        "value": "50"
-                    },
-                    {
-                        "type": "NUMTOKEN",
-                        "value": "120"
-                    },
-                    {
-                        "type": "NUMTOKEN",
-                        "value": "150"
-                    },
-                    {
-                        "type": "NUMTOKEN",
-                        "value": "90"
-                    }
-                ]
-            }
-        },
-        {
-            "type": "TRACE",
-            "line": "3",
-            "arg": {
-                "type": "WHERE",
-                "arg": [
-                    {
-                        "type": "IDENTIFIER",
-                        "name": "testlist",
-                        "line": "3"
-                    },
-                    {
-                        "type": "LIST",
-                        "elements": [
-                            {
-                                "type": "BOOLTOKEN",
-                                "value": "true"
-                            },
-                            {
-                                "type": "BOOLTOKEN",
-                                "value": "false"
-                            },
-                            {
-                                "type": "BOOLTOKEN",
-                                "value": "false"
-                            },
-                            {
-                                "type": "BOOLTOKEN",
-                                "value": "true"
-                            },
-                            {
-                                "type": "BOOLTOKEN",
-                                "value": "true"
-                            },
-                            {
-                                "type": "BOOLTOKEN",
-                                "value": "false"
-                            }
-                        ]
-                    }
-                ]
-            }
-        },
-        {
-            "type": "TRACE",
-            "line": "4",
-            "arg": {
-                "type": "WHERE",
-                "arg": [
-                    {
-                        "type": "IDENTIFIER",
-                        "name": "testlist",
-                        "line": "4"
-                    },
-                    {
-                        "type": "LTEQ",
-                        "arg": [
-                            {
-                                "type": "IT"
-                            },
-                            {
-                                "type": "NUMTOKEN",
-                                "value": "100"
-                            }
-                        ]
-                    }
-                ]
-            }
-        },
-        {
-            "type": "TRACE",
-            "line": "5",
-            "arg": {
-                "type": "WHERE",
-                "arg": [
-                    {
-                        "type": "IDENTIFIER",
-                        "name": "testlist",
-                        "line": "5"
-                    },
-                    {
-                        "type": "IS_WITHIN",
-                        "arg": [
-                            {
-                                "type": "IT"
-                            },
-                            {
-                                "type": "NUMTOKEN",
-                                "value": "80"
-                            },
-                            {
-                                "type": "NUMTOKEN",
-                                "value": "120"
-                            }
-                        ]
-                    }
-                ]
-            }
-        },
-        {
-            "type": "TRACE",
-            "line": "6",
-            "arg": {
-                "type": "WHERE",
-                "arg": [
-                    {
-                        "type": "IDENTIFIER",
-                        "name": "testlist",
-                        "line": "6"
-                    },
-                    {
-                        "type": "IS_WITHIN",
-                        "arg": [
-                            {
-                                "type": "IT"
-                            },
-                            {
-                                "type": "NUMTOKEN",
-                                "value": "100"
-                            },
-                            {
-                                "type": "LIST",
-                                "elements": [
-                                    {
-                                        "type": "NUMTOKEN",
-                                        "value": "100"
-                                    },
-                                    {
-                                        "type": "NUMTOKEN",
-                                        "value": "110"
-                                    },
-                                    {
-                                        "type": "NUMTOKEN",
-                                        "value": "120"
-                                    },
-                                    {
-                                        "type": "NUMTOKEN",
-                                        "value": "130"
-                                    },
-                                    {
-                                        "type": "NUMTOKEN",
-                                        "value": "140"
-                                    },
-                                    {
-                                        "type": "NUMTOKEN",
-                                        "value": "150"
+                        "type": "IF",
+                        "condition": {
+                            "type": "GTEQ",
+                            "arg": [
+                                {
+                                    "type": "IDENTIFIER",
+                                    "name": "bmi",
+                                    "line": "5"
+                                },
+                                {
+                                    "type": "NUMTOKEN",
+                                    "value": "40"
+                                }
+                            ]
+                        },
+                        "thenbranch": {
+                            "type": "STATEMENTBLOCK",
+                            "statements": [
+                                {
+                                    "type": "TRACE",
+                                    "line": "6",
+                                    "arg": {
+                                        "type": "STRTOKEN",
+                                        "value": "Adipositas III"
                                     }
-                                ]
-                            }
-                        ]
-                    }
-                ]
-            }
-        },
-        {
-            "type": "TRACE",
-            "line": "8",
-            "arg": {
-                "type": "WHERE",
-                "arg": [
-                    {
-                        "type": "IDENTIFIER",
-                        "name": "testlist",
-                        "line": "8"
-                    },
-                    {
-                        "type": "IS_WITHIN",
-                        "arg": [
-                            {
-                                "type": "DIVIDE",
+                                }
+                            ]
+                        },
+                        "elsebranch": {
+                            "type": "IF",
+                            "condition": {
+                                "type": "GTEQ",
                                 "arg": [
                                     {
-                                        "type": "TIMES",
-                                        "arg": [
-                                            {
-                                                "type": "NUMTOKEN",
-                                                "value": "2"
-                                            },
-                                            {
-                                                "type": "IT"
-                                            }
-                                        ]
+                                        "type": "IDENTIFIER",
+                                        "name": "bmi",
+                                        "line": "7"
                                     },
                                     {
                                         "type": "NUMTOKEN",
-                                        "value": "3"
+                                        "value": "35"
                                     }
                                 ]
                             },
-                            {
-                                "type": "NUMTOKEN",
-                                "value": "80"
+                            "thenbranch": {
+                                "type": "STATEMENTBLOCK",
+                                "statements": [
+                                    {
+                                        "type": "TRACE",
+                                        "line": "8",
+                                        "arg": {
+                                            "type": "STRTOKEN",
+                                            "value": "Adipositas II"
+                                        }
+                                    }
+                                ]
                             },
-                            {
-                                "type": "NUMTOKEN",
-                                "value": "120"
+                            "elsebranch": {
+                                "type": "IF",
+                                "condition": {
+                                    "type": "GTEQ",
+                                    "arg": [
+                                        {
+                                            "type": "IDENTIFIER",
+                                            "name": "bmi",
+                                            "line": "9"
+                                        },
+                                        {
+                                            "type": "NUMTOKEN",
+                                            "value": "30"
+                                        }
+                                    ]
+                                },
+                                "thenbranch": {
+                                    "type": "STATEMENTBLOCK",
+                                    "statements": [
+                                        {
+                                            "type": "TRACE",
+                                            "line": "10",
+                                            "arg": {
+                                                "type": "STRTOKEN",
+                                                "value": "Adipositas I"
+                                            }
+                                        }
+                                    ]
+                                },
+                                "elsebranch": {
+                                    "type": "STATEMENTBLOCK",
+                                    "statements": [
+                                        {
+                                            "type": "TRACE",
+                                            "line": "12",
+                                            "arg": {
+                                                "type": "STRTOKEN",
+                                                "value": "Keine Adipositas"
+                                            }
+                                        }
+                                    ]
+                                }
                             }
-                        ]
-                    }
-                ]
-            }
-        },
-        {
-            "type": "LIST_ASSIGN",
-            "listname": "testlist",
-            "index": "2",
-            "arg": [
-                {
-                    "type": "NUMTOKEN",
-                    "value": "199"
-                }
-            ]
-        },
-        {
-            "type": "TRACE",
-            "line": "11",
-            "arg": {
-                "type": "IDENTIFIER",
-                "name": "testlist",
-                "line": "11"
-            }
-        },
-        {
-            "type": "ASSIGN",
-            "varname": "x",
-            "arg": {
-                "type": "NUMTOKEN",
-                "value": "100"
-            }
-        },
-        {
-            "type": "ASSIGN",
-            "varname": "y",
-            "arg": {
-                "type": "NUMTOKEN",
-                "value": "200"
-            }
-        },
-        {
-            "type": "ASSIGN",
-            "varname": "z",
-            "arg": {
-                "type": "NUMTOKEN",
-                "value": "300"
-            }
-        },
-        {
-            "type": "ASSIGN_TIME",
-            "varname": "x",
-            "arg": {
-                "type": "TIMETOKEN",
-                "value": "2020-06-08T15:15:15"
-            }
-        },
-        {
-            "type": "ASSIGN_TIME",
-            "varname": "y",
-            "arg": {
-                "type": "TIMETOKEN",
-                "value": "2020-06-09T11:11:00"
-            }
-        },
-        {
-            "type": "ASSIGN_TIME",
-            "varname": "z",
-            "arg": {
-                "type": "TIMETOKEN",
-                "value": "2020-06-10T12:00:00"
-            }
-        },
-        {
-            "type": "ASSIGN",
-            "varname": "xyz",
-            "arg": {
-                "type": "LIST",
-                "elements": [
-                    {
-                        "type": "IDENTIFIER",
-                        "name": "x",
-                        "line": "20"
-                    },
-                    {
-                        "type": "IDENTIFIER",
-                        "name": "y",
-                        "line": "20"
-                    },
-                    {
-                        "type": "IDENTIFIER",
-                        "name": "z",
-                        "line": "20"
-                    }
-                ]
-            }
-        },
-        {
-            "type": "TRACE",
-            "line": "22",
-            "arg": {
-                "type": "WHERE",
-                "arg": [
-                    {
-                        "type": "IDENTIFIER",
-                        "name": "xyz",
-                        "line": "22"
-                    },
-                    {
-                        "type": "OCCUR_BEFORE",
-                        "arg": [
-                            {
-                                "type": "IT"
-                            },
-                            {
-                                "type": "IDENTIFIER",
-                                "name": "z",
-                                "line": "22"
-                            }
-                        ]
-                    }
-                ]
-            }
-        },
-        {
-            "type": "TRACE",
-            "line": "23",
-            "arg": {
-                "type": "WHERE",
-                "arg": [
-                    {
-                        "type": "IDENTIFIER",
-                        "name": "xyz",
-                        "line": "23"
-                    },
-                    {
-                        "type": "OCCUR_AFTER",
-                        "arg": [
-                            {
-                                "type": "IT"
-                            },
-                            {
-                                "type": "IDENTIFIER",
-                                "name": "x",
-                                "line": "23"
-                            }
-                        ]
+                        }
                     }
                 ]
             }

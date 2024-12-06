@@ -113,13 +113,21 @@ int get_token_id (char *token) {
 	if (strcmp(token, "COMMA") == 0) return COMMA;
 	if (strcmp(token, "COS") == 0) return COS;
 	if (strcmp(token, "COUNT") == 0) return COUNT;
+	if (strcmp(token, "DO") == 0) return DO;
 	if (strcmp(token, "DIVIDE") == 0) return DIVIDE;
 	if (strcmp(token, "EQUAL") == 0) return EQUAL;
+	if (strcmp(token, "ELSE") == 0) return ELSE;
+	if (strcmp(token, "ELSEIF") == 0) return ELSEIF;
+	if (strcmp(token, "ENDIF") == 0) return ENDIF;
+	if (strcmp(token, "ENDDO") == 0) return ENDDO;
 	if (strcmp(token, "FIRST") == 0) return FIRST;
+	if (strcmp(token, "FOR") == 0) return FOR;
 	if (strcmp(token, "GREATER") == 0) return GREATER;
 	if (strcmp(token, "GT") == 0) return GT;
 	if (strcmp(token, "GTEQ") == 0) return GTEQ;
 	if (strcmp(token, "IDENTIFIER") == 0) return IDENTIFIER;
+	if (strcmp(token, "IF") == 0) return IF;
+	if (strcmp(token, "IN") == 0) return IN;
 	if (strcmp(token, "IS") == 0) return IS;
 	if (strcmp(token, "IT") == 0) return IT;
 	if (strcmp(token, "LPAR") == 0) return LPAR; 
@@ -128,6 +136,7 @@ int get_token_id (char *token) {
 	if (strcmp(token, "RSPAR") == 0) return RSPAR;
 	if (strcmp(token, "LESS") == 0) return LESS;
 	if (strcmp(token, "LIST") == 0) return LIST;
+	if (strcmp(token, "LIST_SHORTHAND") == 0) return LIST_SHORTHAND;
 	if (strcmp(token, "LT") == 0) return LT;
 	if (strcmp(token, "LTEQ") == 0) return LTEQ;
 	if (strcmp(token, "MINUS") == 0) return MINUS;
@@ -150,6 +159,7 @@ int get_token_id (char *token) {
 	if (strcmp(token, "TIMES") == 0) return TIMES;
 	if (strcmp(token, "TIMETOKEN") == 0) return TIMETOKEN;
 	if (strcmp(token, "THAN") == 0) return THAN;
+	if (strcmp(token, "THEN") == 0) return THEN;
 	if (strcmp(token, "THEY") == 0) return IT;
 	if (strcmp(token, "TO") == 0) return TO;
 	if (strcmp(token, "TRACE") == 0) return TRACE;
@@ -221,7 +231,7 @@ cJSON* ternary (char *fname, cJSON *a, cJSON *b, cJSON *c)
 %left 	   PLUS MINUS AMPERSAND .
 %left 	   TIMES DIVIDE .
 %right     POWER .
-%right	   SIN COS .
+%right	   SIN COS LIST_SHORTHAND .
 
 /////////////////////// 
 // CODE
@@ -250,6 +260,52 @@ statementblock(sb) ::= statementblock(a) statement(b) .
 {
 	cJSON_AddItemToArray(cJSON_GetObjectItem ( a, "statements"), b);
 	sb = a;
+}
+
+/////////////////////// 
+// Flow control
+///////////////////////
+
+statement(r) ::= IF ifstatement(a) .
+{ r = a; }
+
+ifstatement(r) ::= ex(e) THEN statementblock(b) elseif(c) .
+{
+	cJSON *res = cJSON_CreateObject();
+	cJSON_AddStringToObject(res, "type", "IF");
+	cJSON_AddItemToObject(res, "condition", e); 
+	cJSON_AddItemToObject(res, "thenbranch", (b)); 
+	cJSON_AddItemToObject(res, "elsebranch", (c));
+	r = res;
+}
+
+elseif(r) ::= ENDIF SEMICOLON .
+{
+	cJSON *res = cJSON_CreateObject();
+	cJSON_AddStringToObject(res, "type", "STATEMENT_BLOCK");
+	cJSON *arg = cJSON_CreateArray();
+	cJSON_AddItemToObject(res, "statements", arg);
+	r = res;
+}
+
+elseif(r) ::= ELSE statementblock(esb) ENDIF SEMICOLON .
+{ r = esb; }
+
+elseif(r) ::= ELSEIF ifstatement(a) .
+{ r = a; }
+
+/////////////////////// 
+// Loops
+///////////////////////
+
+statement(r) ::= FOR IDENTIFIER(i) IN exlist(l) DO statementblock(sb) ENDDO SEMICOLON .
+{
+	cJSON *res = cJSON_CreateObject();
+	cJSON_AddStringToObject(res, "type", "FOR");
+	cJSON_AddItemToObject(res, "variable", i); 
+	cJSON_AddItemToObject(res, "list", l); 
+	cJSON_AddItemToObject(res, "do", sb);
+	r = res;
 }
 
 ///////////////////////////
@@ -505,6 +561,7 @@ ex(r) ::= ex(a) GTEQ ex(b) .            			{r = binary ("GTEQ", a, b); }
 ex(r) ::= ex(a) IS GREATER THAN OR EQUAL ex(b) . 	{r = binary ("GTEQ", a, b); }
 ex(r) ::= ex(a) NEQ ex(b) .                         {r = binary ("NEQ", a, b); }
 ex(r) ::= ex(a) MINUS ex(b) .                       {r = binary ("MINUS", a, b); }
+ex(r) ::= ex(a) LIST_SHORTHAND ex(b) .              {r = binary ("LIST_SHORTHAND", a, b); }
 ex(r) ::= ex(a) LT ex(b) .                          {r = binary ("LT", a, b); }
 ex(r) ::= ex(a) IS LESS THAN ex(b) .                {r = binary ("LT", a, b); }
 ex(r) ::= ex(a) LTEQ ex(b) .						{r = binary ("LTEQ", a, b); }
